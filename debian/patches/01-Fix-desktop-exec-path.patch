@@ -1,0 +1,8 @@
+--- applets/taskman.desktop.in.in	2007-10-07 13:42:13.000000000 +0200
++++ applets/taskman.desktop.in.in	2007-10-07 19:22:09.000000000 +0200
+@@ -3,5 +3,4 @@
+ Encoding=UTF-8
+ Name=Launcher/Taskmanager
+ Comment=The main Awn Launcher/TaskManager applet
+-Exec=None
+ Icon=@PKGDATADIR@/avant-window-navigator.svg

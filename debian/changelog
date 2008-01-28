@@ -1,0 +1,10 @@
+avant-window-navigator (0.2.1-dfsg1-1) unstable; urgency=low
+
+  * Initial release version (Closes: #428246)
+  * debian/patches:
+   - 01-Fix-desktop-exec-path.patch : Fix lintian warning in 
+  applets/taskman.desktop.in.in
+   - 02-Fix-encode-in-desktop.patch : Remove Encoding in the *.desktop files
+  * Original tarball repack due to the licence of the icon.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 28 Jan 2008 20:30:03 +0100

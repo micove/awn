@@ -1,0 +1,79 @@
+Source: avant-window-navigator
+Section: gnome
+Priority: optional
+Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
+Build-Depends: 	debhelper (>= 6),
+		cdbs,
+		intltool,
+		libwnck-dev,
+		libgnome2-dev,
+		libgnome-desktop-dev,
+		libdbus-glib-1-dev,
+		libxcomposite-dev,
+		libxdamage-dev,
+		python-central (>= 0.5.6),
+		python-dev,
+		python-gnome2-dev,
+		python-cairo-dev
+Standards-Version: 3.7.3
+Homepage: https://launchpad.net/avant-window-navigator/
+XS-Python-Version: current
+
+Package: avant-window-navigator
+Section: gnome
+Architecture: any
+Depends: 	${shlibs:Depends},
+		${misc:Depends}
+Recommends:	awn-manager (>= 0.2)
+Suggests: 	metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2)
+Description: A MacOS X like panel for GNOME
+ The avant-window-navigator is a MacOS X like panel for the GNOME Desktop
+ written in C.  In addition to launchers that can be dragged onto the bar, 
+ it features a taskbar that behaves similarly to the Mac OSX dock. The window 
+ navigator uses the composite extension for transparency and other effects.
+
+Package: libawn0
+Section: libs
+Architecture: any
+Depends: 	${shlibs:Depends},
+		${misc:Depends}
+Suggests: 	metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2)
+Description: library for avant-window-navigator
+ This library is used by avant-window-navigator and its applets. It provides 
+ functions to create the bar and the applets.
+
+Package: libawn-dev
+Section: libdevel
+Architecture: any
+Depends:	libawn0 (= ${binary:Version}),
+		${misc:Depends},
+		libgnome2-dev,
+		libgtk2.0-dev
+Description: library for avant-window-navigator - development files
+ This package provides the include files and static library for the
+ avant-window-navigator library functions.
+
+Package: awn-manager
+Section: gnome
+Architecture: all
+Depends:	${python:Depends}, 
+		avant-window-navigator (>= 0.2),
+		python-gnome2,
+		python-gnome2-desktop,
+		gnome-menus,
+		librsvg2-common
+XB-Python-Version: ${python:Versions}
+Description: A preferences manager for avant-window-navigator
+ Awn-Manager provides a simple way to configure avant-window-navigator.
+ You can manage preferences, themes, applets and launchers.
+
+Package: python-awn
+Section: python
+Architecture: any
+Depends: 	${shlibs:Depends},
+		${misc:Depends},
+		${python:Depends}
+XB-Python-Version: ${python:Versions}
+Description: Python bindings for avant-window-navigator library 
+ This library is used by avant-window-navigator. It provides python bindings 
+ to create and use python applets for avant-window-navigator.

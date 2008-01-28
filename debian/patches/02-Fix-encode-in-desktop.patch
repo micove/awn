@@ -1,0 +1,28 @@
+--- applets/taskman.desktop.in.in	2007-10-07 15:37:18.000000000 +0200
++++ applets/taskman.desktop.in.in	2007-10-22 01:23:34.000000000 +0200
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+ Type=C
+-Encoding=UTF-8
+ Name=Launcher/Taskmanager
+ Comment=The main Awn Launcher/TaskManager applet
+
+--- awn-manager/awn-manager.desktop.in.in	2007-10-07 15:37:18.000000000 +0200
++++ awn-manager/awn-manager.desktop.in.in	2007-10-22 01:25:33.000000000 +0200
+@@ -1,6 +1,5 @@
+ [Desktop Entry]
+ Type=Application
+-Encoding=UTF-8
+ Name=Awn manager
+ Comment=Manage Awn preferences, launchers, applets and themes
+ Exec=awn-manager
+
+--- data/avant-window-navigator.desktop.in.in	2007-10-07 15:37:18.000000000 +0200
++++ data/avant-window-navigator.desktop.in.in	2007-10-22 01:27:57.000000000 +0200
+@@ -1,6 +1,5 @@
+ [Desktop Entry]
+ Type=Application
+-Encoding=UTF-8
+ Name=Avant Window Navigator
+ Comment=A dock-like window navigator.
+ Exec=avant-window-navigator
