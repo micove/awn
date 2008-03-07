@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="libawn-awn-settings">
+<refmeta>
+<refentrytitle role="top_of_page">awn-settings</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBAWN Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>awn-settings</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+                    <link linkend="AwnSettings">AwnSettings</link>;
+<link linkend="AwnSettings">AwnSettings</link>*        <link linkend="awn-settings-new">awn_settings_new</link>                    (void);
+<link linkend="AwnSettings">AwnSettings</link>*        <link linkend="awn-get-settings">awn_get_settings</link>                    (void);
+<link linkend="void">void</link>                <link linkend="awn-config-set-window-to-update">awn_config_set_window_to_update</link>     (<link linkend="GtkWidget">GtkWidget</link> *window);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="AwnSettings" role="struct"/>AwnSettings</title>
+<indexterm><primary>AwnSettings</primary></indexterm><programlisting>typedef struct {
+	/* Misc globals */
+	GtkIconTheme *icon_theme;
+	GtkWidget *bar;
+	GtkWidget *window;
+	GtkWidget *title;
+	GtkWidget *appman;
+	GtkWidget *hot;
+	gint task_width;
+	
+	/* monitor settings */
+	GdkRectangle monitor;
+	gboolean force_monitor;
+	int monitor_height;
+	int monitor_width;
+	gboolean panel_mode;
+	
+	gboolean auto_hide;
+	gboolean hidden;
+	gboolean hiding;
+	gint auto_hide_delay;
+	gboolean keep_below;
+	
+	int bar_height;
+	int bar_angle;
+	gfloat bar_pos;
+	gboolean no_bar_resize_ani;
+
+	/* Bar appearance settings */
+	gboolean rounded_corners;
+	gfloat corner_radius;
+	gboolean render_pattern;
+	
+	gchar *pattern_uri;
+	gfloat pattern_alpha;
+	
+	AwnColor g_step_1;
+	AwnColor g_step_2;
+	AwnColor g_histep_1;
+	AwnColor g_histep_2;
+	AwnColor border_color;
+	AwnColor hilight_color;
+	
+	gboolean show_separator;
+	AwnColor sep_color;
+	
+	/* Window Manager Settings */
+	gboolean show_all_windows;
+	GSList *launchers;
+	
+	/* Task settings */
+	gboolean use_png;
+	gchar *active_png;
+	
+	AwnColor arrow_color;
+	int arrow_offset;
+	gboolean tasks_have_arrows;
+	
+	gboolean name_change_notify;
+	gboolean alpha_effect;
+	gint icon_effect;
+	
+	int icon_offset;
+	
+	/* Title settings */
+	AwnColor text_color;
+	AwnColor shadow_color;
+	AwnColor background;
+	gchar *font_face;	
+	
+	gboolean btest;
+	float ftest;
+	char* stest;
+	AwnColor ctest;
+	GSList *ltest;
+	
+	/* Curves settings */
+	int bar_width;
+	gfloat curviness;
+	gfloat curves_symmetry;
+} AwnSettings;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="awn-settings-new" role="function"/>awn_settings_new ()</title>
+<indexterm><primary>awn_settings_new</primary></indexterm><programlisting><link linkend="AwnSettings">AwnSettings</link>*        awn_settings_new                    (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="awn-get-settings" role="function"/>awn_get_settings ()</title>
+<indexterm><primary>awn_get_settings</primary></indexterm><programlisting><link linkend="AwnSettings">AwnSettings</link>*        awn_get_settings                    (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="awn-config-set-window-to-update" role="function"/>awn_config_set_window_to_update ()</title>
+<indexterm><primary>awn_config_set_window_to_update</primary></indexterm><programlisting><link linkend="void">void</link>                awn_config_set_window_to_update     (<link linkend="GtkWidget">GtkWidget</link> *window);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>window</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

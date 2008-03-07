@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="AwnPlug">
+<refmeta>
+<refentrytitle role="top_of_page">AwnPlug</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBAWN Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>AwnPlug</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+                    <link linkend="AwnPlugPrivate">AwnPlugPrivate</link>;
+                    <link linkend="AwnPlug-struct">AwnPlug</link>;
+<link linkend="GtkWidget">GtkWidget</link>*          <link linkend="awn-plug-new">awn_plug_new</link>                        (<link linkend="AwnApplet">AwnApplet</link> *applet);
+<link linkend="void">void</link>                <link linkend="awn-plug-construct">awn_plug_construct</link>                  (<link linkend="AwnPlug">AwnPlug</link> *plug,
+                                                         <link linkend="GdkNativeWindow">GdkNativeWindow</link> socket_id);
+
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkPlug">GtkPlug</link>
+                                             +----AwnPlug
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+AwnPlug implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+
+</refsect1>
+
+
+
+<refsect1 role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+
+  &quot;<link linkend="AwnPlug-applet-deleted">applet-deleted</link>&quot;                                 : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="AwnPlugPrivate" role="struct"/>AwnPlugPrivate</title>
+<indexterm><primary>AwnPlugPrivate</primary></indexterm><programlisting>typedef struct _AwnPlugPrivate AwnPlugPrivate;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="AwnPlug-struct" role="struct"/>AwnPlug</title>
+<indexterm><primary>AwnPlug</primary></indexterm><programlisting>typedef struct _AwnPlug AwnPlug;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="awn-plug-new" role="function"/>awn_plug_new ()</title>
+<indexterm><primary>awn_plug_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link>*          awn_plug_new                        (<link linkend="AwnApplet">AwnApplet</link> *applet);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>applet</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="awn-plug-construct" role="function"/>awn_plug_construct ()</title>
+<indexterm><primary>awn_plug_construct</primary></indexterm><programlisting><link linkend="void">void</link>                awn_plug_construct                  (<link linkend="AwnPlug">AwnPlug</link> *plug,
+                                                         <link linkend="GdkNativeWindow">GdkNativeWindow</link> socket_id);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>plug</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>socket_id</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+<refsect1 role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2><title><anchor id="AwnPlug-applet-deleted"/>The &quot;applet-deleted&quot; signal</title>
+<indexterm><primary>AwnPlug::applet-deleted</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="AwnPlug">AwnPlug</link> *awnplug,
+                                                        <link linkend="gchar">gchar</link>   *arg1,
+                                                        <link linkend="gpointer">gpointer</link> user_data)      : Run Last</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>awnplug</parameter>&nbsp;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

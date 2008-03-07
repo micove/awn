@@ -12,6 +12,8 @@ Upstream Authors:
     Ryan Rushton <ryan@rrdesign.ca>
     Michal Hruby  <michal.mhr@gmail.com>
     Julien Lavergne <julien.lavergne@gmail.com>
+    Mark Lee <avant-wn@lazymalevolence.com>
+    Rodney Cryderman <rcryderman@gmail.com>
 
 Copyright:
 
@@ -22,10 +24,14 @@ Copyright:
     Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
     Copyright (C) 2001 Havoc Pennington
     Copyright (C) 2006  Travis Watkins
+    Copyright (C) 2007-2008 Mark Lee <avant-wn@lazymalevolence.com>
+    Copyright (C) 1999, 2000 Red Hat Inc.
+    Copyright (C) 2001 Sid Vicious
+    Copyright (C) 2007  Emmanuele Bassi  <ebassi@gnome.org>
+    Copyright (C) 2007 Novell, Inc.
+    Copyright (C) 2001 George Lebl
 
-Licence for 	libawn/awn-applet-dialog.*, 
-		libawn/awn-applet-gconf.*, 
-		libawn/awn-applet-simple.*,
+Licence for 	libawn/*, 
 		src/xutils.*
 
    This library is free software; you can redistribute it and/or
@@ -47,6 +53,8 @@ Licence for 	libawn/awn-applet-dialog.*,
 
 Licence for 	data/avant-window-naviagtor.svg,
 		data/avant-window-navigator-*.png
+		awn-manager/*.svg
+		awn-manager/*.png
 
    is Creative Commons Attribution-Share Alike 3.0 License.
  
@@ -70,14 +78,6 @@ License for other files:
     Boston, MA 02110-1301  USA.
 
     See `/usr/share/common-licenses/GPL-2' for the complete licence.
-
-Original tarball repack:
-
-    The original tarball was repacked to change the licences of 
-    avant-window-naviagtor.svg from CC 2.0 to CC 3.0. The author of the icon
-    (Nicolas Rougier) is agree about this change and this was updated in official
-    trunk.
-
 
 ============================ COMPLETE LICENCES ============================
 Creative Commons Attribution-Share Alike 3.0 License (Complete Licence): 

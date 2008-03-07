@@ -1,3 +1,48 @@
+avant-window-navigator (0.2.6-1) unstable; urgency=low
+
+  * New upsteam release.
+  * Create new man pages: awn-launcher-editor.1 and awn-schema-to-gconf.1
+  * debian/patches:
+   - Drop 01-Fix-desktop-exec-path.patch, merged upstream.
+   - Drop 02-Fix-encode-in-desktop.patch, merged upstream.
+   - 01-gconf-not-empty.patch: Don't install gconf schemas with empty entries.
+  * debian/control:
+   - Add gtk-doc-tools, valac (>= 0.1.6) and python-elementtree Build-Depends 
+     needed by the new version.
+   - Add doc-base Build-Depends for the documentation.
+   - Add binaries vala binding, libawn-doc and avant-window-navigator-data 
+     binaries.
+   - Add avant-window-navigator-data and dbus-x11 Depends for 
+     avant-window-navigator.
+   - Add python-awn Depends for awn-manager.
+   - Add ${shlibs:Depends} to libawn-dev.
+   - Replace "current" by ">= 2.4" for Build-Depends and XS-Python-Version.
+   - Add a Provide: ${python:Provides} for the python-awn module.
+   - Add depends on libawn0 for all bindings.
+   - Fix spelling error.
+  * debian/rules:
+   - Bump libawn0 shlibs to >= 0.2.6
+   - Add LDFLAGS= "-Wl,-z,defs -Wl,--as-needed" to reduce depends.
+   - Add extras configure flags for backward compatibility.
+   - Add awn-launcher-editor.1 and awn-schema-to-gconf.1 as man pages.
+   - Only call pycentral with binary-post-install for python binaries.
+  * debian/awn-manager.install:
+   - Add awn-launcher-editor and awn-schema-to-gconf.
+   - Add awn-manager icon.
+  * debian/avant-window-navigator.install
+   - Add the gconf schemas.
+   - Move locales and images to avant-window-navigator-data, an 
+     arch-independent binary.
+  * debian/libawn-dev
+   - Install only *.h files.
+  * debian/copyright:
+   - All libawn/* is now LGPL-2.
+   - Update Copyright and Upstream Authors.
+   - Remove note about the repack.
+  * Add libawn-doc.install and libawn-doc.doc-base to install documentation.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Fri, 07 Mar 2008 01:00:50 +0100
+
 avant-window-navigator (0.2.1-dfsg1-1) unstable; urgency=low
 
   * Initial release version (Closes: #428246)

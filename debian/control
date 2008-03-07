@@ -12,18 +12,24 @@ Build-Depends: 	debhelper (>= 6),
 		libxcomposite-dev,
 		libxdamage-dev,
 		python-central (>= 0.5.6),
-		python-dev,
+		python-all-dev (>= 2.4),
 		python-gnome2-dev,
-		python-cairo-dev
+		python-cairo-dev,
+		gtk-doc-tools, 
+		doc-base,
+		valac (>= 0.1.6),
+		python-elementtree
 Standards-Version: 3.7.3
 Homepage: https://launchpad.net/avant-window-navigator/
-XS-Python-Version: current
+XS-Python-Version: >= 2.4
 
 Package: avant-window-navigator
 Section: gnome
 Architecture: any
 Depends: 	${shlibs:Depends},
-		${misc:Depends}
+		${misc:Depends},
+		avant-window-navigator-data (>= ${source:Version}),
+		dbus-x11
 Recommends:	awn-manager (>= 0.2)
 Suggests: 	metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2)
 Description: A MacOS X like panel for GNOME
@@ -31,6 +37,16 @@ Description: A MacOS X like panel for GNOME
  written in C.  In addition to launchers that can be dragged onto the bar, 
  it features a taskbar that behaves similarly to the Mac OSX dock. The window 
  navigator uses the composite extension for transparency and other effects.
+
+Package: avant-window-navigator-data
+Section: gnome
+Architecture: all
+Depends: 	avant-window-navigator (>= ${source:Version}),
+		${misc:Depends}
+Conflicts: avant-window-navigator (<= 0.2.1-dfsg1-1)
+Replaces: avant-window-navigator (<= 0.2.1-dfsg1-1)
+Description: Common files for avant-window-navigator
+ This package contains all images and locales for avant-windows-navigator.
 
 Package: libawn0
 Section: libs
@@ -42,10 +58,19 @@ Description: library for avant-window-navigator
  This library is used by avant-window-navigator and its applets. It provides 
  functions to create the bar and the applets.
 
+Package: libawn-doc
+Section: doc
+Architecture: all
+Depends:	libawn0 (>= ${source:Version})
+Description: library for avant-window-navigator - development files
+ This package contains documentation for avant-window-navigator and its library
+ libawn to develop applets or the bar.
+
 Package: libawn-dev
 Section: libdevel
 Architecture: any
 Depends:	libawn0 (= ${binary:Version}),
+		${shlibs:Depends},
 		${misc:Depends},
 		libgnome2-dev,
 		libgtk2.0-dev
@@ -61,7 +86,8 @@ Depends:	${python:Depends},
 		python-gnome2,
 		python-gnome2-desktop,
 		gnome-menus,
-		librsvg2-common
+		librsvg2-common,
+		python-awn,
 XB-Python-Version: ${python:Versions}
 Description: A preferences manager for avant-window-navigator
  Awn-Manager provides a simple way to configure avant-window-navigator.
@@ -70,10 +96,23 @@ Description: A preferences manager for avant-window-navigator
 Package: python-awn
 Section: python
 Architecture: any
-Depends: 	${shlibs:Depends},
+Depends:	libawn0 (= ${binary:Version}),
+		${shlibs:Depends},
 		${misc:Depends},
 		${python:Depends}
+Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Description: Python bindings for avant-window-navigator library 
- This library is used by avant-window-navigator. It provides python bindings 
- to create and use python applets for avant-window-navigator.
+ This library is used by avant-window-navigator. It provides Python bindings 
+ to create and use Python applets for avant-window-navigator.
+
+Package: vala-awn
+Section: gnome
+Architecture: all
+Depends: 	libawn0 (>= ${source:Version}),
+		${shlibs:Depends}, 
+		${misc:Depends},
+		valac (>= 0.1.6)
+Description: Vala bindings for avant-window-navigator library 
+ This library is used by avant-window-navigator. It provides Vala bindings 
+ to create and use Vala applets for avant-window-navigator.

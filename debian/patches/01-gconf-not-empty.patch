@@ -1,0 +1,22 @@
+diff -ur avant-window-navigator-0.2.6.orig/data/awn.schema-ini avant-window-navigator-0.2.6/data/awn.schema-ini
+--- avant-window-navigator-0.2.6.orig/data/awn.schema-ini	2008-02-22 17:10:17.000000000 +0100
++++ avant-window-navigator-0.2.6/data/awn.schema-ini	2008-03-06 23:50:55.000000000 +0100
+@@ -28,7 +28,7 @@
+ description = Always keep AWN below all other windows.
+ [DEFAULT/applets_list]
+ type = list-string
+-default = 
++default = [/usr/lib/awn/applets/taskman.desktop::1]
+ description = The list of paths to the enabled applets, in order from left to right.
+ [bar/rounded_corners]
+ type = bool
+@@ -104,7 +104,7 @@
+ description = Show the tasks from every workspace in the bar.
+ [window_manager/launchers]
+ type = list-string
+-default = 
++default = []
+ description = A list of the paths to the launchers shown on the dock, in order from left to right.
+ [app/active_png]
+ type  = string
+Seulement dans avant-window-navigator-0.2.6/data: awn.schema-ini~

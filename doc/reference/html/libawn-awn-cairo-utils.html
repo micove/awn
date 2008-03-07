@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>awn-cairo-utils</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="libawn Reference Manual">
+<link rel="up" href="ch01.html" title="Table of Contents">
+<link rel="prev" href="libawn-awn-effects.html" title="awn-effects">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Table of Contents">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libawn-awn-effects.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libawn Reference Manual</th>
+<td>&#160;</td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2566108" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2596889" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libawn-awn-cairo-utils"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2566108"></a><span class="refentrytitle">awn-cairo-utils</span>
+</h2>
+<p>awn-cairo-utils</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+enum                <a href="libawn-awn-cairo-utils.html#AwnCairoRoundCorners">AwnCairoRoundCorners</a>;
+void                <a href="libawn-awn-cairo-utils.html#awn-cairo-rounded-rect">awn_cairo_rounded_rect</a>              (cairo_t *cr,
+                                                         int x0,
+                                                         int y0,
+                                                         int width,
+                                                         int height,
+                                                         double radius,
+                                                         <a href="libawn-awn-cairo-utils.html#AwnCairoRoundCorners">AwnCairoRoundCorners</a> state);
+void                <a href="libawn-awn-cairo-utils.html#awn-cairo-string-to-color">awn_cairo_string_to_color</a>           (const gchar *string,
+                                                         AwnColor *color);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2596889"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2596905"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2596916"></a><h3>
+<a name="AwnCairoRoundCorners"></a>enum AwnCairoRoundCorners</h3>
+<a class="indexterm" name="id2596927"></a><pre class="programlisting">typedef enum
+{
+	ROUND_NONE		= 0,
+	ROUND_TOP_LEFT		= 1,
+	ROUND_TOP_RIGHT		= 2,
+	ROUND_BOTTOM_RIGHT	= 4,
+	ROUND_BOTTOM_LEFT	= 8,
+	ROUND_TOP		= ROUND_TOP_LEFT | ROUND_TOP_RIGHT,
+	ROUND_BOTTOM		= ROUND_BOTTOM_LEFT | ROUND_BOTTOM_RIGHT,
+	ROUND_LEFT		= ROUND_TOP_LEFT | ROUND_BOTTOM_LEFT,
+	ROUND_RIGHT		= ROUND_TOP_RIGHT | ROUND_BOTTOM_RIGHT,
+	ROUND_ALL		= ROUND_LEFT | ROUND_RIGHT
+} AwnCairoRoundCorners;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2596949"></a><h3>
+<a name="awn-cairo-rounded-rect"></a>awn_cairo_rounded_rect ()</h3>
+<a class="indexterm" name="id2596960"></a><pre class="programlisting">void                awn_cairo_rounded_rect              (cairo_t *cr,
+                                                         int x0,
+                                                         int y0,
+                                                         int width,
+                                                         int height,
+                                                         double radius,
+                                                         <a href="libawn-awn-cairo-utils.html#AwnCairoRoundCorners">AwnCairoRoundCorners</a> state);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>cr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>x0</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>y0</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>width</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>height</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>radius</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>state</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2597058"></a><h3>
+<a name="awn-cairo-string-to-color"></a>awn_cairo_string_to_color ()</h3>
+<a class="indexterm" name="id2597070"></a><pre class="programlisting">void                awn_cairo_string_to_color           (const gchar *string,
+                                                         AwnColor *color);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>string</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>color</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -25,7 +25,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-#include <libawn/awn-gconf.h>
+#include <libawn/awn-settings.h>
 
 G_BEGIN_DECLS
 
@@ -58,6 +58,9 @@ void _on_alpha_screen_changed (GtkWidget* pWidget, GdkScreen* pOldScreen, GtkWid
 
 void
 _position_window (GtkWidget *window);
+
+void 
+awn_window_force_repos ();
 
 G_END_DECLS
 

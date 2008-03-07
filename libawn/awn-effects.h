@@ -1,23 +1,21 @@
 /*
  *  Copyright (C) 2007 Michal Hruby <michal.mhr@gmail.com>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA.
- *
-*/
-
-/*! \file awn-effects.h */
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
 
 #ifndef __AWN_EFFECTS_H__
 #define __AWN_EFFECTS_H__
@@ -25,7 +23,7 @@
 #include <gtk/gtk.h>
 
 #include "awn-defines.h"
-#include "awn-gconf.h"
+#include "awn-settings.h"
 #include "awn-title.h"
 
 G_BEGIN_DECLS
@@ -86,6 +84,7 @@ struct _AwnEffects
 
 	gdouble x_offset;
 	gdouble y_offset;
+	gdouble curve_offset;
 
 	gint delta_width;
 	gint delta_height;
@@ -118,70 +117,90 @@ struct _AwnEffects
 	void *pad4;
 };
 
-//! Initializes AwnEffects structure.
-/*!
- * \param obj Object which will be passed to all callback functions, this object is also passed to gtk_widget_queue_draw() during the animation.
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_effects_init:
+ * @obj: Object which will be passed to all callback functions, this object is
+ * also passed to gtk_widget_queue_draw() during the animation.
+ * @fx: Pointer to #AwnEffects structure.
+ *
+ * Initializes #AwnEffects structure.
  */
 void
 awn_effects_init(GObject *obj, AwnEffects *fx);
 
-//! Finalizes AwnEffects usage and frees internally allocated memory. (also calls awn_unregister_effects())
-/*!
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_effects_finalize:
+ * @fx: Pointer to #AwnEffects structure.
+ *
+ * Finalizes #AwnEffects usage and frees internally allocated memory.
+ * (also calls awn_unregister_effects())
  */
 void
 awn_effects_finalize(AwnEffects *fx);
 
-//! Registers enter-notify and leave-notify events for managed window.
-/*!
- * \param obj Managed window to which the effects will apply.
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_register_effects
+ * @obj: Managed window to which the effects will apply.
+ * @fx: Pointer to #AwnEffects structure.
+ *
+ * Registers #GtkWidget::enter-notify-event and #GtkWidget::leave-notify-event
+ * signals for the managed window.
  */
 void
 awn_register_effects (GObject *obj, AwnEffects *fx);
 
-//! Unregisters events for managed window.
-/*!
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_unregister_effects:
+ * @fx: Pointer to #AwnEffects structure.
+ *
+ * Unregisters events for managed window.
  */
 void
 awn_unregister_effects (AwnEffects *fx);
 
-//! Start a single effect. The effect will loop until awn_effect_stop
-//! is called.
-/*!
- * \param effect Effect to schedule.
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_effect_start:
+ * @fx: Pointer to #AwnEffects structure.
+ * @effect: #AwnEffect to schedule.
+ *
+ * Start a single effect. The effect will loop until awn_effect_stop()
+ * is called.
  */
 void
 awn_effect_start(AwnEffects *fx, const AwnEffect effect);
 
-//! Stop a single effect.
-/*!
- * \param effect Effect to stop.
- * \param fx Pointer to AwnEffects structure.
+/**
+ * awn_effect_stop:
+ * @fx: Pointer to #AwnEffects structure.
+ * @effect: #AwnEffect to stop.
+ *
+ * Stop a single effect.
  */
 
 void
 awn_effect_stop(AwnEffects *fx, const AwnEffect effect);
 
-//! Makes AwnTitle appear on event-notify.
-/*!
- * \param fx Pointer to AwnEffects structure.
- * \param title Pointer to AwnTitle instance.
- * \param title_func Pointer to function which returns desired title text.
+/**
+ * awn_effects_set_title:
+ * @fx: Pointer to #AwnEffects structure.
+ * @title: Pointer to #AwnTitle instance.
+ * @title_func: Pointer to function which returns desired title text.
+ *
+ * Makes #AwnTitle appear on #GtkWidget::enter-notify-event.
  */
 void
 awn_effects_set_title(AwnEffects *fx, AwnTitle *title, AwnTitleCallback title_func);
 
-//! Extended effect start, which provides callbacks for animation start, end and possibility to specify maximum number of loops.
-/*!
- * \param fx Pointer to AwnEffects structure.
- * \param effect Effect to schedule.
- * \param start Function which will be called when animation starts.
- * \param stop Function which will be called when animation finishes.
- * \param max_loops Number of maximum animation loops (0 for unlimited).
+/**
+ * awn_effect_start_ex:
+ * @fx: Pointer to #AwnEffects structure.
+ * @effect: Effect to schedule.
+ * @start: Function which will be called when animation starts.
+ * @stop: Function which will be called when animation finishes.
+ * @max_loops: Number of maximum animation loops (0 for unlimited).
+ *
+ * Extended effect start, which provides callbacks for animation start, end and
+ * possibility to specify maximum number of loops.
  */
 void
 awn_effect_start_ex(AwnEffects *fx, const AwnEffect effect, AwnEventNotify start, AwnEventNotify stop, gint max_loops);
