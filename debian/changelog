@@ -1,3 +1,9 @@
+avant-window-navigator (0.2.6-2) unstable; urgency=low
+
+  * Add python-xdg Depends for awn-manager (Closes: #471372).
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 17 Mar 2008 23:12:30 +0100
+
 avant-window-navigator (0.2.6-1) unstable; urgency=low
 
   * New upsteam release.
