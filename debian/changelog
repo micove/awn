@@ -1,3 +1,15 @@
+avant-window-navigator (0.2.6-3) unstable; urgency=low
+
+  * debian/patches
+   - 02-awn-manager-applets.patch : Search for applets installed in /usr/share.
+   - 01-gconf-not-empty.patch : Update with upstream changes.
+  * debian/control
+   - Set a correct short description for libawn-doc (Closes: #472333).
+  * debian/watch
+   - Switch to http, require by Launchpad.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Tue, 01 Apr 2008 19:22:42 +0200
+
 avant-window-navigator (0.2.6-2) unstable; urgency=low
 
   * Add python-xdg Depends for awn-manager (Closes: #471372).

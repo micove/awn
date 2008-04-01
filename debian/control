@@ -62,7 +62,7 @@ Package: libawn-doc
 Section: doc
 Architecture: all
 Depends:	libawn0 (>= ${source:Version})
-Description: library for avant-window-navigator - development files
+Description: library for avant-window-navigator - documentation files
  This package contains documentation for avant-window-navigator and its library
  libawn to develop applets or the bar.
 

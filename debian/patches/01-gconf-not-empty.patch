@@ -15,7 +15,7 @@ diff -ur avant-window-navigator-0.2.6.orig/data/awn.schema-ini avant-window-navi
  [window_manager/launchers]
  type = list-string
 -default = 
-+default = []
++default = [/usr/share/applications/awn-manager.desktop]
  description = A list of the paths to the launchers shown on the dock, in order from left to right.
  [app/active_png]
  type  = string
