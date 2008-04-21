@@ -1,3 +1,17 @@
+avant-window-navigator (0.2.6-4) unstable; urgency=medium
+
+  * debian/patches/03-python-import.patch : Import correct version of python
+    at runtime. Thanks Luca Bruno for the patch. (Closes: #476400, #476829)
+  * debian/control
+   - Set dbus-x11 as Recommends rather than Depends, not needed if D-Bus 
+     is running.
+   - Add awn-applets-c-core and awn-applets-python-core to Recommends to
+     install a set of applets.
+   - Bump awn-manager version to (0.2.6-3) needed for the applets.
+   - Add python2.5 as Build-Depends if python-elementtree is not installed.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 21 Apr 2008 10:55:45 +0200
+
 avant-window-navigator (0.2.6-3) unstable; urgency=low
 
   * debian/patches
