@@ -43,8 +43,7 @@ Description: A MacOS X like panel for GNOME
 Package: avant-window-navigator-data
 Section: gnome
 Architecture: all
-Depends: 	avant-window-navigator (>= ${source:Version}),
-		${misc:Depends}
+Depends: 	${misc:Depends}
 Conflicts: avant-window-navigator (<= 0.2.1-dfsg1-1)
 Replaces: avant-window-navigator (<= 0.2.1-dfsg1-1)
 Description: Common files for avant-window-navigator
@@ -119,3 +118,12 @@ Depends: 	libawn0 (>= ${source:Version}),
 Description: Vala bindings for avant-window-navigator library 
  This library is used by avant-window-navigator. It provides Vala bindings 
  to create and use Vala applets for avant-window-navigator.
+
+Package: libawn0-dbg
+Section: libs
+Priority: extra
+Architecture: any
+Depends: 	libawn0 (= ${binary:Version})
+Description: library for avant-window-navigator - debug package
+ This library is used by avant-window-navigator and its applets. It provides 
+ functions to create the bar and the applets.

@@ -18,6 +18,7 @@ DEB_DH_MAKESHLIBS_ARGS_libawn0 += -V"libawn0 (>= 0.2.6)"
 DEB_DH_MAKESHLIBS_ARGS_avant-window-navigator += -n
 DEB_SHLIBDEPS_LIBRARY_avant-window-navigator:= libawn0
 DEB_SHLIBDEPS_INCLUDE_avant-window-navigator := debian/libawn0/usr/
+DEB_DH_STRIP_ARGS := --dbg-package=libawn0-dbg
 
 binary-post-install/awn-manager::
 	dh_pycentral -pawn-manager
