@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.G4NV6T:1) */
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.PHXCBU:1) */
 extern void dbus_glib_marshal_awn_applet_manager_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                                           GValue       *return_value,
                                                                           guint         n_param_values,
@@ -62,10 +62,10 @@ extern void dbus_glib_marshal_awn_applet_manager_BOOLEAN__STRING_POINTER (GClosu
                                                                           gpointer      marshal_data);
 void
 dbus_glib_marshal_awn_applet_manager_BOOLEAN__STRING_POINTER (GClosure     *closure,
-                                                              GValue       *return_value,
+                                                              GValue       *return_value G_GNUC_UNUSED,
                                                               guint         n_param_values,
                                                               const GValue *param_values,
-                                                              gpointer      invocation_hint,
+                                                              gpointer      invocation_hint G_GNUC_UNUSED,
                                                               gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__STRING_POINTER) (gpointer     data1,

@@ -1,3 +1,11 @@
+avant-window-navigator (0.2.6-6) unstable; urgency=low
+
+  * debian/patches/04-fix-colormap.patch
+   - Fix crash in awn-manager if colormap == None. Thanks Emme for the 
+     patch. (Closes: #482030) 
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Sat, 24 May 2008 14:42:01 +0200
+
 avant-window-navigator (0.2.6-5) unstable; urgency=low
 
   * debian/control
