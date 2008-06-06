@@ -1,3 +1,16 @@
+avant-window-navigator (0.2.6-7) unstable; urgency=medium
+
+  * debian/control
+   - Set a dependency on a composite manager rather than just suggest it. 
+     (Closes: #483673). Urgency set to medium as it's a RC bug.
+  * debian/README.debian
+   - Document how to enable composite manager for each application.
+  * debian/patches/90_null_awn_cairo.patch
+   - From upstream, fix a possible crash when a applet return wrong 
+     informations.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Fri, 06 Jun 2008 15:58:24 +0200
+
 avant-window-navigator (0.2.6-6) unstable; urgency=low
 
   * debian/patches/04-fix-colormap.patch
