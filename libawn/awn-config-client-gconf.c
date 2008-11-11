@@ -78,11 +78,14 @@ static void awn_config_client_notify_proxy (GConfClient *client, guint cid, GCon
 	if (value) {
 		gchar **exploded = g_strsplit (gconf_entry_get_key (entry), "/", 0);
 		guint exploded_len = g_strv_length (exploded);
+		gchar **base_exploded = g_strsplit (notify->client->path, "/", 0);
+		guint base_exploded_len = g_strv_length (base_exploded);
+		g_strfreev (base_exploded);
 		g_return_if_fail (exploded_len >= 2);
 		awn_entry->client = notify->client;
-		if (exploded_len == 4) { /* special case: top-level dock keys */
+		if (exploded_len - base_exploded_len == 1) { /* special case: top-level dock/applet keys */
 			awn_entry->group = g_strdup (AWN_CONFIG_CLIENT_DEFAULT_GROUP);
-		} else { /* TODO: special case top-level applet keys */
+		} else {
 			awn_entry->group = g_strdup (exploded[exploded_len - 2]);
 		}
 		awn_entry->key = g_strdup (exploded[exploded_len - 1]);
@@ -155,6 +158,17 @@ AwnConfigClient *awn_config_client_new_for_applet (gchar *name, gchar *uid)
 	return client;
 }
 
+/**
+ * awn_config_client_query_backend :
+ *
+ * Returns: An enum value indicating the backend in use.
+ */
+AwnConfigBackend  awn_config_client_query_backend (void)
+{
+  return AWN_CONFIG_CLIENT_GKEYFILE;  
+}
+
+
 void awn_config_client_clear (AwnConfigClient *client, GError **err)
 {
 	/* only do it for applets on gconf */
@@ -174,11 +188,11 @@ void awn_config_client_ensure_group (AwnConfigClient *client, const gchar *group
 
 void awn_config_client_notify_add (AwnConfigClient *client, const gchar *group, 
 				   const gchar *key, AwnConfigClientNotifyFunc callback,
-				   gpointer data)
+				   gpointer user_data)
 {
 	AwnConfigClientNotifyData *notify = g_new0 (AwnConfigClientNotifyData, 1);
 	notify->callback = callback;
-	notify->data = data;
+	notify->data = user_data;
 	gchar *full_key = awn_config_client_generate_key (client, group, key);
 	notify->client = client;
 	GError *err = NULL;

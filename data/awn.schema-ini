@@ -10,6 +10,14 @@ description = The width of the monitor that overrides the GDK monitor settings, 
 type = int
 default = 768
 description = The height of the monitor that overrides the GDK monitor settings, if force_monitor is TRUE.
+[DEFAULT/monitor_xoffset]
+type = int
+default = 0
+description = Allows the panel positioning to be offset by X, useful for dual monitor setups. If force_monitor is TRUE.
+[DEFAULT/monitor_xalign]
+type = float
+default = 0.5
+description = Set the panel alignment.
 [DEFAULT/panel_mode]
 type = bool
 default = False
@@ -28,7 +36,7 @@ default = False
 description = Always keep AWN below all other windows.
 [DEFAULT/applets_list]
 type = list-string
-default = 
+default = /usr/share/avant-window-navigator/applets/taskman.desktop::1
 description = The list of paths to the enabled applets, in order from left to right.
 [bar/rounded_corners]
 type = bool
@@ -38,6 +46,14 @@ description = Enable/disable rounded corners on the dock bar.
 type = float
 default = 10.0
 description = The radius of the bar corners when rounded_corners is TRUE.
+[bar/expand_bar]
+type = bool
+default = False
+description = Expand the bar to the width of the monitor.
+[bar/no_bar_resize_animation]
+type = bool
+default = False
+description = Disable bar resize animations. Does not apply to the background animation.
 [bar/render_pattern]
 type = bool
 default = False
@@ -94,6 +110,10 @@ description = In 3D mode, the angle (in degrees, between 0 and 90) that the bar 
 type = int
 default = 10
 description = The number of pixels between the bottom of the icons and the bottom of the dock.
+[bar/reflection_offset]
+type = int
+default = 0
+description = The number of pixels the reflections are moved up.
 [bar/bar_pos]
 type = float
 default = 0.5
@@ -104,7 +124,7 @@ default = True
 description = Show the tasks from every workspace in the bar.
 [window_manager/launchers]
 type = list-string
-default = 
+default = /usr/share/applications/awn-manager.desktop
 description = A list of the paths to the launchers shown on the dock, in order from left to right.
 [app/active_png]
 type  = string
@@ -144,6 +164,26 @@ description = Bitmask that stores which effects occur for each icon event type.
 type = bool
 default = False
 description = Determines whether the bounce effect occurs when an icon is hovered over by the mouse.
+[app/icon_alpha]
+type = float
+default = 1.0
+description = Alpha value to apply to icons.
+[app/reflection_alpha_multiplier]
+type = float
+default = 0.33
+description = Reflection alpha is a multiple of the current alpha of the icon.
+[app/frame_rate]
+type = int
+default = 25
+description = Frame rate for awn effects.
+[app/icon_depth_on]
+type = bool
+default = TRUE
+description = Enable dept on 3d type effects.
+[app/show_shadows]
+type = bool
+default = False
+description = Shows shadows for the icons.
 [title/text_color]
 type = string
 default = FFFFFFFF

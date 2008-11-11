@@ -7,14 +7,15 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 DEB_CONFIGURE_EXTRA_FLAGS += 	--disable-pymod-checks \
 				--with-desktop=gnome \
-				--with-gconf
+				--with-gconf \
+				--enable-gtk-doc
 
 DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,-z,defs -Wl,--as-needed"
 
 DEB_INSTALL_MANPAGES_avant-window-navigator := debian/avant-window-navigator.1 debian/awn-applet-activation.1
 DEB_INSTALL_MANPAGES_awn-manager := debian/awn-manager.1 debian/awn-launcher-editor.1 debian/awn-schema-to-gconf.1
 
-DEB_DH_MAKESHLIBS_ARGS_libawn0 += -V"libawn0 (>= 0.2.6)"
+DEB_DH_MAKESHLIBS_ARGS_libawn0 += -V"libawn0 (>= 0.3~bzr489)"
 DEB_DH_MAKESHLIBS_ARGS_avant-window-navigator += -n
 DEB_SHLIBDEPS_LIBRARY_avant-window-navigator:= libawn0
 DEB_SHLIBDEPS_INCLUDE_avant-window-navigator := debian/libawn0/usr/

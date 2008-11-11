@@ -1,3 +1,33 @@
+avant-window-navigator (0.3~bzr489-1) experimental; urgency=low
+
+  * New upstream snapshot (Closes: #484008)
+  * debian/patches:
+   - 01-gconf-not-empty.patch : dropped, merged upstream.
+   - 02-awn-manager.patch : dropped, merged upstream.
+   - 04-fix-colormap.patch : dropped, merged upstream.
+   - 90_null_awn_cairo.patch dropped, merged upstream.
+   - 02-awn-manager-applets.patch : dropped, merged upstream.
+   - 03-python-import.patch : Update and add upstream and Debian bugtracker
+     entry for this patch.
+  * debian/control: 
+   - Add libglade2-dev to Build-Depends.
+   - Bump Standards-Version to 3.8.0.
+   - Bump vala version to 0.3.4 for Depends and Build-Depends.
+  * debian/README.source
+   - Added according to Standards-Version 3.8.0.
+  * debian/avant-window-navigator.install
+   - Update location of desktop files.
+   - Install schemas-ini files.
+  * debian/avant-window-navigator.install
+   - Update icons location. 
+  * debian/rules:
+   - Add --enable-gtk-doc flag to generate documentation.
+   - Update version requirement for libawn0.
+  * debian/libawn0.symbols:
+   - Add symbols file for libawn0.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Tue, 11 Nov 2008 14:38:44 +0100
+
 avant-window-navigator (0.2.6-7) unstable; urgency=medium
 
   * debian/control

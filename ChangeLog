@@ -1,12 +1,1870 @@
-2008-02-22  Neil J. Patel  <njp@o-hand.com>
+2008-10-16  Michal Hruby <michal.mhr@gmail.com>
+
+	reviewed by: Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-bar.c:
+	Make bar resize animation less CPU intensive.
+
+2008-10-13  Rodney Cryderman  <rcryderman@gmail.com>
+
+	* src/main.c:
+	Fixed error from previous commit.
+
+2008-10-13  Rodney Cryderman  <rcryderman@gmail.com>
+
+	* src/main.c:
+	Reset the static dialog variable to NULL when dialog is destroyed.
+
+2008-10-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl/awn-effects.sgml:
+	* doc/reference/tmpl/libawn-unused.sgml:
+	Update gtk-doc templates.
+
+2008-10-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* libawn/Makefile.am:
+	Put the awn-enum-types-* files in the proper automake variable.
+
+2008-10-12  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* src/main.c:
+	Add graphical warning when the screen is not composited.
+
+2008-10-09  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* libawn/Makefile.am:
+	Add 2 missing files for the make dist.
+
+2008-08-31  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	reviewed by: Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.vapi:
+	Update Vala bindings to reflect the AwnEffects changes.
+
+2008-08-31  Michal Hruby <michal.mhr@gmail.com>
+
+	* bindings/python/awn.defs:
+	* bindings/python/awn.override:
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	Added option to AwnEffects to turn off the 4px cut.
+	Fixed python binding for draw_icons_cairo which could cause SIGSEV
+
+2008-08-30  Michal Hruby <michal.mhr@gmail.com>
+
+	reviewed by: Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	* bindings/python/awn.override:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-effects-shared.c:
+	* libawn/awn-effects-shared.h:
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	* src/awn-task.c:
+	Merge of boxed-awn-effects branch
+
+2008-08-30  Michal Hruby <michal.mhr@gmail.com>
+
+	patch by: Matt <sharkbaitbobby@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Fixes LP #207860 (Applet dialogs have white backgrounds)
+
+2008-08-30  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* src/main.c:
+	Fix warnings introduced by revision 470.
+
+2008-08-30  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	Fix custom effects regression in awn-manager
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: black <https://launchpad.net/~blackborn>
+
+	* awn-manager/awnManager.py.in:
+	Fix Launchpad bug #241971 (Cleanup of the refresh dialog).
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	reviewed by: Mike Rooney <launchpad@rowk.com>
+	patch by: black <https://launchpad.net/~blackborn>
+
+	* awn-manager/awnTheme.py:
+	Fix Launchpad bug #134397 (Cannot remove any theme in awn-manager except
+	the currently enabled one).
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: Henry Zhang <hua.zhang@sun.com>
 
 	* configure.in:
-	Bump to 0.2.6 for release.
+	* libawn/awn-effects-ops.c:
+	* libawn/awn-effects.c:
+	Fix Launchpad bug #250720 (build error on Solaris).
 
-2008-02-22  Neil J. Patel  <njp@o-hand.com>
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: black <https://launchpad.net/~blackborn>
+
+	* awn-manager/awnManager.py.in:
+	* awn-manager/awnPreferences.py:
+	Fix Launchpad bug #240396 (changing theme doesn't change the values of the
+	'general' tab).
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: black <https://launchpad.net/~blackborn>
+
+	* awn-manager/awnTheme.py:
+	Fix Launchpad bug #246967 (patterns must be manually disabled for themes
+	without them).
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: Takao Fujiwara <takao.fujiwara@sun.com>
+
+	* awn-manager/awn-manager.desktop.in.in:
+	* awn-manager/awnManager.py.in:
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* data/avant-window-navigator.desktop.in.in:
+	* po/POTFILES.in:
+	* src/Makefile.am:
+	* src/main.c:
+	Fix Launchpad bug #251713 (avant includes several unlocalized strings).
+
+2008-08-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.metadata:
+	* bindings/vala/awn.vapi:
+	Update Vala bindings.
+
+2008-08-19  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: Matt <sharkbaitbobby@gmail.com>
+
+	* awn-manager/awnLauncherEditor.py:
+	Fix Launchpad bug #242463 (unable to add program to launcher).
+
+2008-08-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Add some additional checks for a valid pixbuf as either
+	gdk_pixbuf_get_file_info () is smart than I think or it's not as smart
+	as it thinks.
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fixed awn_icons_override_gtk_theme().  Generates a callback to
+	indicate icon change when set.  Also added a break into the icon
+	search so overridden icons will be used.
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+        * bindings/python/awn.defs:
+	Python binding for awn_icons_override_gtk_theme().
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.[ch]:
+	Added awn_icons_override_gtk_theme().
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Update binding for  awn_icons_new ().
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Additional work to implement ability to override theme.
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.[ch]:
+	* libwwn/awn-applet-simple.c:
+	Added the applet name:  awn_icons_new (const gchar * applet_name).
+	Instead of the silly place it was being specified before.
+
+2008-08-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Added override_theme...  to allow applets to provide/use a custom
+	theme (only to be used when dealing with multiple related icons that
+	do not have good coverage in most themes).  Not functional yet..
+
+2008-08-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fix a warning resulting from switch from gchar ** to GStrv.
+
+2008-08-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.h:
+	Corrected a comment.
+
+2008-08-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.[ch]:
+	Minor cleanups.
+
+2008-08-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Returned awn_effect_stop binding that was accidentally removed on the
+	previous commit.
+
+2008-08-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Python bindings for awn_effects_reflection_off/on().
+
+2008-08-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.[ch]:
+	Added awn_effects_reflection_off/on().
+
+2008-08-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.[ch]:
+	Added first part of support to disable reflections.
+
+2008-08-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Change gchar ** to GStrv.  Cleaned up
+	awn_applet_simple_effects_on/off().
+
+2008-08-09  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/egg/eggdesktopfile.c:
+	Initialize a, potentially, unitialized pointer.
+
+2008-08-09  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/egg/eggdesktopfile.c:
+	Free the GPtrArray properly.
+
+2008-08-09  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/egg/eggdesktopfile.c:
+	Possible Fix for bug #194018 (bad address) when using --with-desktop=xfce4.  
+
+2008-08-09  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/egg/eggdesktopfile.c:
+	Use astyle on the file.
+
+2008-08-08  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-title.c:
+	Reformated code to awn coding style.  Minor code cleanups.
+
+2008-08-08  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-plug.c:
+	Reformatted to awn coding style (using astyle).
+
+2008-08-08  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-icons.[ch]:
+	Convert some gchar ** to GStrv to make it easier to automatically
+	generate bindings.
+
+2008-08-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* debian/control:
+	Fix the Replaces and Conflicts fields for avant-window-navigator-trunk.
+
+2008-08-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* debian/control:
+	Add python-awn-trunk to the dependencies for avant-window-navigator-trunk,
+	due to the applet migration script.
+
+2008-08-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl/awn-settings.sgml:
+	* doc/reference/tmpl/libawn-unused.sgml:
+	Update gtk-doc templates.
+
+2008-08-07  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c:
+	Added localization support for some strings.
+
+2008-08-07  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c:
+	* libawn/awn-icons.c:
+	Add localization support for some strings.
+
+2008-08-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	* libawn/awn-effects.c:
+	* libawn/awn-settings.c:
+	* libawn/awn-settings.h:
+	Remove  bar_depth_scale.
+
+2008-07-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	A better fix for the spotlight regression.
+
+2008-07-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	Fixed a regression when spotlight is used.
+
+2008-07-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-config-client-shared.c:
+	Replace flock() with fcntl() as fcntl() is POSIX.  Also has the
+	benefit that is works over NFS.
+	Patch courtesy of:  Henry Zhang <hua.zhang@sun.com>.
+
+2008-07-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-config-client-shared.c:
+	Open fd with write.  Needed for a switch from flock to fcntl for file
+	locking.
+
+2008-07-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	Fixed a whitespace issue.
+
+2008-07-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-settings.[ch]:
+	Fixed a couple whitespace issues.
+
+2008-07-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	Optional draws shadows for the icons, bar depth scale and reflections
+	offsets.
+	Provided by meek <torsten.haedrich@gmail.com>
+
+2008-07-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-settings.[ch]:
+	Integrate new reflections offset config settings into awn-settings.
+	Provided by meek <torsten.haedrich@gmail.com>
+
+2008-07-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	Portion of patch from #252642  that adds a config entry for
+	reflections offset and bar_depth_scale.
+	Provided by meek <torsten.haedrich@gmail.com>
+
+2008-07-26  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-title.c:
+	Actually truncate the titles to 120 characters instead of not doing
+	so.
+
+2008-07-25  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Potential fix for bug #251922. 
+
+2008-07-23  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* data/awn.schema-ini.in:
+	Fix path of the taskmanager/launcher desktop file.
+
+2008-07-22  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/awn.override:
+	Fix the binding for awn_applet_simplet_set_awn_icons (with help from
+	sharkbaitbobby and moonbeam).
+
+2008-07-22  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/awn.defs:
+	Remove obsolete binding.
+
+2008-07-20  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.vapi:
+	Update the Vala bindings to include the latest applet icon-related API
+	additions.
+
+2008-07-20  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/awn.override:
+	Make sure that the Python binding for awn_applet_simple_set_awn_icons is
+	built, as there is no default mapping from a Python sequence to a gchar**.
+
+2008-07-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Fixed up some naming to match the rest of awn.
+
+2008-07-18  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/awn.defs:
+	Add definition for the AwnIcons GObject.
+
+2008-07-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:	
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-icons.c:
+	Initial work on python bindings for AwnIcons.
+
+2008-07-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Added accessor awn_applet_simple_get_awn_icons() to Applet Simple.
+	Included python binding.
+
+2008-07-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Only hook up the drag and drop signals once.
+
+2008-07-16  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* data/Makefile.am:
+	* debian/avant-window-navigator-trunk.install:
+	Install the schema-ini files, regardless of configuration backend. This is
+	needed for the future dynamically generated config dialogs, among other
+	things.
+
+2008-07-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	 awn_applet_simple_set_icon_context_scaled() and
+	 awn_applet_simple_set_icon_context() now reference the contexts...  I
+	 _think_ I have it correct.
+
+2008-07-16  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* data/awn-applets-migration.py:
+	Fix replacement desktop file path.
+	Cleanup.
+
+2008-07-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Removed some cairo_surface_destroy() calls.  cairo_destroy() should
+	clean up.
+
+2008-07-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Removed a couple debug prints.
+
+2008-07-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* bindings/python/awn.def:
+	* libawn/awn-applet-simple.h:
+	Added awn_applet_simple_set_icon_context_scaled() with python binding.
+
+2008-07-14  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/__init__.py (check_dependencies):
+	Change the wiki link to a real, descriptive landing page.
+
+2008-07-14  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-applet.c:
+	Added a Clear Custom Icons option to default menu.
+
+2008-07-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Removed unused parameter from awn_icons_get_icon_simple_at_height().
+
+2008-07-14  Rodney Cryderman <rcryderman@gmail.com>
+
+        * libawn/awn-icons.c:
+	Applet icons installed in the applet icons dir now given low
+	priority.
+
+2008-07-14  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/Makefile.am:
+	* debian/avant-window-navigator-trunk.install:
+	* debian/awn.wrapper:
+	* debian/rules:
+	Don't install awn-applets-migration.py to /bin
+
+2008-07-14  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/avant-window-navigator-trunk.install:
+	* debian/awn.wrapper:
+	* debian/rules:
+	Add the migration script to debian package, starting before awn.
+
+2008-07-14  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/Makefile.am:
+	Install migration script
+
+2008-07-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Added awn_icons_get_icon_simple_at_height() to awn-icons.
+
+2008-07-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Added awn_icons_get_icon_at_height() to awn-icons.
+
+2008-07-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Added a clear button to the awn-icons dialog.  Not sure if this should
+	remain.
+
+2008-07-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Properly delete icons when they're replaced.
+
+2008-07-13  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* data/Makefile.am:
+	Fix typo in generating the shared config GConf schema.
+
+2008-07-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Only refresh icons from file on bar height changes if we have awn-icons enabled
+
+2008-07-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Refresh the icon from file when the bar height changes.
+
+2008-07-13  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/gconf-migration.py:
+	* data/applets-migration.py:
+	Port to AwnConfigCLient
+	Rename applets-migration.py 	
+
+2008-07-13  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/Makefile.am:
+	* configure.in:
+	Add rule to update the introspection XML file.
+	Only enable the Vala bindings generation rules if maintainer mode is
+	enabled.
+
+2008-07-13  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl/awn-config-client.sgml:
+	* libawn/awn-config-client-gkeyfile.c:
+	Update docs.
+
+2008-07-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Removed some debug prints.
+
+2008-07-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/awn.metadata:
+	Fix typo.
+
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.vapi:
+	Update bindings due to API changes in the previous commit.
+
+2008-07-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c:
+	* libawn/awn-applet.h:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	* libawn/bindings/python/awn.def:
+	Removed uid from awn_applet_simple_set_awn_icons() and
+	awn_applet_simple_set_awn_icon() in AwnAppletSimple.
+	Added awn_applet_get_uid() to AwnApplet.
+	Adjusted python bindings.
+
+2008-07-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch (partially) by: sharkbait <sharkbaitbobby+awn@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Use the icon theme to access the Awn icon.
+	Convert all of the "load icon from theme" calls to use a safer version,
+	which shows an informative error dialog and exits the program when an icon
+	can't be loaded.
+
+2008-07-13  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* applets/taskman.desktop.in.in:
+	* data/avant-window-navigator.desktop.in.in:
+	Update Icons
+
+2008-07-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/awn.deps:
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.metadata:
+	* bindings/vala/awn.vapi:
+	* configure.in:
+	Update Vala bindings to work with Vala 0.3.4.
+
+2008-07-12  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-config-client-gconf.c:
+	* libawn/awn-config-client-gkeyfile.c:
+	* libawn/awn-config-client.h:
+	* libawn/awn-effects.h:
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Change the parameter names of callback user data so that they're more
+	bindings generator friendly.
+
+2008-07-12  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/gconf-migration.py
+	Add a simple python script to convert /lib to /share location
+
+2008-07-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fixed up some warnings due to const. 
+	Appended  PREFIX/share/avant-window-navigator/applets/APPLET_NAME/icons
+	to awn-theme icon search path.
+
+2008-07-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Set some parameters as const.
+
+2008-07-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Documented _awn_applet_simple_icon_changed(),
+	awn_applet_simple_set_awn_icons(), awn_applet_simple_set_awn_icon(),
+	awn_applet_simple_set_awn_icon_state().
+
+2008-07-12  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-applet-simple.c:
+	Tidy up some unrefs when dealing with awn-icons.
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Connect to theme "changed" signal in awn-icons.
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	The Combo Box added in the previous commit is now used to select the
+	icon modified.
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Correct the logic to remove old icons when a new one is dragged into
+	applet.
+	Added Combo Box when more than one icon is managed.  Not used yet.
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Some additional error checks.  Make sure your AwnAppletSimple object
+	isn't NULL.
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-title.c:
+	Don't truncate the text until after escaping it.  Should resolve
+	https://bugs.launchpad.net/awn-extras/+bug/224635
+
+2008-07-11  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	It seems some environments have an issue with changing extensions of
+	png files to svg.  So let us behave...
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Set the icon for the dialog.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	More verbose error reporting on loading icons.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Alternate method to force a refresh of the awn-theme gtk icon info.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Added some code so the previous commit actually works.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	When a broader scoped icon is being applied to an applet make sure we
+	remove any existing icons with a narrower scope for that instance.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fixed icon naming.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+        * bindings/python/awn.def:
+	Modified bindings for awn_applet_simple_set_awn_icon(),
+	awn_applet_simple_set_awn_icons() and 
+	awn_applet_simple_set_awn_icon_state() to return GdkPixbuf. 
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	awn-icons related API in Applet Simple now returns a pointer to the
+	currently used pixbuf.
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+        * bindings/python/awn.def
+	Python bindings for awn_applet_simple_set_awn_icons().
+
+2008-07-10  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.def
+	Python bindings for awn_applet_simple_set_awn_icon() and
+	awn_applet_simple_set_awn_icon_state().
+
+2008-07-09  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/avant-window-navigator-data-trunk.install
+  	* debian/avant-window-navigator-trunk.install
+  	* debian/awn-manager-trunk.install
+	update package to new installation locations
+
+2008-07-09  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	reviewed by: sharkbait, triggerhapp in #awn (awn-manager only)
+
+	* applets/Makefile.am:
+	Install the taskman desktop file to the proper location.
+
+	* awn-manager/awnApplet.py:
+	Look for icons and desktop files in the proper location.
+
+2008-07-08  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* Makefile.am:
+	* data/Makefile.am:
+	* data/avant-window-navigator-48.png => data/avant-window-navigator.png:
+	Properly install the application icons, per the freedesktop.org icon
+	theme specification.
+
+2008-07-07  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c
+	Make dialog more pretty/useful.
+
+2008-07-07  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-icons.c:
+	Fixed drag a drop with multi icon enable applet simple.
+
+2008-07-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-config-client-gkeyfile.c (awn_config_client_new_for_applet):
+	Fix typo.
+
+2008-07-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl/awn-settings.sgml:
+	* doc/reference/tmpl/libawn-unused.sgml:
+	Update template doc files.
+
+2008-07-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* libawn/Makefile.am:
+	Only install the public headers.
+	Don't install or try to compile the .in files.
+	Whitespace cleanup.
+
+2008-07-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* data/Makefile.am:
+	* data/awn.schema-ini.in:
+	* data/shared.schema-ini:
+	Move the shared configuration options to their own schema-ini file.
+	Needed for the gkeyfile backend to function properly.
+
+2008-07-07  Mark Lee <avant-wn@lazymalevolence.com>
 
 	* configure.in:
-	Bump to 0.2.5 (this is the testing branch for 0.2.6 release)
+	Sort the generated files.
+
+2008-07-07  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Support in AppletSimple for using the awn-icons multiple icon APIs
+
+2008-07-06  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	There is now optional awn-icons support available in applet simple.
+	Works for the simple one icon case... multi icon needs testing.
+		
+
+2008-07-06  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-title.c:
+	Truncate title to a max of 120 characters.
+
+2008-07-06  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* awn-manager/awnApplet.py:
+	Allow awn-manager to list and launch applets in /usr/share
+ 
+	* debian/avant-window-navigator-data-trunk.install:
+	Update packaging with awn-icons stuff
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Added Copyright.
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-hotspot.c:
+	* src/awn-panel.c:
+	* src/awn-task.c:
+	* src/awn-window.c:
+	Possible drag and drop fix for file managers that are not nautilus.
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Force completely new icons to be recognized.
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fixed drag and drop issues with thunar (and other file managers I
+	would imagine).
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Implemented icon change callback.
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/Makefile.am:
+	Install index.theme
+
+2008-07-05  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	awn-icons now has a minimal dialog on drag and drop.
+
+2008-07-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Finished the basic logic for drag and drop in awn-icons
+
+2008-07-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Preparation for the awn-icons drag and drop support.
+
+2008-07-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/index.theme:
+	A skeletal index.theme that needs to be installed so it can be copied to
+	$HOME/.icons/awn-theme.
+
+2008-07-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	Some of the awn-icons api is now functional.
+
+2008-07-02  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Fixed the directory creation.
+
+2008-07-02  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	Moved the awn-theme dir layout creation into the init.
+
+2008-07-02  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-icons.c:
+	Get rid of theme_name.  The awn_theme is used internally.  
+	Start code to deal with creation of awn-theme dirs.  Some
+	experimentation will be needed to determine the minimal layout
+	required.
+
+2008-07-02  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-icons.c:
+	* libawn/awn-icons.h:
+	* libawn/Makefile.am:
+	Some initial work implementing awn-icons.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Update on a set title if the title is currently visible.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Use a g_free() instead of g_object_unref()
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Fixed up the logic in set_title().  Added some g_return_if_fail()
+	calls.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Lowered delay before hiding title.  Fixed assert when title visibility
+	is set before the title.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Minor reorganization.  Moved a function call inside a condition.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Fixed name for python bindings (AppletSimple)  simple_set_title ->
+	set_title.
+
+2008-06-29  Rodney Cryderman <rcryderman@gmail.com>
+
+	* awn-applet-activation/main.c
+	Reformatted source using astyle to more closely follow coding style
+	guidelines.
+
+2008-06-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Applied patch for:  https://bugs.edge.launchpad.net/awn/+bug/242214.
+	Bug Description:  Not all Awn Manager dialogs have app icon.
+	Provided by:  https://bugs.edge.launchpad.net/~sharkbaitbobby
+
+2008-06-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Added python bindings for awn_applet_create_pref_item() and
+	awn_applet_simple_set_icon_context().  
+	Courtesy of sharkbait.
+
+2008-06-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs:
+	Added python bindings for awn_applet_simple_set_title() and
+	awn_applet_simple_set_title_visibility()
+
+2008-06-28  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Added an extremely simple interface to set the title that should also be
+	resistant to blinking when icon is clicked repeatedly.  API seems fine
+	though internal implementation may change.
+
+2008-06-27  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Make sure we don't get stuck with a blank applet icon on startup.
+
+2008-06-27  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	Changed description for no_bar_resize_animation
+
+2008-06-27  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	* libawn/awn-settings.c:
+	Added the code to enable the
+	/apps/avant-window-navigator/bar/no_bar_resize_animation config key.
+	Either it was never fully committed or, more likely, parts of it got
+	accidentally reverted.  
+
+2008-06-27  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-settings.h:
+	Remove unused function prototype.
+
+2008-06-27  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	Renamed awn_effects_op_fn -> AwnEffectsOpfn.
+
+2008-06-25  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-applet-simple.h:
+	Corrected the description of awn_applet_simple_set_icon_context()
+	behaviour.
+	Unref/NULL out the pixbufs if awn_applet_simple_set_icon_context() called.
+
+2008-06-25  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.h:
+	Added awn_applet_simple_set_icon_context() to awn-applet-simple.h.
+
+2008-06-25  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-x.c:
+	Applied patch submitted by black for "generic icon does not scale".
+	Bug: https://bugs.launchpad.net/awn/+bug/241950
+
+2008-06-20  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	* libawn/awn-effects.c:
+	* libawn/awn-settings.c:
+	* libawn/awn-settings.h:
+	Added config key:  app/reflection_alpha_multiplier.
+
+2008-06-20  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnApplet.py:
+	Revert r309 (caused crashes and other strange behavior on other people's
+	systems).
+
+2008-06-20  Rodney Cryderman <rcryderman@gmail.com>
+
+	* awn-manager/awnTheme.py
+	Applied patch submitted by black for bug
+	https://bugs.launchpad.net/awn/+bug/237473.
+	Bug description: "awn-manager doesn't show anything when adding theme
+	until restart"
+
+2008-06-20  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/main.c
+	Applied 3rd patched submitted by black for bug
+	https://bugs.launchpad.net/awn/+bug/236523
+	Bug description: "Every option in the awn-manager should change the
+	awn-bar instantly"
+	This deals with bar angle changes.
+	Reformatted code to follow awn coding style guidelines more closely (astyle).
+
+2008-06-19  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnApplet.py:
+	Add support for the applet list updating when the config option is
+	changed.
+
+2008-06-19  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* .bzrignore:
+	* doc/reference/tmpl/awn-effects.sgml:
+	* doc/reference/tmpl/awn-settings.sgml:
+	Update doc templates that changed due to struct changes.
+	Add new generated file to .bzrignore.
+
+2008-06-19  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Applied patch (see bug) submitted by black for bug
+	https://bugs.launchpad.net/awn/+bug/240716
+	Bug description: "fix initial width of icon"
+
+2008-06-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* awn-manager/window.glade
+	* src/main.c
+	Applied 2nd patch for bug #36523.  Changes in awn-manager to task
+	arrow setting need to be reflected in the bar immediately.
+	Submitter black ( ttps://launchpad.net/~blackborn )
+
+2008-06-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-bar.c
+	Reformatted code closer to awn coding style (using astyle).
+
+2008-06-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in
+	* libawn/awn-settings.c
+	* libawn/awn-settings.h
+	* src/awn-bar.c
+	Applied patch to allow Awn to expand across the monitor width.  Patch
+	provided by timon (timonterbraak@gmail.com,
+	https://launchpad.net/~timonterbraak )
+	Bug with attached patch: https://bugs.launchpad.net/awn/+bug/240882
+
+2008-06-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c
+	Fix for crasher for applets using awn_applet_simple_set_icon_context()
+	on bar resize.
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Minor cleanup including removing unneeded parameters from
+	apply_3d_illusion(), and deletion of unused debug prints
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-effects.c
+	Applied patch from mhr3 for spotlight.  Added a few additional changes
+	that are needed with patch.
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Enabled the icon_depth_on key.
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	3d turn no longer wobbles (again).
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Fixed cropping of right side of icons during phases of flip/depth.
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects-ops.h
+	* libawn/awn-effects.c
+	* libawn/awn-effects.h
+	awn_effect_op_3dturn() is now compliant with other effects ops.
+	Additional code cleanups.
+
+2008-06-17  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects-ops.h
+	* libawn/awn-effects.c
+	Enable depth again.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects-ops.h
+	* libawn/awn-effects.c
+	* libawn/awn-effects.h
+	Removed the icon surface from the param list of the effect ops (other
+	than apply 3d illusion).
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects-ops.h
+	* libawn/awn-effects.c
+	* libawn/awn-effects.h
+	In the midst of restructing code to cope cleanly with the vagaries of
+	the depth operation used in 3d turn
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c
+	mmm... magic numbers.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c
+	Adjusting the scaling of the spotlight.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-settings.c
+	* libawn/awn-settings.h
+	Added icon_depth_on config key in awn-settings.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in
+	* libawn/awn-effects-ops.c
+	Added some to the schema-ini.  frame_rate, icon_alpha.
+	Removed a no longer relevant comment from awn-effects-ops.c.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-simple.c
+	* libawn/awn-effects.c
+	Fixed issue with opening frame.  Bail for draw_icons if the clipping
+	makes no sense.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects.c
+	* libawn/awn-effects.h
+	Rename awn_effect_op_scaling -> awn_effect_op_scale_and_clip.
+
+2008-06-16  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects.c
+	Enabled clipping again in awn-effects.
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Enable the depth effect on 3d turns.
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects.c
+	Still disabling the depth on turn... still trying to mitigate the
+	flicker on some icons when it is enabled.  Newest commit fixes the
+	centering issue that was occuring.
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Set operator to SOURCE when creating image surfaces in
+	surface_saturate_and_pixelate()
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Set operator to SOURCE in light_surface().
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c
+	Fix a small leak that effects core Launcher/Taskmanager.
+	Check that we're getting a valid pixbuf in calls to awn_draw_icons().
+	Fixes a potential crash if the task manager code passes a bad pixbuf.
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Make sure a reused icon_ctx is cleared
+
+2008-06-15  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Lighten Component cutoff changed from 2 to 1.
+
+2008-06-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects.c
+	Removed an offset calculation that was applied to turn based on the the
+	depth being added
+
+2008-06-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	Temporarily disable the depth effect on 3d turn due to a graphical
+	glitch
+
+2008-06-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects-ops.c
+	* libawn/awn-effects-ops.h
+	* libawn/Makefile.am
+	* libawn/awn-applet-simple.c
+	* libawn/awn-effect-bounce.c
+	* libawn/awn-effect-bounce.h
+	* libawn/awn-effect-desaturate.c
+	* libawn/awn-effect-desaturate.h
+	* libawn/awn-effect-fade.c
+	* libawn/awn-effect-fade.h
+	* libawn/awn-effect-glow.c
+	* libawn/awn-effect-glow.h
+	* libawn/awn-effect-spotlight.c
+	* libawn/awn-effect-spotlight.h
+	* libawn/awn-effect-spotlight3d.c
+	* libawn/awn-effect-spotlight3d.h
+	* libawn/awn-effect-squish.c
+	* libawn/awn-effect-squish.h
+	* libawn/awn-effect-turn.c
+	* libawn/awn-effect-turn.h
+	* libawn/awn-effect-zoom.c
+	* libawn/awn-effect-zoom.h
+	* libawn/awn-effects-shared.c
+	* libawn/awn-effects-shared.h
+	* libawn/awn-effects.c
+	* libawn/awn-effects.h
+	* libawn/awn-settings.c
+	* libawn/awn-settings.h
+	Merged rev 280 of lp:~rcryderman/awn/awn-cairo-effects.  Converts 
+	the awn-effects engine to using a (more or less) pure cairo core.
+	Code has been reorganized and converted to follow the core style 
+	guidelines more fully.  
+
+2008-06-13  Rodney Cryderman <rcryderman@gmail.com>
+
+	* awn-applet-activation/main.c
+	Removed an error check from launch_python. Now error conditions are
+	handled the same for absolute and relative paths in python applet
+	desktop files.  This allows options to be specified in the applet
+	desktop file and passed to the python applet.
+
+2008-06-12  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnPreferences.py:
+	Clean up the autostart config option code.
+	Fix Launchpad bug #223933 (autostart config option needs to create
+	autostart dir if none exists).
+
+2008-06-06  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	Exposed awn_applet_create_pref_item().
+
+2008-06-06  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-applet.c
+	Separated awn_applet_create_pref_item() from
+	awn_applet_create_default_menu().
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet-dialog.c
+	* libawn/awn-applet-dialog.h
+	Reformatted to awn coding style using astyle.
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Source code cleanup using astyle.
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Applied patch for bug #228036 (custom icons cannot handle slash in
+	title).
+	Bug URL: https://bugs.launchpad.net/awn/+bug/228036
+	Submitted by black: https://launchpad.net/~blackborn
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Did some cleanup on task_choose_custom_icon_performed(). Still not
+	pretty.
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Cleaned some code from previous commit that was generating warnings
+
+2008-06-04  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Applied patch for bug #237068 (Make the 'change icon' window non-modal).
+	Bug URL: https://bugs.launchpad.net/awn/+bug/237068.
+	Submitted by: https://launchpad.net/~blackborn
+
+2008-06-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* bindings/python/awn.defs
+	Added python bindings for awn_applet_simple_effects_off() and
+	awn_applet_simple_effects_on().
+
+2008-06-03  Rodney Cryderman <rcryderman@gmail.com>
+	
+	* libawn/awn-applet-simple.c
+	* libawn/awn-applet-simple.h
+	Added awn_applet_simple_effects_off() and 
+	awn_applet_simple_effects_on().  Also cleaned up the clearing of the
+	cairo context
+
+2008-06-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/main.c
+	Additional fix for bug #231347.  Connect bar to state change signal
+	also.  Previous fix only partially resolved.
+
+2008-06-03  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/main.c
+	Applied patch for bug #236523 (Every option in the awn-manager should
+	change the awn-bar instantly) . Bug URL:
+	https://bugs.launchpad.net/awn/+bug/236523.  Submitted by:
+	https://launchpad.net/~blackborn
+
+2008-06-02  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/main.c
+	Possible fix for bug #231347.  Connect to window state change
+	sginals and set sticky if it gets removed.  A bit of a hack until a
+	better fix can be found.
+
+2008-05-31  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Moved Dock Preferences Item to the top of the menu
+
+2008-05-31  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Added a missing variable declaration.
+
+2008-05-31  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	* src/awn-task.h
+	Formatted code using astyle to awn coding style.
+
+2008-05-31  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	Removed top separator from default menu.
+
+2008-05-31  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-task.c
+	Added Dock Preferences items to Launchers and Tasks.
+
+2008-05-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	Minor tidying of code.
+
+2008-05-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* Changelog
+	Fixed minor issue with extraneous text.
+
+2008-05-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	Changed signature for _start_awn_manager() as it now fires on activate
+	and not button press.
+
+2008-05-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	* src/main.c
+	Changed Prerences menu item to say "Dock Preferences"
+	Also changed button-press signal on the menu item to activate event.
+
+2008-05-30  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-applet.c
+	awn_applet_create_default_menu() now has a menu item (Preferences)
+	that starts awn-manager.  Also used astyle to reformat source file to
+	awn coding style.
+
+2008-05-28  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnLauncherEditor.py:
+	Handle the case where the gkeyfile backend is being used and there are no
+	launchers.  Reported by a member of the forum via private message.
+
+2008-05-26  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-cairo-utils.c
+
+	Make awn_cairo_string_to_color() a bit more robust by checking for
+	to see if NULL have been passed.
+
+2008-05-26  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-config-client-gconf.c
+	* libawn/awn-config-client-gkeyfile.c
+	* libawn/awn-config-client.h
+
+	Added awn_config_client_query_backend() to awn config client.  Allows
+	querying of configuration backend in use.  Ack'd by malept
+
+2008-05-26  Rodney Cryderman <rcryderman@gmail.com>
+
+	* data/awn.schema-ini.in:
+	Added shared config key applets/shared/allow_generic_config_edit.
+
+2008-05-26  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	Bump dbus-x11 | dbus as depends, usefull for KDE users.
+
+2008-05-24  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Fix crash fix colormap == None 
+	(see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=482030)
+
+2008-05-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	*libawn/awn-applet-simple.c
+	*libawn/awn-applet-simple.h
+	Merged in changes from awn-cairo-effects branch.  Consisting of
+	applying new awn coding guidelines (using astyle).
+
+2008-05-18  Rodney Cryderman <rcryderman@gmail.com>
+
+	*libawn/awn-effect-bounce.c
+	*libawn/awn-effect-bounce.h
+	*libawn/awn-effect-desaturate.c
+	*libawn/awn-effect-desaturate.h
+	*libawn/awn-effect-fade.c
+	*libawn/awn-effect-fade.h
+	*libawn/awn-effect-glow.c
+	*libawn/awn-effect-glow.h
+	*libawn/awn-effect-spotlight.c
+	*libawn/awn-effect-spotlight.h
+	*libawn/awn-effect-spotlight3d.c
+	*libawn/awn-effect-spotlight3d.h
+	*libawn/awn-effect-squish.c
+	*libawn/awn-effect-squish.h
+	*libawn/awn-effect-turn.c
+	*libawn/awn-effect-turn.h
+	*libawn/awn-effect-zoom.c
+	*libawn/awn-effect-zoom.h
+	*libawn/awn-effects-shared.c
+	*libawn/awn-effects-shared.h
+	*libawn/Makefile.am*
+	*libawn/awn-effects.c
+	*libawn/awn-effects.h
+	Merged in changes from awn-cairo-effects branch.  Consisting of code
+	reorganization of awn-effects.c into multiple files and refactoring of
+	various large functions into more manageable units.  More work on this
+	is planned, this is mostly the low hanging fruit.  
+
+2008-05-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-x.c:
+	If wnck_window_get_icon() is used in awn_x_get_icon() then ref it
+	before returning.
+
+2008-05-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	Reverted previous commit (239).
+
+2008-05-14  Rodney Cryderman <rcryderman@gmail.com>
+
+	* libawn/awn-effects.c:
+	Testing a patch for bug #226725.  Added sanity test for valid
+	pixbuf.
+
+2008-05-08  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* debian/control:
+	Change D-Bus dependency to be a recommended package, and to also have
+	dbus as a possiblity, as dbus-x11 does not exist in Feisty, but the
+	equivalent functionality is in its dbus package.
+
+2008-05-08  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/xutils.c:
+  	Removed unused code.
+	Partially converted to awn coding style.
+
+2008-05-08  Rodney Cryderman <rcryderman@gmail.com>
+
+	* src/awn-x.c:
+	Modified awn_x_get_icon(), restructured/simplified corner case handling.
+	Conversion of file to awn coding style.
+
+2008-04-29  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnApplet.py:
+	* awn-manager/awnLauncher.py:
+	* awn-manager/awnLauncherEditor.py:
+	* awn-manager/awnManager.py.in:
+	* awn-manager/awnPreferences.py:
+	* awn-manager/awnTheme.py:
+	Reformat to use four-space soft tabs with no trailing whitespace.
+
+2008-04-25  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	* debian/rules:
+	Add a debug package.
+
+2008-04-23  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl/*.sgml:
+	Trivial whitespace changes generated by gtk-doc.
+
+2008-04-23  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* debian/avant-window-navigator-trunk.install:
+	Don't install /usr/bin/awn (as it's not built by default anymore).
+
+2008-04-23  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* .bzrignore:
+	* awn.pc.in:
+	* configure.in:
+	* src/Makefile.am:
+	Add the --enable-experimental flag to ./configure which enables building
+	the awn binary.
+	Generate the Requires field of the pkgconfig file in ./configure.
+	Tell bzr to ignore build files related to the awn binary.
+
+2008-04-21  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-desktop-item-egg.c:
+	* libawn/egg/eggdesktopfile.c:
+	* libawn/egg/eggdesktopfile.h:
+	Refactor the Egg implementation of AwnDesktopItem so that it is more
+	compatible with the Gnome implementation.
+
+2008-04-21  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* acinclude.m4 (AC_PYTHON_DEVEL):
+	* configure.in:
+	* awn-manager/awnManager.py.in:
+	* bindings/python/Makefile.am:
+	Use the platform-specific site-packages path instead of the general path.
+	Thanks to Adam Williamson (Mandriva maintainer) for testing.
+
+2008-04-21  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-config-client-gconf.c (awn_config_client_notify_proxy):
+	Fix the algorithm that determines the group name of the configuration
+	option from the GConf path so that the group names for applets are more
+	reliably determined.
+
+2008-04-20  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* bindings/awn/awn.override:
+	Allow None as a value for the uid parameter of the awn.Config constructor,
+	which is consistent with the C API.
+
+2008-04-20  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* debian/control:
+	Fix ElementTree dependency.
+	Update vala dependency.
+
+2008-04-20  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* configure.in:
+	Fix the libglade dependency check (only needed for awn-manager). Spotted
+	by reacocard in IRC.
+
+2008-04-12  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* data/awn-schema-to-gconf:
+	Fix the conversion of default list values.
+
+2008-04-11  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* src/awn-monitor.c:
+	Remove mandatory gconf dependency. (Fixes Launchpad bug #216143)
+
+2008-04-11  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	Add python-gtk2-dev as Build Depends
+
+2008-04-11  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	* debian/control.autoppa:
+	Clean PPA configuration
+
+2008-04-11  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control.autoppa:
+	Enable Feisty and Edgy build in PPA
+
+2008-03-29  Neil J. Patel  <njpatel@gmail.com>
+
+	* data/awn.schema-ini.in:
+	* src/Makefile.am:
+	* src/awn-monitor.c:
+	* src/awn-monitor.h:
+	* src/awn-panel.c:
+	Add AwnMonitor class, which wraps the various monitor-size stuff to try and
+	hide the complexity.
+
+2008-03-29  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	Update to require gdk >= 2.12.
+
+2008-03-24  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnPreferences.py:
+	Fix typo. (Fixes Launchpad bug #206292)
+
+2008-03-23  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/rules:
+	Relax depends of libawn0
+
+2008-03-23  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	* debian/control.autoppa:
+	Add automake as build-depends
+
+2008-03-22  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* doc/reference/tmpl:
+	Fix builds with the flag --enable-gtk-doc.
+
+2008-03-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-panel.c:
+	Fix the drawing of child widgets, for both composited and non-composited.
+	Add some pseudo code describing how the other objects would fit together.
+
+2008-03-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-app.c:
+	* src/awn-panel.c:
+	More fixes, removed some non-working code.
+
+2008-03-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/Makefile.am:
+	* src/awn-app-dbus.xml:
+	* src/awn-app.c:
+	* src/awn-defines.h:
+	* src/awn-main.c:
+	Add in single instance checking.
+
+2008-03-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-app.c:
+	* src/awn-app.h:
+	* src/awn-defines.h:
+	* src/awn-main.c:
+	* src/awn-panel.h:
+	Fix up copyrighting. Lets not attribute copyright to corporations that
+	have nothing to do with Awn :-).
+
+2008-03-16  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* configure.in:
+	* data/awn.schema-ini => data/awn.schema-ini.in:
+	Fix list syntax.
+	Don't hardcode desktop entry paths.
+	Make the Awn Manager desktop entry the default launcher.
+
+2008-03-16  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/awn.schema-ini:
+	Don't use empty field for the schemas.
+
+2008-03-16  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* src/Makefile.am:
+	Add awn and avant-window-navigator as binary
+
+	* debian/avant-window-navigator-trunk.install:
+	Add awn binary
+
+	* debian/rules:
+	Re-enable auto-autogen.sh
+
+2008-03-16  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/avant-window-navigator-data-trunk.install:
+	* debian/avant-window-navigator-trunk.install:
+	* debian/awn-launcher-editor.1:
+	* debian/awn-manager-trunk.install:
+	* debian/awn-schema-to-gconf.1:
+	* debian/changelog:
+	* debian/control:
+	* debian/control.autoppa:
+	* debian/copyright:
+	* debian/libawn-dev-trunk.install:
+	* debian/libawn-doc-trunk.doc-base:
+	* debian/libawn-doc-trunk.install:
+	* debian/libawn-doc-trunk.links:
+	* debian/libawn0-trunk.install:
+	* debian/pycompat:
+	* debian/rules:
+	* debian/watch:
+	Sync with debian package.
+	Bump version to 0.3.1.
+
+2008-03-15  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/Makefile.am:
+	* src/awn-app.c:
+	* src/awn-app.h:
+	* src/awn-main.c:
+	* src/awn-panel.c:
+	* src/awn-panel.h:
+	Some inital code for re-organising Awn. Does nothing yet, but with a
+	sprinkle of hope and a little love, you never know.
+
+2008-03-02  R. Cryderman (moonbeam) <rcryderman@gmail.com>
+
+	* bindings/vala/awn.vapi
+	Fix for vala bindings and vala v. 0.17
+
+2008-03-01  Michal Hruby <michal.mhr@gmail.com>
+
+	* libawn/awn-effects.c:
+	Fix disappearing applets in curved mode
+
+2008-02-25  R. Cryderman (moonbeam) <rcryderman@gmail.com>
+
+	* data/awn.schema-ini
+	Added shared applet key: applets/shared/dialog_focus_loss_behavior
+
+2008-02-24  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/awn-manager-trunk.install:
+	Add awn-manager icons
+
+2008-02-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	Fixed incorrect matching of keys to colour buttons for the 2nd hightlight.
 
 2008-02-22  Neil J. Patel  <njpatel@gmail.com>
 
@@ -17,6 +1875,42 @@
 
 	* libawn/egg/Makefile.am:
 	Include the necessary files in EXTRA_DIST.
+
+2008-02-19  R. Cryderman (moonbeam) <rcryderman@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* libawn/awn-settings.c:
+	* libawn/awn-settings.h:
+	* src/main.c:
+	Reverted commit 192.  Ack'd by njpatel.  Functionality should be
+	implemented by running arbitrary scripts/commands before and after awn
+	startup.
+
+2008-02-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	Bump to 0.3.1
+
+2008-02-20  haytjes  <hv1989@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* libawn/awn-settings.c:
+	* libawn/awn-settings.h:
+	* src/main.c:
+	Added an option to close gnome-panel when starting avant-window-navigator
+
+2008-02-20  haytjes  <hv1989@gmail.com>
+
+	* configure.in:
+	bumped version to 0.3. This means it is unstable 
+	(this is no release, just needed to distinguish 0.2.4 stable and this unstable version) 
+	The next stable release is 0.4.
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	Added an option to let awn start on login
 
 2008-02-19  Neil J. Patel  <njpatel@gmail.com>
 

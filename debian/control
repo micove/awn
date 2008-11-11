@@ -8,6 +8,7 @@ Build-Depends: 	debhelper (>= 6),
 		libwnck-dev,
 		libgnome2-dev,
 		libgnome-desktop-dev,
+		libglade2-dev,
 		libdbus-glib-1-dev,
 		libxcomposite-dev,
 		libxdamage-dev,
@@ -17,9 +18,9 @@ Build-Depends: 	debhelper (>= 6),
 		python-cairo-dev,
 		gtk-doc-tools, 
 		doc-base,
-		valac (>= 0.1.6),
+		valac (>= 0.3.4),
 		python-elementtree | python2.5
-Standards-Version: 3.7.3
+Standards-Version: 3.8.0
 Homepage: https://launchpad.net/avant-window-navigator/
 XS-Python-Version: >= 2.4
 
@@ -114,7 +115,7 @@ Architecture: all
 Depends: 	libawn0 (>= ${source:Version}),
 		${shlibs:Depends}, 
 		${misc:Depends},
-		valac (>= 0.1.6)
+		valac (>= 0.3.4)
 Description: Vala bindings for avant-window-navigator library 
  This library is used by avant-window-navigator. It provides Vala bindings 
  to create and use Vala applets for avant-window-navigator.
