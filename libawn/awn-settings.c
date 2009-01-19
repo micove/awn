@@ -33,6 +33,7 @@
 #define AUTO_HIDE "auto_hide"  /*bool*/
 #define AUTO_HIDE_DELAY "auto_hide_delay" /*int*/
 #define KEEP_BELOW "keep_below"  /*bool*/
+#define SHOW_DIALOG "show_dialog_if_non_composited" /*bool*/
 
 #define BAR  "bar"
 #define ROUNDED_CORNERS "rounded_corners" /*bool*/
@@ -163,12 +164,16 @@ awn_settings_new()
 
   awn_load_bool(client, AWN_CONFIG_CLIENT_DEFAULT_GROUP, KEEP_BELOW, &s->keep_below, FALSE);
 
+  awn_load_bool(client, AWN_CONFIG_CLIENT_DEFAULT_GROUP, SHOW_DIALOG, &s->show_dialog, TRUE);
+
   s->hidden = FALSE;
 
   /* Bar settings */
   awn_config_client_ensure_group(client, BAR);
 
   awn_load_int(client, BAR, BAR_HEIGHT, &s->bar_height, 48);
+  // make sure bar_height is >= AWN_MIN_BAR_HEIGHT
+  if (s->bar_height < AWN_MIN_BAR_HEIGHT) s->bar_height = AWN_MIN_BAR_HEIGHT;
 
   awn_load_float(client, BAR, BAR_POS, &s->bar_pos, 0.5);
 
@@ -259,7 +264,10 @@ awn_settings_new()
 
   awn_load_string(client, TITLE, FONT_FACE, &s->font_face, "Sans 11");
 
-  s->task_width = settings->bar_height + 12;
+  s->task_width = 12;
+  s->task_width += settings->bar_height >= AWN_MIN_BAR_HEIGHT ?
+      settings->bar_height :
+      AWN_MIN_BAR_HEIGHT;
 
   /* make the custom icons directory */
   gchar *path = g_build_filename(g_get_home_dir(),

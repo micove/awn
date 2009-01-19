@@ -376,6 +376,8 @@ pattern_engine(cairo_t *cr, double x, gint width, gint height, gint offset)
 static void
 render(AwnBar *bar, cairo_t *cr, gint x_width, gint height)
 {
+  gint ww, wh;
+
   AwnBarPrivate *priv = AWN_BAR_GET_PRIVATE(bar);
   gint width;
 
@@ -408,7 +410,11 @@ render(AwnBar *bar, cairo_t *cr, gint x_width, gint height)
   cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
   cairo_paint(cr);
 
-  double x = (int)((settings->monitor.width - width) * settings->bar_pos);
+  //if the width of settings->window isn't used, 
+  //the background and the icons will not be on the same place when using a bar_pos other then 0.5
+  gtk_window_get_size(GTK_WINDOW(settings->window), &ww, &wh);
+  double x = (int)((settings->monitor.width - ww) * settings->bar_pos);
+  x -= (width-ww)*0.5;
 
   if (settings->bar_angle > 0)
   {

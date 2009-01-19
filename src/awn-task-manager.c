@@ -26,6 +26,7 @@
 
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
+#include <unistd.h>
 
 #include "config.h"
 
@@ -76,6 +77,10 @@ static void _task_manager_menu_item_clicked (AwnTask *task, guint id, AwnTaskMan
 static void _task_manager_check_item_clicked (AwnTask *task, guint id, gboolean active, AwnTaskManager *task_manager);
 static void _task_manager_check_width (AwnTaskManager *task_manager);
 
+static void
+on_height_changed (DBusGProxy *proxy, gint height, AwnTaskManager *manager);
+
+
 /* STRUCTS & ENUMS */
 
 typedef struct _AwnTaskManagerPrivate AwnTaskManagerPrivate;
@@ -95,8 +100,14 @@ struct _AwnTaskManagerPrivate
 	GList *tasks;
 
 	GtkWidget *eb;
-	
-	gboolean ignore_gconf;
+
+	DBusGConnection *applet_man_connection;
+	DBusGProxy *applet_man_proxy;
+
+	gulong signal_handlers[6];
+
+	gboolean got_viewport;
+	gint activate_behavior;
 };
 
 enum
@@ -110,6 +121,7 @@ static guint awn_task_manager_signals[LAST_SIGNAL] = { 0 };
 
 /* GLOBALS */
 
+static int TASKMAN_OWN_PID = -1;
 
 static void
 _load_launchers_func (const char *uri, AwnTaskManager *task_manager)
@@ -380,6 +392,9 @@ _task_manager_window_opened (WnckScreen *screen, WnckWindow *window,
 	}
 	/* if not launcher & no starter, create new task */
 	if (task == NULL) {
+		// LP bug #258960 - always skip awn itself
+		if (wnck_window_get_pid(window) == TASKMAN_OWN_PID) return;
+
 		task = awn_task_new(task_manager, priv->settings);
 		if (awn_task_set_window (AWN_TASK (task), window))
 			;//g_print("Created for %s\n", wnck_window_get_name(window));
@@ -417,7 +432,6 @@ _win_reparent (AwnTask *task, AwnTaskManager *task_manager)
 
 	if (new_task) {
 		if (awn_task_set_window (AWN_TASK (new_task), window)) {
-			//awn_task_set_window (task, NULL);
 			awn_task_close(task);
 			awn_task_manager_remove_task (task_manager, task);
 			awn_task_refresh_icon_geometry(new_task);
@@ -558,8 +572,6 @@ _task_manager_drag_data_recieved (GtkWidget *widget, GdkDragContext *context,
         }
 
 	AwnTaskManagerPrivate *priv;
-	GtkWidget *task = NULL;
-	AwnDesktopItem *item = NULL;
 	GString *uri;
 	AwnSettings *settings;
 
@@ -578,54 +590,22 @@ _task_manager_drag_data_recieved (GtkWidget *widget, GdkDragContext *context,
 		uri = g_string_truncate(uri, res+1);
 
 
-  g_print("Desktop file: %s\n", uri->str);
-	item = awn_desktop_item_new (uri->str);
+	g_print("Desktop file: %s\n", uri->str);
 
-	if (item == NULL) {
-		g_print("Error : Could not load the desktop file!");
-		return;
+	/******* Add to config *********/
+	settings = priv->settings;
+	// careful shallow copy
+	GSList *launchers = g_slist_copy(settings->launchers);
+	launchers = g_slist_append(launchers, uri->str);
 
-	}
+	AwnConfigClient *client = awn_config_client_new ();
+	awn_config_client_set_list(client, "window_manager", "launchers",
+                                   AWN_CONFIG_CLIENT_LIST_TYPE_STRING,
+                                   launchers, NULL);
 
-	task = awn_task_new(task_manager, priv->settings);
-	awn_task_set_title (AWN_TASK(task), AWN_TITLE(priv->title_window));
-	if (awn_task_set_launcher (AWN_TASK (task), item)) {
-
-		g_signal_connect (G_OBJECT(task), "drag-data-received",
-				  G_CALLBACK(_task_manager_drag_data_recieved), (gpointer)task_manager);
-		g_signal_connect (G_OBJECT(task), "menu_item_clicked",
-			  G_CALLBACK(_task_manager_menu_item_clicked), (gpointer)
-			  task_manager);
-		g_signal_connect (G_OBJECT(task), "check_item_clicked",
-			  G_CALLBACK(_task_manager_check_item_clicked), (gpointer)
-			  task_manager);
-
-		priv->launchers = g_list_append(priv->launchers, (gpointer)task);
-		gtk_box_pack_start(GTK_BOX(priv->launcher_box), task, FALSE, FALSE, 0);
-		gtk_widget_show(task);
-		_refresh_box (task_manager);
-		g_print("LOADED : %s\n", _sdata);
-
-		/******* Add to config *********/
-		priv->ignore_gconf = TRUE;
-		settings = priv->settings;
-		settings->launchers = g_slist_append(settings->launchers, g_strdup(uri->str));
-                
-		AwnConfigClient *client = awn_config_client_new ();
-		awn_config_client_set_list(client, "window_manager", "launchers",
-                                           AWN_CONFIG_CLIENT_LIST_TYPE_STRING,
-                                           settings->launchers, NULL);
-		awn_task_manager_update_separator_position (task_manager);
-	} else {
-		gtk_widget_destroy(task);
-		awn_desktop_item_free (item);
-		g_print("FAILED : %s\n", _sdata);
-
-	}
+	g_slist_free (launchers);
 
 	g_string_free(uri, TRUE);
-	//awn_task_manager_update_separator_position (task_manager);
-       	_refresh_box(task_manager);
        	gtk_drag_finish (context, dnd_success, delete_selection_data, time);
 }
 
@@ -825,7 +805,7 @@ _task_manager_check_width (AwnTaskManager *task_manager)
 		} while (x + num * width + 50 < settings->monitor_width);
 	}
 
-	if (width < settings->task_width) {
+	if (width < settings->task_width && width >= AWN_MIN_BAR_HEIGHT) {
 		settings->task_width = width;
 		g_list_foreach(priv->launchers, (GFunc)_task_resize, GINT_TO_POINTER (settings->task_width));
 		g_list_foreach(priv->tasks, (GFunc)_task_resize, GINT_TO_POINTER (settings->task_width));
@@ -1400,12 +1380,52 @@ awn_task_manager_set_task_check_item_by_name (AwnTaskManager *task_manager,
 #include "awn-dbus-glue.h"
 
 static void
+awn_task_manager_dispose (GObject *object)
+{
+        AwnTaskManagerPrivate *priv;
+        priv = AWN_TASK_MANAGER_GET_PRIVATE (object);
+
+        if (priv->applet_man_proxy) {
+                dbus_g_proxy_disconnect_signal (priv->applet_man_proxy,
+                                               "HeightChanged",
+                                               G_CALLBACK (on_height_changed),
+                                               (gpointer)object);
+                priv->applet_man_proxy = NULL;
+        }
+        if (priv->applet_man_connection) {
+                dbus_g_connection_unref (priv->applet_man_connection);
+                priv->applet_man_connection = NULL;
+        }
+
+        // oh yea, this one is disgusting, but it basically only
+        //  disconnects a few signals
+        if (priv->signal_handlers[0]) {
+                gint i;
+                for (i = 0; i < G_N_ELEMENTS(priv->signal_handlers); i++) {
+                        gpointer instance = i <= 3 ? (priv->screen) : 
+                        (i == 4 ? priv->settings->window : (gpointer)gtk_icon_theme_get_default ());
+                        if (priv->signal_handlers[i]) {
+                                g_signal_handler_disconnect(instance,
+                                        priv->signal_handlers[i]);
+                                priv->signal_handlers[i] = 0;
+                        }
+                }
+        }
+
+	// hide the separator
+	awn_bar_set_draw_separator (priv->settings->bar, 0);
+
+	G_OBJECT_CLASS (awn_task_manager_parent_class)->dispose (object);
+}
+
+static void
 awn_task_manager_class_init (AwnTaskManagerClass *class)
 {
 	GObjectClass *obj_class;
 	GtkWidgetClass *widget_class;
 
 	obj_class = G_OBJECT_CLASS (class);
+	obj_class->dispose = awn_task_manager_dispose;
 	widget_class = GTK_WIDGET_CLASS (class);
 
 	g_type_class_add_private (obj_class, sizeof (AwnTaskManagerPrivate));
@@ -1443,33 +1463,108 @@ awn_task_manager_refresh_launchers (AwnConfigClientNotifyEntry *entry,
 	AwnTaskManagerPrivate *priv;
 	GSList *list, *l;
 	GList *t;
-	GSList *launchers = NULL;
-	
-	
+	GSList *launchers = NULL, *old_launchers;
+
+        g_return_if_fail (AWN_IS_TASK_MANAGER (task_manager));
 	priv = AWN_TASK_MANAGER_GET_PRIVATE (task_manager);
-        
-        if (priv->ignore_gconf) {
-                priv->ignore_gconf = FALSE;
-                return;
-        }
-        
+
         list = entry->value.list_val;
-        
+ 
         for (l = list; l != NULL; l = l->next) {
                 gchar *string = g_strdup ((gchar*) (l->data));
                 launchers = g_slist_append (launchers, string);
         }
         
-        g_slist_free (priv->settings->launchers);
+        old_launchers = priv->settings->launchers;
         priv->settings->launchers = launchers;
         
         gint i = 0;
         for (l = launchers; l != NULL; l = l->next) {
                 AwnTask *task = NULL;
                 for (t = priv->launchers; t != NULL; t = t->next) {
+                        AwnDesktopItem *item, *old_item;
+                        item = awn_task_get_item (AWN_TASK (t->data));
+                        gchar *file = awn_desktop_item_get_filename (item);
+                        if (strcmp (file, l->data) == 0) {
+                                task = AWN_TASK (t->data);
+                                g_free (file);
+                                // refresh the desktop item
+                                old_item = item;
+                                item = awn_desktop_item_new ((gchar*)l->data);
+                                if (item) {
+                                        awn_task_set_launcher(task, item);
+                                        awn_desktop_item_free(old_item);
+                                }
+                                break;
+                        }
+                        g_free (file);
+                }
+                if (task) {
+                        gtk_box_reorder_child (GTK_BOX (priv->launcher_box),
+                                               GTK_WIDGET (task),
+                                               i++);
+                } else {
+			// added launcher
+			GtkWidget *task;
+			AwnDesktopItem *item = awn_desktop_item_new (l->data);
+
+			if (item == NULL) {
+				g_print("Error : Could not load the desktop file!");
+				continue;
+			}
+			g_print("LOADED : %s\n", (char*)l->data);
+
+			task = awn_task_new(task_manager, priv->settings);
+			awn_task_set_title (AWN_TASK(task), AWN_TITLE(priv->title_window));
+			if (awn_task_set_launcher (AWN_TASK (task), item)) {
+
+				g_signal_connect (G_OBJECT(task), "drag-data-received",
+						  G_CALLBACK(_task_manager_drag_data_recieved), (gpointer)task_manager);
+				g_signal_connect (G_OBJECT(task), "menu_item_clicked",
+						  G_CALLBACK(_task_manager_menu_item_clicked), (gpointer)
+						  task_manager);
+				g_signal_connect (G_OBJECT(task), "check_item_clicked",
+						  G_CALLBACK(_task_manager_check_item_clicked), (gpointer)
+						  task_manager);
+
+				priv->launchers = g_list_append(priv->launchers, (gpointer)task);
+				gtk_box_pack_start(GTK_BOX(priv->launcher_box), task, FALSE, FALSE, 0);
+                                gtk_box_reorder_child (GTK_BOX (priv->launcher_box),
+                                                       task,
+                                                       i++);
+				gtk_widget_show(task);
+			} else {
+				gtk_widget_destroy(task);
+				awn_desktop_item_free (item);
+				g_print("FAILED : %s\n", (char*)l->data);
+			}
+                }
+        }
+
+        // make a list of removed launchers
+        l = old_launchers;
+        while (l) {
+                gboolean found = FALSE;
+                for (list = launchers; list; list = list->next) {
+                        if (strcmp(list->data, l->data) == 0) {
+                                found = TRUE;
+                                break;
+                        }
+                }
+                if (found) {
+                        old_launchers = g_slist_delete_link(old_launchers, l);
+                        l = old_launchers;
+                } else {
+                        l = l->next;
+                }
+        }
+        // old_launchers now contains list of removed paths
+        for (l = old_launchers; l; l = l->next) {
+                AwnTask *task = NULL;
+                for (t = priv->launchers; t != NULL; t = t->next) {
                         AwnDesktopItem *item;
                         item = awn_task_get_item (AWN_TASK (t->data));
-						gchar *file = awn_desktop_item_get_filename (item);
+                        gchar *file = awn_desktop_item_get_filename (item);
                         if (strcmp (file, l->data) == 0) {
                                 task = AWN_TASK (t->data);
                         }
@@ -1477,12 +1572,65 @@ awn_task_manager_refresh_launchers (AwnConfigClientNotifyEntry *entry,
                         
                 }
                 if (task) {
-                        gtk_box_reorder_child (GTK_BOX (priv->launcher_box),
-                                               GTK_WIDGET (task),
-                                               i);
-                        i++;
+                        // remove from launchers
+		        g_print("REMOVED : %s\n", (char*)l->data);
+                        if (awn_task_get_window (task)) {
+                                // move to tasks
+                                GtkWidget *w = GTK_WIDGET (task);
+                                awn_task_manager_remove_launcher (task_manager, task);
+                                awn_task_set_launcher (task, NULL);
+                                priv->tasks = g_list_append(priv->tasks, (gpointer)task);
+                                gtk_widget_ref(w);
+                                gtk_container_remove(GTK_CONTAINER(priv->launcher_box), w);
+                                gtk_box_pack_start(GTK_BOX(priv->tasks_box), w, FALSE, FALSE, 0);
+                                gtk_widget_unref(w);
+                        } else {
+                                // destroy completely
+                                awn_task_manager_remove_launcher (task_manager,
+                                                                  task);
+                                awn_task_remove (task);
+                        }
                 }
-        }    
+        }
+
+        g_slist_free (old_launchers);
+        
+	awn_task_manager_update_separator_position (task_manager);
+       	_refresh_box(task_manager);
+}
+
+gboolean
+awn_task_manager_screen_has_viewports (AwnTaskManager *task_manager)
+{
+        AwnTaskManagerPrivate *priv;
+
+        g_return_val_if_fail (AWN_IS_TASK_MANAGER (task_manager), FALSE);
+        priv = AWN_TASK_MANAGER_GET_PRIVATE (task_manager);
+
+	return priv->got_viewport;
+}
+
+static void 
+awn_task_manager_update_activate_behavior (AwnConfigClientNotifyEntry *entry,
+                                   AwnTaskManager *task_manager)
+{
+        AwnTaskManagerPrivate *priv;
+
+        g_return_if_fail (AWN_IS_TASK_MANAGER (task_manager));
+        priv = AWN_TASK_MANAGER_GET_PRIVATE (task_manager);
+
+	priv->activate_behavior = entry->value.int_val;
+}
+
+gint
+awn_task_manager_get_activate_behavior (AwnTaskManager *task_manager)
+{
+        AwnTaskManagerPrivate *priv;
+
+        g_return_val_if_fail (AWN_IS_TASK_MANAGER (task_manager), 0);
+        priv = AWN_TASK_MANAGER_GET_PRIVATE (task_manager);
+
+	return priv->activate_behavior;
 }
 
 static void
@@ -1521,12 +1669,18 @@ awn_task_manager_init (AwnTaskManager *task_manager)
 	priv->title_window = NULL;
 	priv->launchers = NULL;
 	priv->tasks = NULL;
-	priv->ignore_gconf = FALSE;
 	
 	/* Setup GConf to notify us if the launchers list changes */
 	awn_config_client_notify_add (client, "window_manager", "launchers", 
                 (AwnConfigClientNotifyFunc)awn_task_manager_refresh_launchers, 
                 task_manager);
+
+	priv->activate_behavior = awn_config_client_get_int (client,
+		"window_manager", "activate_behavior", NULL);
+	awn_config_client_notify_add (client,
+		"window_manager", "activate_behavior",
+		(AwnConfigClientNotifyFunc)
+		awn_task_manager_update_activate_behavior, task_manager);
 
         connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (!connection) {
@@ -1537,6 +1691,7 @@ awn_task_manager_init (AwnTaskManager *task_manager)
 		}
                 return;
 	}
+        priv->applet_man_connection = connection;
 
         proxy = dbus_g_proxy_new_for_name (connection,
                                           "com.google.code.Awn.AppletManager",
@@ -1546,18 +1701,39 @@ awn_task_manager_init (AwnTaskManager *task_manager)
                 g_warning ("Cannot connect to applet manager\n");
                 return;
         }
+        priv->applet_man_proxy = proxy;
 	dbus_g_proxy_add_signal (proxy, "HeightChanged", G_TYPE_INT, G_TYPE_INVALID);
         dbus_g_proxy_connect_signal (proxy, 
                                      "HeightChanged",
                                      G_CALLBACK (on_height_changed),
                                      (gpointer)task_manager, 
                                      NULL);
-             
+}
+
+static gboolean
+awn_task_manager_realized (gpointer data)
+{
+        AwnTaskManager *task_manager = AWN_TASK_MANAGER(data);
+        AwnTaskManagerPrivate *priv = AWN_TASK_MANAGER_GET_PRIVATE (data);
+
+        GList *l;
+        GList *list = wnck_screen_get_windows (priv->screen);
+        for (l = list; l != NULL; l = l->next) {
+                _task_manager_window_opened (priv->screen,
+                                             (WnckWindow*)l->data,
+                                             task_manager);
+        }
+        // fix the height
+        on_height_changed (NULL, priv->settings->bar_height, task_manager);
+
+        return FALSE;
 }
 
 GtkWidget *
 awn_task_manager_new (AwnSettings *settings)
 {
+	TASKMAN_OWN_PID = getpid();
+
 	GtkWidget *task_manager;
 	AwnTaskManagerPrivate *priv;
 
@@ -1566,6 +1742,25 @@ awn_task_manager_new (AwnSettings *settings)
 			     "spacing", 0 ,
 			     NULL);
 	priv = AWN_TASK_MANAGER_GET_PRIVATE (task_manager);
+
+	// this must be here, so get_active_workspace doesn't return NULL
+	// but it makes us loose the window-opened signals, so we use
+	// g_idle_add to enumerate the windows
+	wnck_screen_force_update(priv->screen);
+	WnckWorkspace *wrksp = wnck_screen_get_active_workspace(priv->screen);
+	if (wrksp) priv->got_viewport = wnck_workspace_is_virtual(wrksp);
+
+#ifdef HAVE_LIBWNCK_220
+	if (!priv->got_viewport &&
+		wnck_screen_get_window_manager_name(priv->screen))
+	{
+		if (strcmp(wnck_screen_get_window_manager_name(priv->screen), "compiz") == 0)
+		priv->got_viewport = TRUE;
+	}
+#endif
+
+        // wnck hack -> we want the window-opened signal
+        g_idle_add (awn_task_manager_realized, task_manager);
 
 	priv->settings = settings;
 	priv->launcher_box = gtk_hbox_new(FALSE, 0);
@@ -1587,51 +1782,83 @@ awn_task_manager_new (AwnSettings *settings)
 	_task_manager_load_launchers(AWN_TASK_MANAGER (task_manager));
 
 	/* LIBWNCK SIGNALS */
-	g_signal_connect (G_OBJECT(priv->screen), "window-opened",
-	                  G_CALLBACK (_task_manager_window_opened),
-	                  (gpointer)task_manager);
+        priv->signal_handlers[0] =
+            g_signal_connect (G_OBJECT(priv->screen), "window-opened",
+	                      G_CALLBACK (_task_manager_window_opened),
+	                      (gpointer)task_manager);
 
-	g_signal_connect (G_OBJECT(priv->screen), "window-closed",
-	                  G_CALLBACK(_task_manager_window_closed),
-	                  (gpointer)task_manager);
+        priv->signal_handlers[1] =
+            g_signal_connect (G_OBJECT(priv->screen), "window-closed",
+	                      G_CALLBACK(_task_manager_window_closed),
+	                      (gpointer)task_manager);
 
-	g_signal_connect (G_OBJECT(priv->screen), "active-window-changed",
-	                  G_CALLBACK(_task_manager_window_activate),
-	                  (gpointer)task_manager);
+        priv->signal_handlers[2] =
+            g_signal_connect (G_OBJECT(priv->screen), "active-window-changed",
+	                      G_CALLBACK(_task_manager_window_activate),
+	                      (gpointer)task_manager);
 
 #ifdef HAVE_LIBWNCK_220
-	g_signal_connect (G_OBJECT(priv->screen), "viewports-changed",
-	                  G_CALLBACK(_task_manager_viewports_changed),
-	                  (gpointer)task_manager);
+        priv->signal_handlers[3] =
+            g_signal_connect (G_OBJECT(priv->screen), "viewports-changed",
+	                      G_CALLBACK(_task_manager_viewports_changed),
+	                      (gpointer)task_manager);
+#else
+        priv->signal_handlers[3] = 0;
 #endif
 
 	/* CONNECT D&D CODE */
 
-	g_signal_connect (G_OBJECT(settings->window), "drag-data-received",
-			  G_CALLBACK(_task_manager_drag_data_recieved), (gpointer)task_manager);
+        priv->signal_handlers[4] =
+            g_signal_connect (G_OBJECT(settings->window), "drag-data-received",
+                              G_CALLBACK(_task_manager_drag_data_recieved), (gpointer)task_manager);
 
 	/* THEME CHANGED CODE */
 	GtkIconTheme *theme = gtk_icon_theme_get_default ();
 
-	g_signal_connect (G_OBJECT(theme), "changed",
-			  G_CALLBACK(_task_manager_icon_theme_changed), (gpointer)task_manager);
+        priv->signal_handlers[5] =
+            g_signal_connect (G_OBJECT(theme), "changed",
+                              G_CALLBACK(_task_manager_icon_theme_changed), (gpointer)task_manager);
 
 	/* SEP EXPOSE EVENT */
 
 	g_signal_connect (G_OBJECT(priv->eb), "expose-event",
 			  G_CALLBACK(awn_bar_separator_expose_event), (gpointer)settings->bar);			  
 
+        #define A_NAMESPACE "com.google.code.Awn"
+        #define A_OBJECT_PATH "/com/google/code/Awn"
+        DBusGConnection *connection;
+        DBusGProxy *proxy;
+        GError *error = NULL;
+        guint32 ret;
+
+        /* Get the connection and ensure the name is not used yet */
+        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (connection == NULL) {
+                g_warning ("Failed to make connection to session bus: %s",
+                           error->message);
+                g_error_free (error);
+                return task_manager;
+        }
+
+        proxy = dbus_g_proxy_new_for_name (connection, DBUS_SERVICE_DBUS,
+                                           DBUS_PATH_DBUS, DBUS_INTERFACE_DBUS);
+        if (!org_freedesktop_DBus_request_name (proxy, A_NAMESPACE,
+                                                0, &ret, &error)) {
+                g_warning ("There was an error requesting the name: %s",
+                           error->message);
+                g_error_free (error);
+                return task_manager;
+        }
+        if (ret != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
+                /* Someone else registered the name before us */
+                return task_manager;
+        }
+        /* Register the task manager on the bus */
+        dbus_g_connection_register_g_object (connection,
+                                             A_OBJECT_PATH,
+                                             G_OBJECT (task_manager));
+
 
 	return task_manager;
 }
-
-
-
-
-
-
-
-
-
-
 

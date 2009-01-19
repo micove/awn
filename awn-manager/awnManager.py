@@ -22,11 +22,14 @@
 
 import sys, os, os.path, time
 
-PLAT_PKG = '/usr/lib/python2.5/site-packages'
-AWN_MANAGER_DIR = os.path.join('/usr/share/avant-window-navigator', 'awn-manager')
+PLAT_PKG = '/usr/local/lib/python2.5/site-packages'
+SITE_PKG = '/usr/local/lib/python2.5/site-packages'
+AWN_MANAGER_DIR = os.path.join('/usr/local/share/avant-window-navigator', 'awn-manager')
 sys.path = [AWN_MANAGER_DIR] + sys.path
 if PLAT_PKG not in sys.path:
     sys.path = [PLAT_PKG] + sys.path
+if SITE_PKG not in sys.path:
+    sys.path = [SITE_PKG] + sys.path
 
 try:
     import pygtk
@@ -52,6 +55,10 @@ import awn
 awn.vfs_init()
 defs.i18nize(globals())
 
+if os.geteuid() == 0:
+    sys.stderr.write(_("Awn Manager can't be run as root.") + '\n')
+    sys.exit(1)
+
 class AwnManager:
 
     def __init__(self):
@@ -65,8 +72,9 @@ class AwnManager:
         self.wTree = gtk.glade.XML(self.GLADE_PATH, domain=defs.I18N_DOMAIN)
 
         self.window = self.wTree.get_widget("awnManagerWindow")
+        self.window.set_title(_("Awn Manager"))
         self.theme = gtk.icon_theme_get_default()
-        icon_search_path = os.path.join('/usr/share', 'icons')
+        icon_search_path = os.path.join('/usr/local/share', 'icons')
         if icon_search_path not in self.theme.get_search_path():
             self.theme.append_search_path(icon_search_path)
         icon_list = []
@@ -136,9 +144,8 @@ class AwnManager:
         try:
             icon = self.theme.load_icon(name, size, flags)
         except gobject.GError:
-            msg = _('Could not load the "' + name + '" icon.  Make sure that ' + \
-                    'the SVG loader for Gtk+ is installed. It usually comes ' + \
-                    'with librsvg, or a package similarly named.')
+            # must be on one line due to i18n
+            msg = _('Could not load the "%s" icon.  Make sure that the SVG loader for Gtk+ is installed. It usually comes with librsvg, or a package similarly named.') % name
             dialog = gtk.MessageDialog(self.window, 0, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK, msg)
             dialog.run()
             dialog.destroy()
@@ -170,7 +177,11 @@ class AwnManager:
     def about(self, button):
         self.about = gtk.AboutDialog()
         self.about.set_name(_("Avant Window Navigator"))
-        self.about.set_version('0.3.1')
+        version = '0.3.2'
+        extra_version = ''
+        if len(extra_version) > 0:
+            version += extra_version
+        self.about.set_version(version)
         self.about.set_copyright("Copyright (C) 2007 Neil Jagdish Patel <njpatel@gmail.com>")
         self.about.set_authors([
             'Neil Jagdish Patel <njpatel@gmail.com>',

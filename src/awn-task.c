@@ -31,6 +31,10 @@
 #include <glib/gi18n.h>
 #endif
 
+#if !GTK_CHECK_VERSION(2,14,0)
+#define g_timeout_add_seconds(seconds, callback, user_data) g_timeout_add(seconds * 1000, callback, user_data)
+#endif
+
 #include <libawn/awn-config-client.h>
 #include <libawn/awn-effects.h>
 #include <libawn/awn-vfs.h>
@@ -125,6 +129,7 @@ struct _AwnTaskPrivate
   gulong icon_changed;
   gulong state_changed;
   gulong name_changed;
+  gulong geometry_changed;
 
   /* Ceceppa: old window position */
   gint old_x;
@@ -167,6 +172,29 @@ awn_task_dispose(GObject *obj)
   priv->dispose_has_run = TRUE;
 
   awn_effects_finalize(priv->effects);
+
+  if (priv->window) {
+    if (priv->icon_changed) {
+      g_signal_handler_disconnect((gpointer)priv->window,
+                                  priv->icon_changed);
+      priv->icon_changed = 0;
+    }
+    if (priv->state_changed) {
+      g_signal_handler_disconnect((gpointer)priv->window,
+                                  priv->state_changed);
+      priv->state_changed = 0;
+    }
+    if (priv->name_changed) {
+      g_signal_handler_disconnect((gpointer)priv->window,
+                                  priv->name_changed);
+      priv->name_changed = 0;
+    }
+    if (priv->geometry_changed) {
+      g_signal_handler_disconnect((gpointer)priv->window,
+                                  priv->geometry_changed);
+      priv->geometry_changed = 0;
+    }
+  }
 
   G_OBJECT_CLASS(global_awn_task_parent_class)->dispose(obj);
 }
@@ -248,7 +276,7 @@ awn_task_init(AwnTask *task)
   AwnTaskPrivate *priv;
   priv = AWN_TASK_GET_PRIVATE(task);
 
-  priv->item = FALSE;
+  priv->item = NULL;
   priv->pid = -1;
   priv->application = NULL;
   priv->is_launcher = FALSE;
@@ -346,7 +374,7 @@ _shrink_widget(AwnTask *task)
     gdk_pixbuf_unref(priv->reflect);
   }
 
-  g_timeout_add(1000, (GSourceFunc)awn_task_manager_refresh_box,
+  g_timeout_add_seconds(1, (GSourceFunc)awn_task_manager_refresh_box,
 
                 priv->task_manager);
 
@@ -667,6 +695,49 @@ awn_start_awn_manager(GtkMenuItem *menuitem, gpointer null)
   return TRUE;
 }
 
+static void
+awn_task_activate_transient (AwnTask *task, guint32 time)
+{
+  AwnTaskPrivate *priv = AWN_TASK_GET_PRIVATE(task);
+  WnckScreen *screen;
+  WnckWorkspace *active_workspace, *window_workspace;
+
+  if (!priv->window) return;
+
+  gint activate_behavior =
+    awn_task_manager_get_activate_behavior (priv->task_manager);
+
+  switch (activate_behavior)
+  {
+    case AWN_ACTIVATE_MOVE_TO_TASK_VIEWPORT:
+      screen = wnck_window_get_screen(priv->window);
+      active_workspace = wnck_screen_get_active_workspace (screen);
+      window_workspace = wnck_window_get_workspace (priv->window);
+
+      if (active_workspace && window_workspace &&
+            !wnck_window_is_on_workspace(priv->window, active_workspace))
+        wnck_workspace_activate(window_workspace, time);
+
+      break;
+
+    case AWN_ACTIVATE_MOVE_TASK_TO_ACTIVE_VIEWPORT:
+      screen = wnck_window_get_screen(priv->window);
+      active_workspace = wnck_screen_get_active_workspace (screen);
+
+      if (active_workspace &&
+            !wnck_window_is_on_workspace(priv->window, active_workspace))
+        wnck_window_move_to_workspace(priv->window, active_workspace);
+
+      break;
+
+    case AWN_ACTIVATE_DEFAULT:
+    default:
+      break;
+  }
+  // last step is always activating the window
+  wnck_window_activate_transient (priv->window, time);
+}
+
 static gboolean
 awn_task_button_press(GtkWidget *task, GdkEventButton *event)
 {
@@ -695,9 +766,7 @@ awn_task_button_press(GtkWidget *task, GdkEventButton *event)
             return TRUE;
           }
 
-          wnck_window_activate_transient(priv->window,
-
-                                         event->time);
+          awn_task_activate_transient (AWN_TASK (task), event->time);
         }
 
         break;
@@ -907,7 +976,7 @@ activate_window(AwnTask *task)
   priv = AWN_TASK_GET_PRIVATE(task);
 
   if (priv->drag_hover && !wnck_window_is_active(priv->window))
-    wnck_window_activate_transient(priv->window, priv->timestamp);
+    awn_task_activate_transient(task, priv->timestamp);
 
   return FALSE;
 }
@@ -930,7 +999,7 @@ awn_task_drag_motion(GtkWidget *task,
     {
       priv->drag_hover = TRUE;
       priv->timestamp = gtk_get_current_event_time();
-      g_timeout_add(1000, (GSourceFunc)activate_window, (gpointer)task);
+      g_timeout_add_seconds(1, (GSourceFunc)activate_window, (gpointer)task);
     }
 
     awn_effects_start_ex(priv->effects, AWN_EFFECT_LAUNCHING, NULL, NULL, 1);
@@ -1062,6 +1131,47 @@ _task_wnck_state_changed(WnckWindow *window, WnckWindowState  old,
   }
 }
 
+gboolean updating = FALSE;
+static gboolean
+_viewport_changed_so_update(AwnTaskManager *task_manager)
+{
+  updating = FALSE;
+  awn_task_manager_refresh_box(task_manager);
+  return FALSE;
+}
+
+static void
+_task_wnck_geometry_changed(WnckWindow *window, AwnTask *task)
+{
+  AwnTaskPrivate *priv;
+  WnckScreen* screen;
+  int x,y,width,height;
+
+  g_return_if_fail(AWN_IS_TASK(task));
+
+  priv = AWN_TASK_GET_PRIVATE(task);
+
+  if (priv->window == NULL)
+    return;
+
+  screen = wnck_window_get_screen(priv->window);  
+  wnck_window_get_geometry(priv->window,
+                           &x,
+                           &y,
+                           &width,
+                           &height);
+
+  if( x <= -width || x >= wnck_screen_get_width(screen) )
+  {
+    /* Window is moved off viewport, so update the list of tasks */
+    if( !updating )
+    {
+      updating = TRUE;
+      g_timeout_add(50, (GSourceFunc)_viewport_changed_so_update, priv->task_manager);
+    }
+  }
+}
+
 /**********************Gets & Sets **********************/
 
 gboolean
@@ -1083,14 +1193,21 @@ awn_task_set_window(AwnTask *task, WnckWindow *window)
   if (priv->window != NULL)
     return FALSE;
 
+  gboolean connect_geom_signal = 
+	awn_task_manager_screen_has_viewports (priv->task_manager);
+
   priv->window = window;
 
   if (!priv->is_launcher)
   {
+    gint size = priv->settings->task_width - 12;
+    if (size <= 0) size = 1;
     priv->icon = awn_x_get_icon_for_window(priv->window,
-                                           priv->settings->task_width - 12,
-                                           priv->settings->task_width - 12);
-    priv->reflect = gdk_pixbuf_flip(priv->icon, FALSE);
+                                           size, size);
+    if (GDK_IS_PIXBUF (priv->icon))
+      priv->reflect = gdk_pixbuf_flip(priv->icon, FALSE);
+    else
+      priv->reflect = NULL;
 
     awn_effects_draw_set_icon_size(priv->effects, gdk_pixbuf_get_width(priv->icon), gdk_pixbuf_get_height(priv->icon));
 
@@ -1105,6 +1222,12 @@ awn_task_set_window(AwnTask *task, WnckWindow *window)
 
   priv->name_changed = g_signal_connect(G_OBJECT(priv->window), "name_changed",
                                         G_CALLBACK(_task_wnck_name_changed), (gpointer)task);
+
+  if (connect_geom_signal)
+  {
+    priv->geometry_changed = g_signal_connect(G_OBJECT(priv->window), "geometry_changed",
+                                              G_CALLBACK(_task_wnck_geometry_changed), (gpointer)task);
+  }
 
   /* if launcher, set a launch_sequence
   else if starter, stop the launch_sequence, disable starter flag*/
@@ -1133,9 +1256,12 @@ awn_task_set_launcher(AwnTask *task, AwnDesktopItem *item)
 
   priv = AWN_TASK_GET_PRIVATE(task);
 
-  priv->is_launcher = TRUE;
-  icon_name = awn_desktop_item_get_icon(item, priv->settings->icon_theme);
+  priv->is_launcher = item != NULL;
+  if (item == NULL) return FALSE;
 
+  gboolean was_null = priv->item == NULL;
+
+  icon_name = awn_desktop_item_get_icon(item, priv->settings->icon_theme);
   if (!icon_name)
     return FALSE;
 
@@ -1156,7 +1282,11 @@ awn_task_set_launcher(AwnTask *task, AwnDesktopItem *item)
 
   awn_effects_draw_set_icon_size(priv->effects, gdk_pixbuf_get_width(priv->icon), gdk_pixbuf_get_height(priv->icon));
 
-  awn_effects_start_ex(priv->effects, AWN_EFFECT_OPENING, NULL, _task_refresh, 1);
+  if (was_null)
+  {
+    awn_effects_start_ex(priv->effects, AWN_EFFECT_OPENING, 
+                         NULL, _task_refresh, 1);
+  }
 
   return TRUE;
 }
@@ -1998,6 +2128,16 @@ _slist_foreach(char *uri, AwnListTerm *term)
   }
 }
 
+void awn_task_remove(AwnTask *task)
+{
+  AwnTaskPrivate *priv = AWN_TASK_GET_PRIVATE(task);
+
+  priv->window = NULL;
+  /* start closing effect */
+  awn_effects_start_ex(priv->effects, 
+                       AWN_EFFECT_CLOSING, NULL, _task_destroy, 1);
+}
+
 static void
 _task_remove_launcher(GtkMenuItem *item, AwnTask *task)
 {
@@ -2020,9 +2160,7 @@ _task_remove_launcher(GtkMenuItem *item, AwnTask *task)
   awn_config_client_set_list(client, "window_manager", "launchers",
                              AWN_CONFIG_CLIENT_LIST_TYPE_STRING, settings->launchers, NULL);
 
-  priv->window = NULL;
-  /* start closing effect */
-  awn_effects_start_ex(priv->effects, AWN_EFFECT_CLOSING, NULL, _task_destroy, 1);
+  awn_task_remove (task);
 }
 
 static void
@@ -2168,12 +2306,26 @@ awn_task_close(AwnTask *task)
   AwnTaskPrivate *priv;
   priv = AWN_TASK_GET_PRIVATE(task);
 
-  g_signal_handler_disconnect((gpointer)priv->window,
+  if (priv->icon_changed) {
+    g_signal_handler_disconnect((gpointer)priv->window,
                               priv->icon_changed);
-  g_signal_handler_disconnect((gpointer)priv->window,
+    priv->icon_changed = 0;
+  }
+  if (priv->state_changed) {
+    g_signal_handler_disconnect((gpointer)priv->window,
                               priv->state_changed);
-  g_signal_handler_disconnect((gpointer)priv->window,
+    priv->state_changed = 0;
+  }
+  if (priv->name_changed) {
+    g_signal_handler_disconnect((gpointer)priv->window,
                               priv->name_changed);
+    priv->name_changed = 0;
+  }
+  if (priv->geometry_changed) {
+    g_signal_handler_disconnect((gpointer)priv->window,
+                              priv->geometry_changed);
+    priv->geometry_changed = 0;
+  }
 
   priv->window = NULL;
 

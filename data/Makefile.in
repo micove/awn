@@ -16,6 +16,7 @@
 
 # vim: set ft=automake ts=8 sts=8 sw=8 :
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -34,7 +35,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(dist_bin_SCRIPTS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in \
 	$(srcdir)/avant-window-navigator.desktop.in.in \
 	$(srcdir)/awn.schema-ini.in $(top_srcdir)/Makefile.app-icons
 subdir = data
@@ -46,6 +48,12 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES = avant-window-navigator.desktop.in awn.schema-ini
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(desktopdir)" \
+	"$(DESTDIR)$(icondir)" "$(DESTDIR)$(schemadir)" \
+	"$(DESTDIR)$(schemasdir)" "$(DESTDIR)$(svgicondir)" \
+	"$(DESTDIR)$(textdir)"
+dist_binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(dist_bin_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
@@ -61,9 +69,6 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(icondir)" \
-	"$(DESTDIR)$(schemadir)" "$(DESTDIR)$(schemasdir)" \
-	"$(DESTDIR)$(svgicondir)" "$(DESTDIR)$(textdir)"
 desktopDATA_INSTALL = $(INSTALL_DATA)
 iconDATA_INSTALL = $(INSTALL_DATA)
 schemaDATA_INSTALL = $(INSTALL_DATA)
@@ -116,6 +121,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+EXTRA_VERSION = @EXTRA_VERSION@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 GCONFTOOL = @GCONFTOOL@
@@ -209,6 +215,7 @@ PYTHON_PLATFORM_PKG = @PYTHON_PLATFORM_PKG@
 PYTHON_SITE_PKG = @PYTHON_SITE_PKG@
 PYTHON_VERSION = @PYTHON_VERSION@
 PY_PLAT_PKG = @PY_PLAT_PKG@
+PY_SITE_PKG = @PY_SITE_PKG@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -273,7 +280,6 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = active
 APP_ICON_NAME = avant-window-navigator
 NULL = 
 icondir = $(datadir)/icons/hicolor/48x48/apps
@@ -282,7 +288,12 @@ svgicondir = $(datadir)/icons/hicolor/scalable/apps
 svgicon_DATA = $(APP_ICON_NAME).svg
 EXTRA_DIST = $(icon_DATA) $(svgicon_DATA) $(NULL) $(icons) \
 	$(text_DATA) $(desktop_DATA).in.in awn.schema-ini \
-	awn-schema-to-gconf shared.schema-ini awn-applets-migration.py
+	shared.schema-ini
+SUBDIRS = \
+        active		\
+        default-theme	\
+        $(NULL)
+
 
 # desktop file
 desktopdir = $(datadir)/applications
@@ -300,7 +311,9 @@ textdir = $(pkgdatadir)
 @USE_GCONF_TRUE@schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 schemadir = $(pkgdatadir)/schemas
 schema_DATA = awn.schema-ini shared.schema-ini
+dist_bin_SCRIPTS = awn-schema-to-gconf awn-autostart awn-applets-migration
 CLEANFILES = $(desktop_DATA) $(desktop_DATA).in
+DISTCLEANFILES = awn.schemas.in awn.schemas awn-applets-shared.schemas.in awn-applets-shared.schemas 
 all: all-recursive
 
 .SUFFIXES:
@@ -337,6 +350,25 @@ avant-window-navigator.desktop.in: $(top_builddir)/config.status $(srcdir)/avant
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 awn.schema-ini: $(top_builddir)/config.status $(srcdir)/awn.schema-ini.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+install-dist_binSCRIPTS: $(dist_bin_SCRIPTS)
+	@$(NORMAL_INSTALL)
+	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
+	@list='$(dist_bin_SCRIPTS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(dist_binSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(bindir)/$$f'"; \
+	    $(dist_binSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(bindir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-dist_binSCRIPTS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_bin_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(bindir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+	done
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -621,10 +653,10 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(DATA)
+all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(icondir)" "$(DESTDIR)$(schemadir)" "$(DESTDIR)$(schemasdir)" "$(DESTDIR)$(svgicondir)" "$(DESTDIR)$(textdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(icondir)" "$(DESTDIR)$(schemadir)" "$(DESTDIR)$(schemasdir)" "$(DESTDIR)$(svgicondir)" "$(DESTDIR)$(textdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -648,6 +680,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -678,7 +711,7 @@ install-data-am: install-data-local install-desktopDATA \
 
 install-dvi: install-dvi-recursive
 
-install-exec-am: install-exec-local
+install-exec-am: install-dist_binSCRIPTS
 
 install-html: install-html-recursive
 
@@ -708,9 +741,9 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-desktopDATA uninstall-iconDATA uninstall-local \
-	uninstall-schemaDATA uninstall-schemasDATA \
-	uninstall-svgiconDATA uninstall-textDATA
+uninstall-am: uninstall-desktopDATA uninstall-dist_binSCRIPTS \
+	uninstall-iconDATA uninstall-local uninstall-schemaDATA \
+	uninstall-schemasDATA uninstall-svgiconDATA uninstall-textDATA
 	@$(NORMAL_INSTALL)
 	$(MAKE) $(AM_MAKEFLAGS) uninstall-hook
 
@@ -723,8 +756,8 @@ uninstall-am: uninstall-desktopDATA uninstall-iconDATA uninstall-local \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-data-hook install-data-local \
-	install-desktopDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-exec-local install-html \
+	install-desktopDATA install-dist_binSCRIPTS install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-iconDATA install-info install-info-am \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-schemaDATA install-schemasDATA \
@@ -733,9 +766,9 @@ uninstall-am: uninstall-desktopDATA uninstall-iconDATA uninstall-local \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
-	uninstall-desktopDATA uninstall-hook uninstall-iconDATA \
-	uninstall-local uninstall-schemaDATA uninstall-schemasDATA \
-	uninstall-svgiconDATA uninstall-textDATA
+	uninstall-desktopDATA uninstall-dist_binSCRIPTS uninstall-hook \
+	uninstall-iconDATA uninstall-local uninstall-schemaDATA \
+	uninstall-schemasDATA uninstall-svgiconDATA uninstall-textDATA
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -744,8 +777,8 @@ uninstall-am: uninstall-desktopDATA uninstall-iconDATA uninstall-local \
 install-icons:
 	mkdir -p $(DESTDIR)$(datadir)/icons/hicolor/24x24/apps
 	mkdir -p $(DESTDIR)$(datadir)/icons/hicolor/32x32/apps
-	$(INSTALL) -m644 avant-window-navigator-24.png $(DESTDIR)$(datadir)/icons/hicolor/24x24/apps/avant-window-navigator.png
-	$(INSTALL) -m644 avant-window-navigator-32.png $(DESTDIR)$(datadir)/icons/hicolor/32x32/apps/avant-window-navigator.png
+	$(INSTALL) -m644 $(srcdir)/avant-window-navigator-24.png $(DESTDIR)$(datadir)/icons/hicolor/24x24/apps/avant-window-navigator.png
+	$(INSTALL) -m644 $(srcdir)/avant-window-navigator-32.png $(DESTDIR)$(datadir)/icons/hicolor/32x32/apps/avant-window-navigator.png
 install-data-hook: update-icon-cache
 uninstall-hook: update-icon-cache
 update-icon-cache:
@@ -770,16 +803,11 @@ update-icon-cache:
 @GCONF_SCHEMAS_INSTALL_FALSE@@USE_GCONF_TRUE@install-gconf-schemas:
 @USE_GCONF_FALSE@install-gconf-schemas:
 
-install-exec-local:
-	$(INSTALL) -m 755 awn-schema-to-gconf $(DESTDIR)$(bindir)/awn-schema-to-gconf
-
 # global
 
 install-data-local: install-gconf-schemas install-icons
 
 uninstall-local:
-	rm -f $(DESTDIR)$(bindir)/awn-applets-migration
-	rm -f $(DESTDIR)$(bindir)/awn-schema-to-gconf
 	rm -f $(DESTDIR)$(datadir)/icons/hicolor/24x24/apps/avant-window-navigator.png
 	rm -f $(DESTDIR)$(datadir)/icons/hicolor/32x32/apps/avant-window-navigator.png
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

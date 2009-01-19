@@ -1,3 +1,48 @@
+avant-window-navigator (0.3.2-1) unstable; urgency=low
+
+  * New upstream release (Closes : #514681) (LP: #327443)
+   - Add a script to delay the start of awn when using the autostart. 
+     (Closes: #493640)
+   - Fix awn-manager permission when trying to edit some desktop file 
+    (LP: #260987)
+   - Update position on screen resolution changes (LP: #276734)
+  * debian/awn.wrapper
+   - A script to update applets path using awn-applets-migration script.
+  * debian/*.install: 
+   - Add the themes directory to avant-window-navigator-data.install.
+   - Add awn-autostart to avant-window-navigator.install.
+   - Add awn-applets-migration to awn-manager.install.
+   - Remove usr/bin/avant-window-navigator, handle by debian/rules.
+   - Install python bindings in *-packages instead of site-packages only, 
+     needed for the python migration in squeeze (LP: #335785).
+  * debian/control:
+   - Add missing ${misc:Depends}.
+   - Bump Build-Depends and Depends for vala to (>= 0.5.4).
+   - Set awn-manager as Depends rather than Recommends, needed by the 
+     awn-applets-migration script.
+   - Remove unnecessary "Section: gnome"
+   - Note that the libawn0-dbg contains debuggins symbols.
+   - Set Build-Depends on python (>= 2.5) instead of hardcoding the python 
+     version.
+  * debian/awn-autostart.1 & debian/awn-applets-migrations:
+   - Add new man pages.
+  * debian/avant-window-navigator.links
+   - Symlink awn.1 with avant-window-navigator.1
+  * debian/rules:
+   - Move avant-window-navigator to awn, and copy awn.wrapper to 
+     avant-window-navigator
+   - Add new man pages.
+  * debian/patches/
+   - 00-wm-behavior.patch : Don't bring the windows to the current workspace 
+     when the icon of the bar is clicked. Keep the same behavior that the 
+     gnome-panel applet.
+   - 01-tasks-have-arrow.patch: Set the option "Tasks have arrow" by default.
+   - 03-python-import.path : Update.
+  * debian/copyright
+   - Replace (C) by ©.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 19 Jan 2009 19:35:52 +0100
+
 avant-window-navigator (0.3~bzr489-1) experimental; urgency=low
 
   * New upstream snapshot (Closes: #484008)

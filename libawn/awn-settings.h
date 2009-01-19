@@ -29,6 +29,8 @@
 
 #include <libawn/awn-cairo-utils.h>
 
+#define AWN_MIN_BAR_HEIGHT 10
+
 typedef struct
 {
 
@@ -40,6 +42,7 @@ typedef struct
   GtkWidget *appman;
   GtkWidget *hot;
   gint task_width;
+  gboolean show_dialog;
 
   /* monitor settings */
   GdkRectangle monitor;

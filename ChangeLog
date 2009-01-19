@@ -1,3 +1,499 @@
+2009-02-08  Michal Hruby <michal.mhr@gmail.com>
+
+	* configure.in:
+	Bump version to 0.3.2.
+
+2009-02-08  Michal Hruby <michal.mhr@gmail.com>
+
+	* po/ChangeLog:
+	* po/*.po:
+	Updated translations from Launchpad.
+
+2009-02-08  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* data/Makefile.am:
+	* data/awn-applets-migration:
+	Add awn-applets-migration script properly to the build system.
+
+	* debian/avant-window-navigator-trunk.install:
+	* debian/awn-manager-trunk.install:
+	* debian/awn.wrapper:
+	* debian/control:
+	* debian/rules:
+	Adjust debian/ to the change of awn-applets-migration.
+
+2009-02-07  Michal Hruby <michal.mhr@gmail.com>
+
+	patch by: onox
+
+	* awn-manager/awnApplet.py:
+	* awn-manager/launcher-editor.glade:
+	* awn-manager/window.glade:
+	Fix spacing and page sizes in the glade files.
+
+2009-02-07  Michal Hruby <michal.mhr@gmail.com>
+
+	reviewed by: malept
+
+	* Makefile.am:
+	* applets/Makefile.am:
+	* awn-manager/Makefile.am:
+	* data/Makefile.am:
+	* libawn/Makefile.am:
+	* libawn/egg/Makefile.am:
+	* src/Makefile.am:
+	Fixes required for "make distcheck" to work.
+
+2009-02-07  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/__init__.py:
+	Fix the implementation of the new optional parameter introduced, due to
+	backwards-compatibility concerns.
+
+2009-02-07  Julien Lavergne <julien.lavergne@gmail.com>
+
+	Move content of docs to doc. 
+
+2009-02-07  Michal Hruby <michal.mhr@gmail.com>
+
+	* bindings/python/awn.override:
+	Fix compiler warnings.
+
+2009-02-07  Michal Hruby <michal.mhr@gmail.com>
+
+	* po/POTFILES.in:
+	* po/POTFILES.skip:
+	Move awn.schemas.in to POTFILES.skip file (because of distcheck).
+
+2009-02-02  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/launcher-editor.glade:
+	Stock ids shouldn't be translatable.
+	* po/POTFILES.in:
+	* po/POTFILES.skip:
+	Updated list of translatable files and skipped files.
+
+2009-02-02  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Fix untranslatable string (LP bug #324237).
+
+2009-01-31  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/vala/awn.gi:
+	* bindings/vala/awn.vapi:
+	* configure.in:
+	* debian/control:
+	Regenerate Vala bindings.
+	Bump Vala requirement to 0.5.4.
+	Fixes Launchpad bug #321802.
+
+2009-01-31  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/__init__.py (check_dependencies):
+	Add an optional parameter to control whether the function exits on
+	failure.
+
+2009-01-31  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* bindings/python/__init__.py (check_dependencies):
+	Add the ability to import the first available module from a list of modules
+	and give it a common name. For example, if one needed to use a module that
+	implemented the ElementTree module interface, one could write
+	awn.check_dependencies(globals(), ET=['lxml.etree',
+						   'xml.etree.cElementTree'])
+	(non-exhaustive list).
+
+2009-01-31  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* src/awn-task-manager.c:
+	Fix build breakage on Feisty.
+
+2009-01-31  Michal Hruby <michal.mhr@gmail.com>
+
+	* data/awn.schema-ini.in:
+	* src/awn-task-manager.c:
+	* src/awn-task-manager.h:
+	* src/awn-task.c:
+	* src/awn-task.h:
+	Provide an option for window activation behavior.
+	Fixes Launchpad bug #234032.
+
+2009-01-30  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnLauncher.py:
+	Allow removing invalid Launchers in awn-manager.
+
+2009-01-29  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	* src/awn-task.h:
+	Fix Launchpad bug #145722 (migrate program icon when it's viewport
+	changes).
+
+2009-01-27  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	patch by: Matt <sharkbaitbobby@gmail.com>
+
+	* src/awn-task.c:
+	* src/awn-window.c:
+	Fix Launchpad bug #307576 (Use g_timeout_add_seconds when possible).
+
+2009-01-27  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task.c:
+	Seems like this is what is takes to prevent AWN from crashing
+	on too many windows.
+
+2009-01-27  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Added window title.
+	* awn-manager/window.glade:
+	* libawn/awn-settings.c:
+	* libawn/awn-settings.h:
+	* src/awn-task-manager.c:
+	* src/main.c:
+	Bar height minimum set to 10, though when there are too many items on
+	the bar the setting is ignored (real ugly code to fix).
+
+2009-01-27  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task-manager.c:
+	Fix Launchpad bug #258960 - always skip awn itself in task matching.
+
+2009-01-26  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/control:
+	Add Build-Depends on bzr and lsb-release to generate the bzr revision in the version.
+
+2009-01-25  Michal Hruby <michal.mhr@gmail.com>
+
+	* doc/reference/libawn-sections.txt:
+	* doc/reference/tmpl/awn-effects.sgml:
+	* doc/reference/tmpl/libawn-unused.sgml:
+	* libawn/awn-effects.h:
+	Updated documentation.
+
+2009-01-25  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* libawn/awn-effects.h:
+	Do not use C++ comments in C files.
+
+2009-01-25  Mark Lee <avant-wn@lazymalevolence.com>
+
+	* data/Makefile.am:
+	Fix build system breakage introduced in trunk revision 505.
+
+2009-01-25  h4writer <hv1989@gmail.com>
+
+	* src/awn-x.c:
+  Set the struts on the good height immediatly.
+  (Bug fixed: No jumping in struts on startup)
+
+2009-01-24  Michal Hruby <michal.mhr@gmail.com>
+
+	* libawn/awn-settings.c:
+	Fix Launchpad bug #311160
+
+2009-01-24  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnLauncherEditor.py:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	Fixed Launcher editing - now the desktop items are reloaded
+	Fixes Launchpad bug #254536
+
+2009-01-23  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnLauncher.py:
+	Fixed Launcher managing, should be working fine now - maybe "edit"
+	could use some kind of forced refresh.
+
+2009-01-23  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	* src/awn-task.h:
+	Launchers now behave with more sanity (but still need fixing in
+	awn-manager).
+
+2009-01-23  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task-manager.c:
+	Fix drawing problem after restarting taskamanger
+
+2009-01-23  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/Makefile.am:
+	We don't need LIBDIR macro, though we do need DATADIR
+	* src/awn-applet-manager.c:
+	Desktop files are for a while in DATADIR and not LIBDIR
+	* src/awn-task-manager.c:
+	Fix missing tasks after readding removed taskmanager - thanks h4writer
+
+2009-01-22  h4writer <hv1989@gmail.com>
+
+	* awn-manager/awnManager.py.in:
+	Added a check to disable running awn-manager as root 
+	
+	* awn-manager/awnPreferences.py:
+	Fixed a bug that Awn Manager didn't run if DESKTOP_SESSION wasn't set
+
+2009-01-22  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-applet-manager.c:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	After years of work... don't make AWN crash when taskmanager applet is
+	removed.
+
+2009-01-20  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* data/Makefile.am:
+	* data/awn-autostart:
+	* debian/avant-window-navigator-trunk.install:
+	* debian/awn-autostart.1:
+	Add a script to autostart awn at login, available in awn-manager 
+        when the option is enable.
+
+2009-01-19  Michal Hruby <michal.mhr@gmail.com>
+
+	* po/ChangeLog:
+	* po/af.po:
+	* po/ar.po:
+	* po/be.po:
+	* po/bg.po:
+	* po/bn.po:
+	* po/bs.po:
+	* po/ca.po:
+	* po/cs.po:
+	* po/csb.po:
+	* po/da.po:
+	* po/de.po:
+	* po/el.po:
+	* po/en_AU.po:
+	* po/en_CA.po:
+	* po/en_GB.po:
+	* po/eo.po:
+	* po/es.po:
+	* po/et.po:
+	* po/eu.po:
+	* po/fa.po:
+	* po/fi.po:
+	* po/fr.po:
+	* po/ga.po:
+	* po/gl.po:
+	* po/gu.po:
+	* po/he.po:
+	* po/hi.po:
+	* po/hr.po:
+	* po/hu.po:
+	* po/id.po:
+	* po/is.po:
+	* po/it.po:
+	* po/ja.po:
+	* po/jv.po:
+	* po/ka.po:
+	* po/ko.po:
+	* po/ku.po:
+	* po/lt.po:
+	* po/lv.po:
+	* po/mk.po:
+	* po/mr.po:
+	* po/ms.po:
+	* po/nb.po:
+	* po/nds.po:
+	* po/nl.po:
+	* po/nn.po:
+	* po/oc.po:
+	* po/pl.po:
+	* po/pt.po:
+	* po/pt_BR.po:
+	* po/ro.po:
+	* po/ru.po:
+	* po/sk.po:
+	* po/sl.po:
+	* po/sq.po:
+	* po/sr.po:
+	* po/sv.po:
+	* po/ta.po:
+	* po/te.po:
+	* po/th.po:
+	* po/tr.po:
+	* po/uk.po:
+	* po/vi.po:
+	* po/zh_CN.po:
+	* po/zh_HK.po:
+	* po/zh_TW.po:
+	Updated translations from Launchpad.
+
+2009-01-19  Julien Lavergne <julien.lavergne@gmail.com>
+
+	patch by: Martijn van Iersel
+
+	* src/main.c:
+	Update position when the resolution of the screen changed (bug #276734)
+
+2009-01-19  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* debian/avant-window-navigator-data-trunk.install:
+	Update installed file to fix bug #318674 in debian packages also.
+
+2009-01-19  h4writer <hv1989@gmail.com>
+
+	* libawn/awn-title.c:
+	Temporary fix for #148415: Minimize and Restore in tasklist frequently, made the icon "switched" to the rightmost
+	This fix will be used for 0.3.2 if the real bug isn't fixed by then.
+	It get's now added to see if the fix causes other bugs.
+	I'm still looking to fix the real cause.
+
+2009-01-19  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/window.glade:
+	* po/POTFILES.skip:
+	Reverted the addition to awn-manager - the expand feature isn't very
+	stable.
+	Removed some files from the po skip file.
+
+2009-01-19  Michal Hruby <michal.mhr@gmail.com>
+
+	patch by: timonterbraak
+
+	* awn-manager/awnDefs.py.in:
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	Fix Launchpad bug #241558 (add the expand bar option to awn-manager)
+
+2009-01-19  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnTheme.py:
+	Fix Launchpad bug #318674 (awn-manager crash if system theme folder
+	doesn't exist)
+
+2009-01-18  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* debian/rules:
+	Fix a bug where local Debian packaging broke (thanks to gilir for
+	reporting and testing).
+
+2009-01-18  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnTheme.py:
+	Make the error dialog actually work.
+
+2009-01-18  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnDefs.py.in:
+	* awn-manager/awnTheme.py:
+	* configure.in:
+	* data/Makefile.am:
+	* data/default-theme/Makefile.am:
+	* data/default-theme/theme.awn:
+	Fix Launchpad bug #134335 (default theme is now present in awn-manager)
+
+2009-01-18  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* autogen.sh:
+	Fix Launchpad bug #312960 (intltool-0.40.5 is stricter, causing a build
+	failure in po/).
+
+2009-01-18  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnManager.py.in:
+	* configure.in:
+	* debian/rules:
+	* src/main.c:
+	Fix Launchpad bug #163178 (make version (release and/or bzr revno)
+	available to users).
+
+2009-01-18  h4writer <hv1989@gmail.com>
+
+	* src/main.c:
+  doing the i18n now right
+
+2009-01-17  h4writer <hv1989@gmail.com>
+
+	* awn-manager/awnLauncherEditor.py:
+	Fixed bug #257117: Can't change icon of laucher in properties - OK does nothing
+	Now there is a error message with the error that occured (mostly permissions problem)
+
+	* src/main.c:
+	typo in previous commit of me
+
+2009-01-17  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* awn-manager/awnManager.py.in:
+	* awn-manager/awn-launcher-editor.in:
+	* configure.in:
+	Ensure that the Python site package directory is honored.
+
+2009-01-17  h4writer <hv1989@gmail.com>
+
+	* src/main.c:
+  Adjusted some strings for L10n
+
+2009-01-17  h4writer <hv1989@gmail.com>
+
+  * libawn/awn-settings.c
+  * libawn/awn-settings.h
+  * data/awn.schema-ini.in
+  added the option "show_dialog_if_non_composited"
+
+  * src/main.c
+  changed 'dialog' to 'message_dialog'
+  show a check box to never show the dialog again.
+  (should solve #283345)
+
+  I don't know how the translation works, but I updated/added some text,
+  so I guess that needs to get updated too?
+  
+
+2009-01-08  h4writer <hv1989@gmail.com>
+
+  * awn-applet-activation/main.c:
+  Another fix for compiling warning. (Fixing also #311321)
+  Using now G_GINT64_FORMAT to print gint64 
+  instead of %lld (what was a wrong type)
+  and %lli (what is more cryptic then G_GINT64_FORMAT)
+
+2009-01-08  h4writer <hv1989@gmail.com>
+
+  * awn-applet-activation/main.c:
+  Fixed some compiling warning
+  g_warning(str) to g_warning("%s", str)
+
+2009-01-08  h4writer <hv1989@gmail.com>
+
+  * libawn/awn-applet-dialog.c:
+  Fixed bug #297034: Alt-F4 breaks awn-applet-dialog
+  So now the applet will close when pressing ALT-F4
+  Ty J. H. Cho for the patch
+
+2009-01-08  h4writer <hv1989@gmail.com>
+
+	* src/awn-bar.c:
+	Fixing bug #306364 introduced ugly moving effect (when window got opened or switched workspace)
+  This is fixed now.
+
+2009-01-08  h4writer <hv1989@gmail.com>
+
+	* src/awn-bar.c:
+	Fixed bug #306364: icons not symmetrically placed when bar_pos != 0.5
+
+2009-01-07  h4writer <hv1989@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	Fixed bug #306364: "Auto start" and "tasks have arrows" are linked
+
+2009-01-07  h4writer <hv1989@gmail.com>
+
+	* src/main.c:
+	Fixed a compiling warning
+  g_print(str) to g_print("%s", str)
+
 2008-10-16  Michal Hruby <michal.mhr@gmail.com>
 
 	reviewed by: Rodney Cryderman <rcryderman@gmail.com>

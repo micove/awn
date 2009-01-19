@@ -145,19 +145,21 @@ main(int argc, char *argv[])
   GError *error = NULL;
   guint32 ret;
 
-  GOptionContext *context;
-  gboolean version = FALSE;
-  GOptionEntry entries[] =
-  {
-    { "version", 'v', 0, G_OPTION_ARG_NONE, &version, "Prints the version number", NULL },
-    { NULL }
-  };
-
   textdomain (GETTEXT_PACKAGE);
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
-  context = g_option_context_new("- Starts the Avant Window Navigator dock");
+  GOptionContext *context;
+  gboolean version = FALSE;
+  GOptionEntry entries[] =
+  {
+    {
+      "version", 'v', 0, G_OPTION_ARG_NONE, &version, _("Prints the version number"), NULL
+    },
+    { NULL }
+  };
+
+  context = g_option_context_new(_("Starts the Avant Window Navigator dock"));
   g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
   g_option_context_add_group(context, gtk_get_option_group(TRUE));
   g_option_context_parse(context, &argc, &argv, NULL);
@@ -167,7 +169,7 @@ main(int argc, char *argv[])
   if (version)
   {
     g_print("Avant Window Navigator ");
-    g_print(VERSION);
+    g_print(VERSION EXTRA_VERSION);
     g_print("\n");
     return 0;
   }
@@ -310,7 +312,7 @@ main(int argc, char *argv[])
 
   if (connection == NULL)
   {
-    g_warning("Failed to make connection to session bus: %s",
+    g_warning(_("Failed to make connection to session bus: %s"),
               error->message);
     g_error_free(error);
     //exit(1);
@@ -325,7 +327,7 @@ main(int argc, char *argv[])
   if (!org_freedesktop_DBus_request_name(proxy, AWN_APPLET_NAMESPACE,
                                          0, &ret, &error))
   {
-    g_warning("There was an error requesting the name: %s",
+    g_warning(_("There was an error requesting the name: %s"),
               error->message);
     g_error_free(error);
     //exit(1);
@@ -512,7 +514,7 @@ create_menu(void)
 
   menu = gtk_menu_new();
 
-  item = gtk_image_menu_item_new_with_label("Dock Preferences");
+  item = gtk_image_menu_item_new_with_label(_("Dock Preferences"));
   gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item),
                                 gtk_image_new_from_stock(GTK_STOCK_PREFERENCES,
                                                          GTK_ICON_SIZE_MENU));
@@ -578,7 +580,10 @@ resize(AwnSettings *settings)
 static void
 bar_height_changed(AwnConfigClientNotifyEntry *entry, AwnSettings *settings)
 {
-  settings->bar_height = entry->value.int_val;
+  if (entry->value.int_val < AWN_MIN_BAR_HEIGHT)
+    settings->bar_height = AWN_MIN_BAR_HEIGHT;
+  else
+    settings->bar_height = entry->value.int_val;
 
   resize(settings);
 }
@@ -613,10 +618,11 @@ appman_refresh(AwnConfigClientNotifyEntry *entry, AwnSettings *settings)
 static void
 screen_size_changed(GdkScreen *screen, AwnSettings *s)
 {
-  g_print("Screen size changed\n");
   gdk_screen_get_monitor_geometry(screen,
                                   gdk_screen_get_monitor_at_window(screen, GTK_WIDGET(s->window)->window),
                                   &s->monitor);
+	
+  resize (s);
 }
 
 static gboolean is_composited(GdkScreen *screen)
@@ -664,41 +670,68 @@ static gboolean is_composited(GdkScreen *screen)
   return composited;
 }
 
-void composited_off_dialog_closed_cb(GtkDialog *dialog,
-                                     gint       response_id,
-                                     GtkWidget ** p_dialog)
+static void composited_off_dialog_closed_cb (GtkDialog *dialog,
+                                             gint       response_id,
+                                             GtkWidget ** p_dialog)
 {
     gtk_widget_destroy(GTK_WIDGET(dialog));
     *p_dialog = NULL;
 }
 
+static void composited_toggle_show_dialog_cb (GtkToggleButton *togglebutton)
+{
+  AwnConfigClient *client;
+
+  client = awn_config_client_new();
+
+  awn_config_client_ensure_group (client, AWN_CONFIG_CLIENT_DEFAULT_GROUP);
+  awn_config_client_set_bool (client, 
+                              AWN_CONFIG_CLIENT_DEFAULT_GROUP,
+                              "show_dialog_if_non_composited",
+                              !gtk_toggle_button_get_active (togglebutton),
+                              NULL);
+}
+
 static void
 composited_changed(GdkScreen *screen, AwnSettings *s)
 {
-  static GtkWidget * dialog = NULL;
-  
-  if (!is_composited(screen))
-  { 
-    const char *str = "Error: Screen isn't composited. Please run compiz (-fusion) or another compositing manager.\n";
-    GtkWidget *label = gtk_label_new( str );
+  static AwnConfigClient *client = NULL;
+  static GtkWidget* dialog = NULL;
+  static GtkWidget* checkbutton = NULL;
+  static const gchar* str = N_("Warning: Screen isn't composited. Please run compiz (-fusion) or another compositing manager.");
 
-    if (!dialog)
+  if (!is_composited(screen))
+  {
+    if(!client)
+      client = awn_config_client_new();
+
+    if(s->show_dialog)
     {
-	  dialog = gtk_dialog_new_with_buttons ("Screen is not composited",
-                                         GTK_WINDOW(s->window),
+      if (!dialog)
+      {
+	      dialog = gtk_message_dialog_new (GTK_WINDOW(s->window),
                                          GTK_DIALOG_DESTROY_WITH_PARENT,
-                                         GTK_STOCK_OK,
-                                         GTK_RESPONSE_NONE,
-                                         NULL);
+                                         GTK_MESSAGE_WARNING,
+                                         GTK_BUTTONS_CLOSE,
+                                         "%s",
+                                         _(str));
+        gtk_window_set_title(GTK_WINDOW(dialog), _("Starting avant-window-navigator"));
+
+        checkbutton = gtk_check_button_new_with_label(_("Don't show this message again."));
+        gtk_container_add (GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), checkbutton);
+      }
+      gtk_widget_show_all (dialog);
+      
+      g_signal_connect (dialog,
+                        "response", 
+                        G_CALLBACK (composited_off_dialog_closed_cb),
+                        &dialog);
+      g_signal_connect (GTK_TOGGLE_BUTTON (checkbutton),
+                        "toggled", 
+                        G_CALLBACK (composited_toggle_show_dialog_cb),
+                        NULL);
     }
-    gtk_container_add (GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
-    gtk_widget_show_all (dialog);
-    
-    g_signal_connect (dialog,
-                             "response", 
-                             G_CALLBACK (composited_off_dialog_closed_cb),
-                             &dialog);
-    g_print(str);
+    g_print("%s\n",_(str));
 
     gtk_widget_hide(s->bar);
     gtk_widget_hide(s->window);

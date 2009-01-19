@@ -3,6 +3,9 @@
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 
+/* Extra version metadata provided by ./configure */
+#undef EXTRA_VERSION
+
 /* Gettext package */
 #undef GETTEXT_PACKAGE
 

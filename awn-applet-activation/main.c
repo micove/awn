@@ -243,7 +243,7 @@ _awn_plug_new(const gchar *path,
   if (module == NULL)
   {
     g_warning("Unable to load module %s\n", path);
-    g_warning(g_module_error());
+    g_warning("%s", g_module_error());
     return NULL;
   }
 
@@ -325,15 +325,14 @@ launch_python(const gchar *file,
   }
 
 
-  cmd = g_strdup_printf("python %s --uid=%s --window=%lld --orient=%d "
-
-                        "--height=%d",
+  cmd = g_strdup_printf("python %s --uid=%s --window=%" G_GINT64_FORMAT " "
+                        " --orient=%d --height=%d",
                         exec, uid, window, orient, height);
   g_spawn_command_line_async(cmd, &err);
 
   if (err)
   {
-    g_warning(err->message);
+    g_warning("%s", err->message);
     g_error_free(err);
   }
 
