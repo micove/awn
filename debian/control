@@ -2,8 +2,8 @@ Source: avant-window-navigator
 Section: gnome
 Priority: optional
 Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
-Build-Depends: 	debhelper (>= 6),
-		cdbs,
+Build-Depends: 	debhelper (>= 7),
+		quilt,
 		intltool,
 		libwnck-dev,
 		libgnome2-dev,
@@ -12,7 +12,7 @@ Build-Depends: 	debhelper (>= 6),
 		libdbus-glib-1-dev,
 		libxcomposite-dev,
 		libxdamage-dev,
-		python-central (>= 0.5.6),
+		python-support (>= 0.7.0),
 		python-all-dev (>= 2.4),
 		python-gnome2-dev,
 		python-cairo-dev,
@@ -20,9 +20,10 @@ Build-Depends: 	debhelper (>= 6),
 		doc-base,
 		valac (>= 0.5.4),
 		python-elementtree | python (>= 2.5)
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 Homepage: https://launchpad.net/avant-window-navigator/
-XS-Python-Version: >= 2.4
+Vcs-Git: git://github.com/gilir/awn-debian.git
+Vcs-Browser: http://github.com/gilir/awn-debian/tree
 
 Package: avant-window-navigator
 Architecture: any
@@ -74,7 +75,9 @@ Depends:	libawn0 (= ${binary:Version}),
 		${shlibs:Depends},
 		${misc:Depends},
 		libgnome2-dev,
-		libgtk2.0-dev
+		libgtk2.0-dev,
+		libgnome-desktop-dev,
+		libdbus-glib-1-dev
 Description: library for avant-window-navigator - development files
  This package provides the include files and static library for the
  avant-window-navigator library functions.
@@ -83,14 +86,10 @@ Package: awn-manager
 Architecture: all
 Depends:	${python:Depends}, 
 		${misc:Depends},
-		avant-window-navigator (>= 0.2),
-		python-gnome2,
-		python-gnome2-desktop,
 		gnome-menus,
 		librsvg2-common,
 		python-awn,
 		python-xdg
-XB-Python-Version: ${python:Versions}
 Description: A preferences manager for avant-window-navigator
  Awn-Manager provides a simple way to configure avant-window-navigator.
  You can manage preferences, themes, applets and launchers.
@@ -101,9 +100,9 @@ Architecture: any
 Depends:	libawn0 (= ${binary:Version}),
 		${shlibs:Depends},
 		${misc:Depends},
-		${python:Depends}
+		${python:Depends},
+		python-gtk2
 Provides: ${python:Provides}
-XB-Python-Version: ${python:Versions}
 Description: Python bindings for avant-window-navigator library 
  This library is used by avant-window-navigator. It provides Python bindings 
  to create and use Python applets for avant-window-navigator.
@@ -119,7 +118,7 @@ Description: Vala bindings for avant-window-navigator library
  to create and use Vala applets for avant-window-navigator.
 
 Package: libawn0-dbg
-Section: libs
+Section: debug
 Priority: extra
 Architecture: any
 Depends: 	libawn0 (= ${binary:Version}),

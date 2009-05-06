@@ -1,3 +1,43 @@
+avant-window-navigator (0.3.2.1-1) unstable; urgency=low
+
+  * New Upstream Version.
+  * debian/control
+   - Remove depends on python-gnome2 and python-gnome2-desktop for 
+     awn-manager, not needed anymore.
+   - Add python-gtk2 as depends for python-awn.
+   - Remove depends on avant-window-navigator for awn-manager to avoid 
+     circular dependency. This is unnecessary until awn depends on awn-manager
+     for the migration script. (Closes: #520120).
+   - Add libgnome-desktop-dev and libdbus-glib-1-dev as depends for libawn-dev.
+   - Switch from python-central to python-support.
+   - Remove X{B,S}-Python-Version.
+   - Bump build-depends on debhelper to (>= 7).
+   - Remove build-depends on cdbs.
+   - Build depends on quilt.
+   - Add Vcs fields.
+   - Move libawn-dbg section to debug.
+   - Bump Standards-Version to 3.8.1 (no change needed).
+  * debian/rules:
+   - Rewrite to drop the use of cdbs and build python bindings for all versions 
+     of python.
+   - Switch from python-central to python-support.
+  * debian/pycompat: 
+   - Remove.
+  * debian/pyversions:
+   - Add, python >= 2.4 is supported.
+  * debian/compat:
+   - Bump to 7.
+  * debian/*.manpages:
+   - Add for avant-window-navigator and awn-manager.
+  * debian/README.source
+   - Replace since the package use quilt.
+  * debian/patches
+   - Switch to use quilt.
+  * debian/preinst
+   - add preinst maintainer script to clean after pycentral.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Wed, 06 May 2009 09:54:52 +0200
+
 avant-window-navigator (0.3.2-1) unstable; urgency=low
 
   * New upstream release (Closes : #514681) (LP: #327443)

@@ -1,34 +1,75 @@
 #!/usr/bin/make -f
-DEB_DH_INSTALL_SOURCEDIR=debian/tmp
+#DH_VERBOSE=1
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/gnome.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/quilt/quilt.make
 
-DEB_CONFIGURE_EXTRA_FLAGS += 	--disable-pymod-checks \
-				--with-desktop=gnome \
-				--with-gconf \
-				--enable-gtk-doc
+PYVERS=$(shell pyversions -vs)
 
-DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,-z,defs -Wl,--as-needed"
+configure_flags += \
+			--prefix=/usr \
+			--disable-pymod-checks \
+			--with-desktop=gnome \
+			--with-gconf \
+			--enable-gtk-doc \
+			--with-gconf-schema-file-dir=/etc/gconf/schemas \
+			LDFLAGS="-Wl,-z,defs -Wl,--as-needed"
 
-DEB_INSTALL_MANPAGES_avant-window-navigator := debian/avant-window-navigator.1 debian/awn-applet-activation.1 debian/awn-autostart.1
-DEB_INSTALL_MANPAGES_awn-manager := debian/awn-manager.1 debian/awn-launcher-editor.1 debian/awn-schema-to-gconf.1 debian/awn-applets-migration.1
 
-DEB_DH_MAKESHLIBS_ARGS_libawn0 += -V"libawn0 (>= 0.3~bzr489)"
-DEB_DH_MAKESHLIBS_ARGS_avant-window-navigator += -n
-DEB_SHLIBDEPS_LIBRARY_avant-window-navigator:= libawn0
-DEB_SHLIBDEPS_INCLUDE_avant-window-navigator := debian/libawn0/usr/
-DEB_DH_STRIP_ARGS := --dbg-package=libawn0-dbg
+#Standart build
+build-standart: build-standart-stamp
 
-install/avant-window-navigator::
-	dh_install -pavant-window-navigator --sourcedir=debian/tmp
+build-standart-stamp: $(QUILT_STAMPFN)
+	dh_testdir
+	dh_auto_configure -- 	$(configure_flags)
+	dh_auto_build
+	touch build-standart-stamp
+
+install-standart:
+	dh_testroot
+	dh install --before build
+	dh_auto_build
+	dh install --after test
 	mv debian/tmp/usr/bin/avant-window-navigator debian/avant-window-navigator/usr/bin/awn
 	cp debian/awn.wrapper debian/avant-window-navigator/usr/bin/avant-window-navigator
+	chmod +x debian/avant-window-navigator/usr/bin/avant-window-navigator
+	touch install-standart
 
+#Build python bindings for all python versions
+build-%/configure-stamp: $(QUILT_STAMPFN)
+	dh_testdir
+	mkdir -p build-$*
+	cd build-$* && \
+		PYTHON=/usr/bin/python$* CFLAGS="$(CFLAGS)" \
+			$(CURDIR)/configure $(configure_flags)
+	touch $@
 
-binary-post-install/awn-manager::
-	dh_pycentral -pawn-manager
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	$(MAKE) -C build-$*/libawn
+	$(MAKE) -C build-$*/bindings
+	touch $@
 
-binary-post-install/python-awn::
-	dh_pycentral -ppython-awn
+build: $(PYVERS:%=build-%/build-stamp) build-standart
+
+clean: unpatch
+	rm -rf build-* debian/tmp-* install-standart
+	dh clean
+
+install-%:
+	$(MAKE) -C build-$*/libawn install DESTDIR=$(CURDIR)/debian/tmp-$*
+	$(MAKE) -C build-$*/bindings install DESTDIR=$(CURDIR)/debian/tmp-$*
+	dh_install --sourcedir=debian/tmp-$*
+	rm -rf $(CURDIR)/debian/*/debian
+	dh_pysupport
+	dh_fixperms
+
+install: install-standart $(PYVERS:%=install-%)
+
+binary-arch: install
+	dh_strip --dbg-package=libawn0-dbg
+	dh binary-arch --after test
+
+binary-indep: install
+	dh binary-indep
+
+binary: binary-arch binary-indep
