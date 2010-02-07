@@ -3,7 +3,6 @@ Section: gnome
 Priority: optional
 Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
 Build-Depends: 	debhelper (>= 7),
-		quilt,
 		intltool,
 		libwnck-dev,
 		libgnome2-dev,
@@ -13,14 +12,13 @@ Build-Depends: 	debhelper (>= 7),
 		libxcomposite-dev,
 		libxdamage-dev,
 		python-support (>= 0.7.0),
-		python-all-dev (>= 2.4),
+		python-all-dev (>= 2.5),
 		python-gnome2-dev,
 		python-cairo-dev,
 		gtk-doc-tools, 
 		doc-base,
-		valac (>= 0.5.4),
-		python-elementtree | python (>= 2.5)
-Standards-Version: 3.8.1
+		valac (>= 0.5.4)
+Standards-Version: 3.8.4
 Homepage: https://launchpad.net/avant-window-navigator/
 Vcs-Git: git://github.com/gilir/awn-debian.git
 Vcs-Browser: http://github.com/gilir/awn-debian/tree
@@ -89,7 +87,8 @@ Depends:	${python:Depends},
 		gnome-menus,
 		librsvg2-common,
 		python-awn,
-		python-xdg
+		python-xdg,
+		python-glade2
 Description: A preferences manager for avant-window-navigator
  Awn-Manager provides a simple way to configure avant-window-navigator.
  You can manage preferences, themes, applets and launchers.
