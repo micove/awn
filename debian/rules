@@ -4,12 +4,11 @@
 configure_flags +=  --prefix=/usr \
 					--disable-pymod-checks \
 					--enable-gtk-doc \
-					--with-gconf-schema-file-dir=/etc/gconf/schemas \
-					LDFLAGS="-Wl,-z,defs -Wl,--as-needed"
+					--with-gconf-schema-file-dir=/etc/gconf/schemas
 
 
 %:
-	dh $@
+	dh --with python2 $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- 	$(configure_flags)
@@ -31,3 +30,6 @@ override_dh_auto_test:
 override_dh_makeshlibs:
 	dh_makeshlibs -pavant-window-navigator -a -n --exclude=*
 	dh_makeshlibs -plibawn1  -V"libawn1 (>= 0.4.0)"
+
+override_dh_python2:
+	dh_python2 --no-guessing-versions

@@ -1,8 +1,50 @@
+avant-window-navigator (0.4.1~bzr830-1) unstable; urgency=low
+
+  * New upstream snapshot.
+  * debian/patches
+   - ld-no-add-needed.patch: drop, merged upstream.
+   - 01-bad-pointer-init.patch: drop, merged upstream.
+   - 02-ftbfs-python-2.6.patch: refresh.
+   - 03-python-import.patch: refresh.
+  * debian/copyright:
+   - Update copyright years and upstream authors.
+  * debian/vala-awn.install:
+   - Remove, merge contents in libawn-dev.
+  * debian/control:
+   - Build-depends on valac-0.10 (>= 0.9.1), to force stable version of Vala.
+   - Add dockmanager to Recommends to enable helpers support.
+   - Build-depends on libdesktop-agnostic-dev (>= 0.3.92)
+   - Remove vala-desktop-agnostic build-depends, merged in
+     libdesktop-agnostic-dev (Closes: #633810).
+   - Add DM-Upload-Allowed: yes
+   - Bump build-depends on python-all-dev to >= 2.6.6-3~ for dh_python2 support
+   - Remove python-support build-depends.
+   - Use X-Python-Version instead of debian/pyversions.
+   - Fix replace for libawn1-dbg.
+   - Bump Standards-Version to 3.9.2 (no change needed).
+   - Fix description.
+   - Remove vala-awn binary, merged with libawn-dev.
+   - Add Conflicts / Replaces: valac-awn for libawn-dev.
+  * debian/libawn1.symbols:
+   - Update with new symbols. 
+  * debian/gbp.conf:
+   - Add gbp configuration.
+  * debian/rules:
+   - Use --with python2
+   - Passing --no-guessing-versions to dh_python2
+   - Remove use of LDFLAGS
+  * debian/NEWS
+   - Don't use asterisk.
+  * debian/avant-window-navigator.1:
+  - Fix typo.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Thu, 14 Jul 2011 11:54:48 +0200
+
 avant-window-navigator (0.4.0-2.1) unstable; urgency=low
 
-  * Non-maintainer upload.
-  * debian/patches/ld-no-add-needed.patch
-    - fix a FTBFS with ld --no-add-needed; patch from ubuntu; Closes: #605875
+   * Non-maintainer upload.
+   * debian/patches/ld-no-add-needed.patch
+     - fix a FTBFS with ld --no-add-needed; patch from ubuntu; Closes: #605875
 
  -- Sandro Tosi <morph@debian.org>  Thu, 02 Jun 2011 20:45:08 +0200
 
