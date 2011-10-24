@@ -1,3 +1,12 @@
+avant-window-navigator (0.4.1~bzr830-2) unstable; urgency=low
+
+  * debian/control:
+   - Only build-depends on python.
+   - Drop Povides for python-awn.
+   - Use Breaks instead of Conflicts when moving files.
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Tue, 25 Oct 2011 00:13:37 +0200
+
 avant-window-navigator (0.4.1~bzr830-1) unstable; urgency=low
 
   * New upstream snapshot.
