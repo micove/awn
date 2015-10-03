@@ -18,17 +18,18 @@
  *  Author : Neil Jagdish Patel <njpatel@gmail.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <gtk/gtk.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 
-#include <libawn/awn-title.c>
-#include <libawn/awn-gconf.h>
+#include <libawn/awn-config-client.h>
+#include <libawn/awn-settings.h>
+#include <libawn/awn-vfs.h>
 
-#include "config.h"
-
-#include <config.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -73,9 +74,11 @@ static gboolean leave_notify_event (GtkWidget *window, GdkEventCrossing *event, 
 static gboolean button_press_event (GtkWidget *window, GdkEventButton *event);
 
 static void 
-bar_height_changed (GConfClient *client, guint cid, GConfEntry *entry, AwnSettings *Settings);
+bar_height_changed (AwnConfigClientNotifyEntry *entry, AwnSettings *Settings);
 static void 
-icon_offset_changed (GConfClient *client, guint cid, GConfEntry *entry, AwnSettings *Settings);
+icon_offset_changed (AwnConfigClientNotifyEntry *entry, AwnSettings *Settings);
+static void 
+bar_refresh (AwnConfigClientNotifyEntry *entry, AwnSettings *settings);
 static void
 screen_size_changed (GdkScreen *screen, AwnSettings *s);
 static void 
@@ -110,10 +113,10 @@ panel_atom_get (const char *atom_name)
 }
     
 int 
-main (int argc, char* argv[])
+main (int argc, char *argv[])
 {
 	AwnSettings* settings;
-	GConfClient *client;
+	AwnConfigClient *client;
 	GtkWidget *box = NULL;
 	GtkWidget *applet_manager = NULL;
 	GdkScreen *screen;
@@ -122,25 +125,51 @@ main (int argc, char* argv[])
 	DBusGProxy *proxy;
 	GError *error = NULL;
 	guint32 ret;
+
+	GOptionContext *context;
+	gboolean version = FALSE;
+	GOptionEntry entries[] = 
+	{
+		{ "version", 'v', 0, G_OPTION_ARG_NONE, &version, "Prints the version number", NULL },
+		{ NULL }
+	};
+
+	context = g_option_context_new ("- Starts the Avant Window Navigator dock");
+	g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	g_option_context_parse (context, &argc, &argv, NULL);
+	g_option_context_free(context);
+
 	
+	if(version) {
+		g_print("Avant Window Navigator ");
+		g_print(VERSION);
+		g_print("\n");
+		return 0;
+	}
+
   	if (!g_thread_supported ()) g_thread_init (NULL);
 	dbus_g_thread_init ();
-  
+
   	g_type_init ();
 
   	gtk_init (&argc, &argv);
-	gnome_vfs_init ();
+	awn_vfs_init ();
 	
-	settings = awn_gconf_new();
+	settings = awn_settings_new();
 	settings->bar = awn_bar_new(settings);
-	client = gconf_client_get_default();
+	client = awn_config_client_new ();
 	
-	gconf_client_notify_add (client, "/apps/avant-window-navigator/bar/bar_height", 
-				(GConfClientNotifyFunc)bar_height_changed, settings, 
-				NULL, NULL);
-	gconf_client_notify_add (client, "/apps/avant-window-navigator/bar/icon_offset", 
-				(GConfClientNotifyFunc)icon_offset_changed, settings, 
-				NULL, NULL);
+	awn_config_client_notify_add (client, "bar", "bar_height",
+				      (AwnConfigClientNotifyFunc)bar_height_changed,
+                                      settings);
+	awn_config_client_notify_add (client, "bar", "icon_offset",
+				      (AwnConfigClientNotifyFunc)icon_offset_changed,
+                                      settings);
+	awn_config_client_notify_add (client, "bar", "bar_angle",
+				      (AwnConfigClientNotifyFunc)bar_refresh, settings);
+	awn_config_client_notify_add (client, "bar", "rounded_corners",
+				      (AwnConfigClientNotifyFunc)bar_refresh, settings);
 	
 	settings->window = awn_window_new (settings);
 	
@@ -382,7 +411,7 @@ prefs_function (GtkMenuItem *menuitem, gpointer null)
 static void
 close_function (GtkMenuItem *menuitem, gpointer null)
 {
-	AwnSettings *s = awn_gconf_new ();
+	AwnSettings *s = awn_settings_new ();
 	
 	awn_applet_manager_quit (AWN_APPLET_MANAGER (s->appman));
 	
@@ -454,24 +483,24 @@ resize (AwnSettings *settings)
 }
 
 static void 
-bar_height_changed (GConfClient *client, guint cid, GConfEntry *entry, AwnSettings *settings)
+bar_height_changed (AwnConfigClientNotifyEntry *entry, AwnSettings *settings)
 {
-	GConfValue *value = NULL;
-	
-	value = gconf_entry_get_value(entry);
-	settings->bar_height = gconf_value_get_int(value);
+	settings->bar_height = entry->value.int_val;
 
 	resize (settings);	
 }
 
 static void 
-icon_offset_changed (GConfClient *client, guint cid, GConfEntry *entry, AwnSettings *settings)
+icon_offset_changed (AwnConfigClientNotifyEntry *entry, AwnSettings *settings)
 {
-	GConfValue *value = NULL;
-
-	value = gconf_entry_get_value(entry);
-	settings->icon_offset = gconf_value_get_int(value);
+	settings->icon_offset = entry->value.int_val;
 	
+	resize (settings);
+}
+
+static void 
+bar_refresh (AwnConfigClientNotifyEntry *entry, AwnSettings *settings)
+{
 	resize (settings);
 }
 
@@ -540,6 +569,7 @@ composited_changed ( GdkScreen *screen, AwnSettings *s)
 		if(!started)
 		{
 			//g_timeout_add (1000, (GSourceFunc)load_applets, applet_manager);
+			awn_window_force_repos (); // set the x position right, without movement.
 			awn_applet_manager_load_applets (AWN_APPLET_MANAGER (s->appman));
 			started = TRUE;
 		}

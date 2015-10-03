@@ -1,6 +1,9 @@
 
 /* Generated data (by glib-mkenums) */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #include "awn-enum-types.h"
 /* enumerations from "awn-defines.h" */
 #include "awn-defines.h"
@@ -41,6 +44,45 @@ awn_cairo_round_corners_get_type(void) {
         { 0, NULL, NULL }
       };
       enum_type_id = g_enum_register_static("AwnCairoRoundCorners", values);
+    }
+  return enum_type_id;
+}
+/* enumerations from "awn-config-client.h" */
+#include "awn-config-client.h"
+GType
+awn_config_value_type_get_type(void) {
+  static GType enum_type_id = 0;
+  if (G_UNLIKELY (!enum_type_id))
+    {
+      static const GEnumValue values[] = {
+        { AWN_CONFIG_VALUE_TYPE_NULL, "AWN_CONFIG_VALUE_TYPE_NULL", "null" },
+        { AWN_CONFIG_VALUE_TYPE_BOOL, "AWN_CONFIG_VALUE_TYPE_BOOL", "bool" },
+        { AWN_CONFIG_VALUE_TYPE_FLOAT, "AWN_CONFIG_VALUE_TYPE_FLOAT", "float" },
+        { AWN_CONFIG_VALUE_TYPE_INT, "AWN_CONFIG_VALUE_TYPE_INT", "int" },
+        { AWN_CONFIG_VALUE_TYPE_STRING, "AWN_CONFIG_VALUE_TYPE_STRING", "string" },
+        { AWN_CONFIG_VALUE_TYPE_LIST_BOOL, "AWN_CONFIG_VALUE_TYPE_LIST_BOOL", "list-bool" },
+        { AWN_CONFIG_VALUE_TYPE_LIST_FLOAT, "AWN_CONFIG_VALUE_TYPE_LIST_FLOAT", "list-float" },
+        { AWN_CONFIG_VALUE_TYPE_LIST_INT, "AWN_CONFIG_VALUE_TYPE_LIST_INT", "list-int" },
+        { AWN_CONFIG_VALUE_TYPE_LIST_STRING, "AWN_CONFIG_VALUE_TYPE_LIST_STRING", "list-string" },
+        { 0, NULL, NULL }
+      };
+      enum_type_id = g_enum_register_static("AwnConfigValueType", values);
+    }
+  return enum_type_id;
+}
+GType
+awn_config_list_type_get_type(void) {
+  static GType enum_type_id = 0;
+  if (G_UNLIKELY (!enum_type_id))
+    {
+      static const GEnumValue values[] = {
+        { AWN_CONFIG_CLIENT_LIST_TYPE_BOOL, "AWN_CONFIG_CLIENT_LIST_TYPE_BOOL", "bool" },
+        { AWN_CONFIG_CLIENT_LIST_TYPE_FLOAT, "AWN_CONFIG_CLIENT_LIST_TYPE_FLOAT", "float" },
+        { AWN_CONFIG_CLIENT_LIST_TYPE_INT, "AWN_CONFIG_CLIENT_LIST_TYPE_INT", "int" },
+        { AWN_CONFIG_CLIENT_LIST_TYPE_STRING, "AWN_CONFIG_CLIENT_LIST_TYPE_STRING", "string" },
+        { 0, NULL, NULL }
+      };
+      enum_type_id = g_enum_register_static("AwnConfigListType", values);
     }
   return enum_type_id;
 }
@@ -92,6 +134,37 @@ awn_effect_sequence_get_type(void) {
         { 0, NULL, NULL }
       };
       enum_type_id = g_enum_register_static("AwnEffectSequence", values);
+    }
+  return enum_type_id;
+}
+/* enumerations from "awn-vfs.h" */
+#include "awn-vfs.h"
+GType
+awn_vfs_monitor_event_get_type(void) {
+  static GType enum_type_id = 0;
+  if (G_UNLIKELY (!enum_type_id))
+    {
+      static const GEnumValue values[] = {
+        { AWN_VFS_MONITOR_EVENT_CHANGED, "AWN_VFS_MONITOR_EVENT_CHANGED", "changed" },
+        { AWN_VFS_MONITOR_EVENT_CREATED, "AWN_VFS_MONITOR_EVENT_CREATED", "created" },
+        { AWN_VFS_MONITOR_EVENT_DELETED, "AWN_VFS_MONITOR_EVENT_DELETED", "deleted" },
+        { 0, NULL, NULL }
+      };
+      enum_type_id = g_enum_register_static("AwnVfsMonitorEvent", values);
+    }
+  return enum_type_id;
+}
+GType
+awn_vfs_monitor_type_get_type(void) {
+  static GType enum_type_id = 0;
+  if (G_UNLIKELY (!enum_type_id))
+    {
+      static const GEnumValue values[] = {
+        { AWN_VFS_MONITOR_FILE, "AWN_VFS_MONITOR_FILE", "file" },
+        { AWN_VFS_MONITOR_DIRECTORY, "AWN_VFS_MONITOR_DIRECTORY", "directory" },
+        { 0, NULL, NULL }
+      };
+      enum_type_id = g_enum_register_static("AwnVfsMonitorType", values);
     }
   return enum_type_id;
 }

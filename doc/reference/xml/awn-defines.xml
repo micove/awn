@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="libawn-awn-defines">
+<refmeta>
+<refentrytitle role="top_of_page">awn-defines</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBAWN Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>awn-defines</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+#define             <link linkend="AWN-GCONF-PATH:CAPS">AWN_GCONF_PATH</link>
+#define             <link linkend="AWN-APPLET-GCONF-PATH:CAPS">AWN_APPLET_GCONF_PATH</link>
+#define             <link linkend="AWN-MAX-HEIGHT:CAPS">AWN_MAX_HEIGHT</link>
+#define             <link linkend="AWN-MIN-HEIGHT:CAPS">AWN_MIN_HEIGHT</link>
+enum                <link linkend="AwnOrientation">AwnOrientation</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="AWN-GCONF-PATH:CAPS" role="macro"/>AWN_GCONF_PATH</title>
+<indexterm><primary>AWN_GCONF_PATH</primary></indexterm><programlisting>#define AWN_GCONF_PATH "/apps/avant-window-navigator"
+</programlisting>
+<para>
+The prefix for all Awn proper configuration keys.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="AWN-APPLET-GCONF-PATH:CAPS" role="macro"/>AWN_APPLET_GCONF_PATH</title>
+<indexterm><primary>AWN_APPLET_GCONF_PATH</primary></indexterm><programlisting>#define AWN_APPLET_GCONF_PATH "/apps/avant-window-navigator/applets"
+</programlisting>
+<para>
+The prefix for all Awn applet instances' configuration keys.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="AWN-MAX-HEIGHT:CAPS" role="macro"/>AWN_MAX_HEIGHT</title>
+<indexterm><primary>AWN_MAX_HEIGHT</primary></indexterm><programlisting>#define AWN_MAX_HEIGHT 100
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="AWN-MIN-HEIGHT:CAPS" role="macro"/>AWN_MIN_HEIGHT</title>
+<indexterm><primary>AWN_MIN_HEIGHT</primary></indexterm><programlisting>#define AWN_MIN_HEIGHT 12
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="AwnOrientation" role="enum"/>enum AwnOrientation</title>
+<indexterm><primary>AwnOrientation</primary></indexterm><programlisting>typedef enum
+{
+        AWN_ORIENTATION_BOTTOM =0,
+        AWN_ORIENTATION_TOP,
+        AWN_ORIENTATION_RIGHT,
+        AWN_ORIENTATION_LEFT
+
+} AwnOrientation;
+</programlisting>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

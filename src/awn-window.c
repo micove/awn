@@ -95,6 +95,13 @@ _position_timeout (gpointer null)
 }
 
 
+void 
+awn_window_force_repos ()
+{
+	stop_position = TRUE;
+	g_timeout_add(5000, (GSourceFunc)_position_timeout, NULL);
+}
+
 GtkWidget *
 awn_window_new( AwnSettings *set )
 {
@@ -253,7 +260,14 @@ _update_input_shape (GtkWidget* window, int width, int height)
 	static GdkBitmap* pShapeBitmap = NULL;
 	static cairo_t* pCairoContext = NULL;
 	g_return_if_fail (GTK_IS_WINDOW (window));
-	pShapeBitmap = (GdkBitmap*) gdk_pixmap_new (NULL, width, height, 1);
+	
+	int curve_extra = 0;
+	if(settings->bar_angle < 0){
+		curve_extra = height / 3;
+	}
+
+	pShapeBitmap = (GdkBitmap*) gdk_pixmap_new (NULL, width, height+curve_extra, 1);
+
 	if (pShapeBitmap)
 	{
 		pCairoContext = gdk_cairo_create (pShapeBitmap);
@@ -264,11 +278,11 @@ _update_input_shape (GtkWidget* window, int width, int height)
 
 
 #if !GTK_CHECK_VERSION(2,9,0)
-			do_shape_combine_mask (window->window, NULL, 0, 0);
-			do_shape_combine_mask (window->window, pShapeBitmap, 0, 0);
+			do_shape_combine_mask (window->window, NULL, 0, 0-curve_extra);
+			do_shape_combine_mask (window->window, pShapeBitmap, 0, 0-curve_extra);
 #else
-			gtk_widget_input_shape_combine_mask (window, NULL, 0, 0);
-			gtk_widget_input_shape_combine_mask (window, pShapeBitmap, 0, 0);
+			gtk_widget_input_shape_combine_mask (window, NULL, 0, 0-curve_extra);
+			gtk_widget_input_shape_combine_mask (window, pShapeBitmap, 0, 0-curve_extra);
 #endif
 		}
 
@@ -330,7 +344,7 @@ _position_window (GtkWidget *window)
 		//else
 			//y_pos = (int) (settings->monitor.height-wh*9/8+2);
 	
-	if (stop_position) {
+	if (stop_position || settings->no_bar_resize_ani) {
 		current_pos = x_pos;
 		gtk_window_move(GTK_WINDOW(window), x_pos, y_pos);
 		return;

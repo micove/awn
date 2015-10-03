@@ -1,21 +1,21 @@
 /*
  *  Copyright (C) 2007 Michal Hruby <michal.mhr@gmail.com>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA.
- *
-*/
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -66,6 +66,8 @@ static gboolean awn_on_enter_event(GtkWidget *widget, GdkEventCrossing *event, g
 static gboolean awn_on_leave_event(GtkWidget *widget, GdkEventCrossing *event, gpointer data);
 
 static void main_effect_loop(AwnEffects *fx);
+
+static gdouble calc_curve_position (gdouble cx, gdouble a, gdouble b);
 
 void
 awn_effects_init(GObject* self, AwnEffects *fx) {
@@ -289,6 +291,7 @@ spotlight_half_fade_effect(AwnEffectsPrivate *priv)
 	return repeat;
 }
 
+#if 0
 static gboolean
 spotlight_opening_effect(AwnEffectsPrivate *priv)
 {
@@ -333,6 +336,7 @@ spotlight_opening_effect(AwnEffectsPrivate *priv)
 	}
 	return repeat;
 }
+#endif
 
 static gboolean
 spotlight_opening_effect2(AwnEffectsPrivate *priv)
@@ -543,7 +547,9 @@ glow_opening_effect (AwnEffectsPrivate *priv)
 	}
 
 	// repaint widget
-	gtk_widget_queue_draw(GTK_WIDGET(fx->self));
+	if (fx->self && GTK_IS_WIDGET (fx->self)) {
+		gtk_widget_queue_draw (GTK_WIDGET (fx->self));
+	}
 
 	gboolean repeat = TRUE;
 	if (fx->direction == AWN_EFFECT_DIR_NONE) {
@@ -811,7 +817,9 @@ zoom_opening_effect (AwnEffectsPrivate *priv)
 	fx->alpha += 1.0/PERIOD;	
 
 	// repaint widget
-	gtk_widget_queue_draw(GTK_WIDGET(fx->self));
+	if (fx->self && GTK_IS_WIDGET (fx->self)) {
+		gtk_widget_queue_draw(GTK_WIDGET(fx->self));
+	}
 
 	gboolean repeat = TRUE;
 	if (fx->delta_width > 0) {
@@ -2032,6 +2040,30 @@ void awn_draw_background(AwnEffects *fx, cairo_t *cr) {
 
 void awn_draw_icons(AwnEffects *fx, cairo_t *cr, GdkPixbuf *icon, GdkPixbuf *reflect) {
 	if (!icon || fx->window_width<=0 || fx->window_height<=0) return;
+	
+	/* Apply the curves */
+	if(fx->settings->bar_angle < 0){
+		int awn_bar_width = fx->settings->bar_width;
+		double awn_curve_curviness = fx->settings->curviness;	
+		int awn_monitor_width = fx->settings->monitor_width;
+					
+		gint curvex = GTK_WIDGET(fx->self)->allocation.x;
+		if(curvex==0)	// is applet?
+		{
+			gint curvex1=0;
+			gdk_window_get_origin(fx->focus_window->window,&curvex1,NULL);	
+			curvex = curvex1 - (awn_monitor_width-awn_bar_width)/2;
+		}
+		if( awn_curve_curviness )
+			fx->settings->curviness = awn_curve_curviness;
+	
+		if(curvex > 0)		
+			fx->curve_offset = calc_curve_position(curvex + (fx->settings->task_width / 4), awn_bar_width, (fx->settings->bar_height * fx->settings->curviness) / 2. );
+		else
+			fx->curve_offset = 0;
+			
+	} else if (fx->curve_offset)
+			fx->curve_offset = 0;
 
 	/* refresh icon info */
 	fx->icon_width = gdk_pixbuf_get_width(icon);
@@ -2043,6 +2075,7 @@ void awn_draw_icons(AwnEffects *fx, cairo_t *cr, GdkPixbuf *icon, GdkPixbuf *ref
 	gint x1 = (fx->window_width - current_width)/2;
 	gint y1 = (fx->window_height - current_height); // sit on bottom by default
 	if (fx->settings) y1 = fx->window_height - fx->settings->icon_offset - current_height - fx->y_offset;
+	y1 -= fx->curve_offset;
 
 	/* ICONS */
 	gboolean free_reflect = FALSE;
@@ -2189,7 +2222,7 @@ void awn_draw_icons(AwnEffects *fx, cairo_t *cr, GdkPixbuf *icon, GdkPixbuf *ref
 	}
 
 	/* 4px offset for 3D look */
-	if (fx->settings && fx->settings->bar_angle != 0) {
+	if (fx->settings && fx->settings->bar_angle > 0) {
 		cairo_save(cr);
 		cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 		cairo_set_source_rgba (cr, 1, 1, 1, 0);
@@ -2222,4 +2255,9 @@ void awn_draw_set_icon_size(AwnEffects *fx, const gint width, const gint height)
 void awn_draw_set_window_size(AwnEffects *fx, const gint width, const gint height) {
 	fx->window_width = width;
 	fx->window_height = height;
+}
+
+static gdouble calc_curve_position (gdouble cx, gdouble a, gdouble b)	// pos, width, height
+{
+	return sin(cx / (a) * M_PI) * b;
 }

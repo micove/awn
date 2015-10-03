@@ -1,11 +1,11 @@
 /*
- * Copyright (c) BOR007 Anthony Arobone <aarobone@gmail.com>
+ * Copyright (c) 2007 Anthony Arobone <aarobone@gmail.com>
  *                    Neil Jagdish Patel <njpatel@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version BOR of the License, or (at your option) any later version.
+ * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 0BOR111-1307, USA.
+ * Boston, MA 02111-1307, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -28,12 +28,10 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <gconf/gconf-client.h>
-
 #include "awn-applet.h"
-#include "awn-applet-gconf.h"
 #include "awn-applet-dialog.h"
 #include "awn-cairo-utils.h"
+#include "awn-config-client.h"
 #include "awn-defines.h"
 
 G_DEFINE_TYPE(AwnAppletDialog, awn_applet_dialog, GTK_TYPE_WINDOW)
@@ -73,9 +71,13 @@ _on_alpha_screen_changed (GtkWidget* pWidget,
 }
 
 
-/*
- * Should "reposition" dialog-arrow if the dialog does not fit
- *(fall-off-screen) on the desired place.
+/**
+ * awn_applet_dialog_position_reset:
+ * @dialog: The dialog to reposition.
+ *
+ * Resets the position of the dialog so it is centered over its associated
+ * applet window.  Should "reposition" dialog-arrow if the dialog does not fit
+ * (fall-off-screen) on the desired place.
  */
 void 
 awn_applet_dialog_position_reset (AwnAppletDialog *dialog) 
@@ -113,7 +115,7 @@ _expose_event(GtkWidget *widget, GdkEventExpose *expose)
 	GtkWidget *child = NULL;
 	gint width, height;
         gint gap = 20;
-        gint x, y, ax, ay, aw, ah;
+        gint x;
         GtkStyle *style;
         GdkColor bg;
         gfloat alpha;
@@ -156,16 +158,8 @@ _expose_event(GtkWidget *widget, GdkEventExpose *expose)
                                    alpha);
         cairo_stroke (cr);
 
-        //  get some size & position info
-        gdk_window_get_origin (widget->window, &x, &y);
-        gdk_window_get_origin (GTK_WIDGET (dialog->priv->applet)->window, 
-                               &ax, &ay);
-        gtk_widget_get_size_request (GTK_WIDGET (dialog->priv->applet), 
-                                     &aw, &ah);
-
         // do some maths
-        x = ax - x;
-        x += aw/2;
+        x = width / 2;
 
 	// draw arrow
         cairo_set_source_rgba (cr, bg.red/65535.0, 
@@ -358,6 +352,17 @@ awn_applet_dialog_add (GtkContainer *dialog, GtkWidget *widget)
         gtk_box_pack_start (GTK_BOX (priv->vbox), widget, TRUE, TRUE, 0);
 }
 
+static void
+awn_applet_dialog_remove (GtkContainer *dialog, GtkWidget *widget)
+{
+        AwnAppletDialogPrivate *priv;
+
+        g_return_if_fail (AWN_IS_APPLET_DIALOG (dialog));
+        g_return_if_fail (GTK_IS_WIDGET (widget));
+        priv = AWN_APPLET_DIALOG (dialog)->priv;
+
+        gtk_container_remove (GTK_CONTAINER (priv->vbox), widget);
+}
 /*
  * class init
  */
@@ -372,6 +377,7 @@ awn_applet_dialog_class_init (AwnAppletDialogClass *klass)
 	
         cont_class = GTK_CONTAINER_CLASS (klass);
         cont_class->add = awn_applet_dialog_add;
+        cont_class->remove = awn_applet_dialog_remove;
 
         gtk_widget_class_install_style_property (widget_class,
                g_param_spec_float (
@@ -393,7 +399,7 @@ static void
 awn_applet_dialog_init (AwnAppletDialog *dialog) 
 {
         AwnAppletDialogPrivate *priv;
-	GConfClient *client;
+	AwnConfigClient *client;
 
         priv = dialog->priv = AWN_APPLET_DIALOG_GET_PRIVATE (dialog);
             
@@ -441,15 +447,17 @@ awn_applet_dialog_init (AwnAppletDialog *dialog)
         gtk_misc_set_padding (GTK_MISC (priv->title_label), 0, 4);
         gtk_container_add (GTK_CONTAINER (priv->title), priv->title_label);
 
-	client = gconf_client_get_default ();
-        priv->offset = gconf_client_get_int (client,
-                             "/apps/avant-window-navigator/bar/icon_offset",
-					     NULL);
-	g_object_unref (client);
+	client = awn_config_client_new ();
+        priv->offset = awn_config_client_get_int (client, "bar", "icon_offset", NULL);
 }
 
-/*
- * new - creates a new object
+/**
+ * awn_applet_dialog_new:
+ * @applet: The applet to which to associate the dialog
+ *
+ * Creates a new toplevel window that is "attached" to the @applet.
+ * Returns: a new dialog.  Caller is responsible for freeing the memory when the
+ * dialog is no longer being used.
  */
 GtkWidget* 
 awn_applet_dialog_new (AwnApplet *applet) 

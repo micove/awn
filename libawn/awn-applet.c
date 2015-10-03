@@ -2,21 +2,20 @@
 /*
  * Copyright (C) 2007 Neil J. Patel <njpatel@gmail.com>
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- * Authors: Neil J. Patel <njpatel@gmail.com>
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  *
  */
 
@@ -29,8 +28,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gconf/gconf.h>
+
+#ifdef USE_GCONF
 #include <gconf/gconf-client.h>
+#endif
 
 G_DEFINE_TYPE (AwnApplet, awn_applet, GTK_TYPE_EVENT_BOX);
 
@@ -136,19 +137,9 @@ awn_applet_get_height (AwnApplet *applet)
 	return priv->height;
 }
 
-gchar*
-awn_applet_get_preferences_key (AwnApplet *applet)
-{
-	AwnAppletPrivate *priv;
-
-	g_return_val_if_fail (AWN_IS_APPLET (applet), NULL);
-	priv = AWN_APPLET_GET_PRIVATE(applet);
-	
-	return g_strdup (priv->gconf_key);
-}
-
+#ifdef USE_GCONF
 static void
-awn_applet_associate_schemas_in_dir (GConfClient  *client,
+awn_applet_associate_schemas_in_dir (GConfClient    *client,
 				       const gchar  *prefs_key,
 				       const gchar  *schema_dir,
 				       GError      **error)
@@ -218,12 +209,14 @@ awn_applet_associate_schemas_in_dir (GConfClient  *client,
 
 	g_slist_free (list);
 }
+#endif
 
 void
 awn_applet_add_preferences (AwnApplet  *applet,
 			      const gchar  *schema_dir,
 			      GError      **opt_error)
 {
+#ifdef USE_GCONF
 	AwnAppletPrivate *priv;
 	GConfClient *client;
 	GError **error = NULL;
@@ -251,7 +244,11 @@ awn_applet_add_preferences (AwnApplet  *applet,
 			   schema_dir, our_error->message);
 		g_error_free (our_error);
 	}
+#else
+    /* no-op */
+#endif
 }
+
 
 static gboolean 
 awn_applet_expose_event (GtkWidget *widget, GdkEventExpose *expose)

@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>AwnAppletSimple</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="libawn Reference Manual">
+<link rel="up" href="ch01.html" title="Table of Contents">
+<link rel="prev" href="AwnAppletDialog.html" title="AwnAppletDialog">
+<link rel="next" href="AwnPlug.html" title="AwnPlug">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Table of Contents">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="AwnAppletDialog.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libawn Reference Manual</th>
+<td><a accesskey="n" href="AwnPlug.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2586094" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2577187" class="shortcut">Description</a>
+                  &#160;|&#160;
+                  <a href="#id2577092" class="shortcut">Object Hierarchy</a>
+                  &#160;|&#160;
+                  <a href="#id2577160" class="shortcut">Implemented Interfaces</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="AwnAppletSimple"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2586094"></a><span class="refentrytitle">AwnAppletSimple</span>
+</h2>
+<p>AwnAppletSimple</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+                    <a href="AwnAppletSimple.html#AwnAppletSimplePrivate">AwnAppletSimplePrivate</a>;
+                    <a href="AwnAppletSimple.html#AwnAppletSimple-struct">AwnAppletSimple</a>;
+GtkWidget*          <a href="AwnAppletSimple.html#awn-applet-simple-new">awn_applet_simple_new</a>               (const gchar *uid,
+                                                         gint orient,
+                                                         gint height);
+void                <a href="AwnAppletSimple.html#awn-applet-simple-set-icon">awn_applet_simple_set_icon</a>          (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple,
+                                                         GdkPixbuf *pixbuf);
+void                <a href="AwnAppletSimple.html#awn-applet-simple-set-temp-icon">awn_applet_simple_set_temp_icon</a>     (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple,
+                                                         GdkPixbuf *pixbuf);
+<a href="libawn-awn-effects.html#AwnEffects">AwnEffects</a>*         <a href="AwnAppletSimple.html#awn-applet-simple-get-effects">awn_applet_simple_get_effects</a>       (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple);
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2577092"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  GObject
+   +----GInitiallyUnowned
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkEventBox
+                                       +----<a href="AwnApplet.html" title="AwnApplet">AwnApplet</a>
+                                             +----AwnAppletSimple
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2577160"></a><h2>Implemented Interfaces</h2>
+<p>
+AwnAppletSimple implements
+ AtkImplementorIface and  GtkBuildable.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2577187"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2577203"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2581380"></a><h3>
+<a name="AwnAppletSimplePrivate"></a>AwnAppletSimplePrivate</h3>
+<a class="indexterm" name="id2581391"></a><pre class="programlisting">typedef struct _AwnAppletSimplePrivate AwnAppletSimplePrivate;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2581408"></a><h3>
+<a name="AwnAppletSimple-struct"></a>AwnAppletSimple</h3>
+<a class="indexterm" name="id2581419"></a><pre class="programlisting">typedef struct _AwnAppletSimple AwnAppletSimple;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2581436"></a><h3>
+<a name="awn-applet-simple-new"></a>awn_applet_simple_new ()</h3>
+<a class="indexterm" name="id2581447"></a><pre class="programlisting">GtkWidget*          awn_applet_simple_new               (const gchar *uid,
+                                                         gint orient,
+                                                         gint height);</pre>
+<p>
+Creates a new <a href="AwnAppletSimple.html" title="AwnAppletSimple"><span class="type">AwnAppletSimple</span></a> object.  This applet will have awn-effects
+effects applied to its icon automatically if <a href="AwnAppletSimple.html#awn-applet-simple-set-icon"><code class="function">awn_applet_simple_set_icon()</code></a> or
+<a href="AwnAppletSimple.html#awn-applet-simple-set-temp-icon"><code class="function">awn_applet_simple_set_temp_icon()</code></a> are used to specify the applet icon.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>uid</code></em>&#160;:</span></td>
+<td> The unique identifier of the instance of the applet on the dock.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>orient</code></em>&#160;:</span></td>
+<td> The orientation of the applet - see <a href="libawn-awn-defines.html#AwnOrientation"><span class="type">AwnOrientation</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>height</code></em>&#160;:</span></td>
+<td> The height of the applet.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a new instance of an applet.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2570319"></a><h3>
+<a name="awn-applet-simple-set-icon"></a>awn_applet_simple_set_icon ()</h3>
+<a class="indexterm" name="id2570330"></a><pre class="programlisting">void                awn_applet_simple_set_icon          (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple,
+                                                         GdkPixbuf *pixbuf);</pre>
+<p>
+Sets the applet icon to the pixbuf provided as an argument.  A private copy
+of the pixbuf argument is made by <a href="AwnAppletSimple.html#awn-applet-simple-set-icon"><code class="function">awn_applet_simple_set_icon()</code></a> and the
+original argument is left unchanged.  The caller retains ownership of pixbuf
+and is required to unref it when it is no longer required.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>simple</code></em>&#160;:</span></td>
+<td> The applet whose icon is being set.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>pixbuf</code></em>&#160;:</span></td>
+<td> The pixbuf image to use as the icon.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2570414"></a><h3>
+<a name="awn-applet-simple-set-temp-icon"></a>awn_applet_simple_set_temp_icon ()</h3>
+<a class="indexterm" name="id2570426"></a><pre class="programlisting">void                awn_applet_simple_set_temp_icon     (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple,
+                                                         GdkPixbuf *pixbuf);</pre>
+<p>
+A convenience function that sets the applet icon to the pixbuf provided as an
+argument.  A private copy of the pixbuf argument is made by the function, and
+the argument is unreferenced.  The caller should not reference pixbuf after
+calling this function.  If the pixbuf needs to be retained, then
+<a href="AwnAppletSimple.html#awn-applet-simple-set-icon"><code class="function">awn_applet_simple_set_icon()</code></a> should be used.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>simple</code></em>&#160;:</span></td>
+<td> The applet whose icon is being set.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>pixbuf</code></em>&#160;:</span></td>
+<td> The pixbuf image to use as the icon.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2570513"></a><h3>
+<a name="awn-applet-simple-get-effects"></a>awn_applet_simple_get_effects ()</h3>
+<a class="indexterm" name="id2570526"></a><pre class="programlisting"><a href="libawn-awn-effects.html#AwnEffects">AwnEffects</a>*         awn_applet_simple_get_effects       (<a href="AwnAppletSimple.html" title="AwnAppletSimple">AwnAppletSimple</a> *simple);</pre>
+<p>
+Retrieves the <a href="libawn-awn-effects.html#AwnEffects"><span class="type">AwnEffects</span></a> object associated with the applet.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>simple</code></em>&#160;:</span></td>
+<td> The applet whose properties are being queried.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a pointer to an <a href="libawn-awn-effects.html#AwnEffects"><span class="type">AwnEffects</span></a> object associated with the
+applet.  The caller does not own this object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>
