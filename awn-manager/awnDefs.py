@@ -22,10 +22,10 @@
 import sys, os
 from awn import CONFIG_DEFAULT_GROUP as DEFAULT_GROUP
 
-PREFIX = "/usr/local"
+PREFIX = "/usr"
 
 LOCALEDIR = os.path.join (PREFIX, "share", "locale")
-PKGDATADIR = '/usr/local/share/avant-window-navigator'
+PKGDATADIR = '/usr/share/avant-window-navigator'
 
 HOME_CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "awn")
 HOME_APPLET_DIR = os.path.join(HOME_CONFIG_DIR, "applets")

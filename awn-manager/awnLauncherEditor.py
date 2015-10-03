@@ -53,21 +53,21 @@ class awnLauncherEditor:
         self.desktop_entry = DesktopEntry(self.filename)
         self.client = awn.Config()
         if os.path.exists(self.filename):
-          self.glade.get_widget('entry_name').set_text(self.desktop_entry.get('Name'))
-          self.glade.get_widget('entry_description').set_text(self.desktop_entry.get('Comment'))
-          self.glade.get_widget('entry_command').set_text(self.desktop_entry.get('Exec'))
-          self.icon_path = self.desktop_entry.get('Icon')
-          image = self.glade.get_widget('image_icon')
-          if os.path.exists(self.icon_path):
-              icon = gdk.pixbuf_new_from_file_at_size (self.icon_path, 32, 32)
-              image.set_from_pixbuf(icon)
-          elif self.icon_path != '':
-              theme = gtk.icon_theme_get_default()
-              try:
-                  icon = theme.load_icon(self.icon_path, 32, 0)
-                  image.set_from_pixbuf(icon)
-              except gobject.GError:
-                  self.icon_path = None
+            self.glade.get_widget('entry_name').set_text(self.desktop_entry.get('Name'))
+            self.glade.get_widget('entry_description').set_text(self.desktop_entry.get('Comment'))
+            self.glade.get_widget('entry_command').set_text(self.desktop_entry.get('Exec'))
+            self.icon_path = self.desktop_entry.get('Icon')
+            image = self.glade.get_widget('image_icon')
+            if os.path.exists(self.icon_path):
+                icon = gdk.pixbuf_new_from_file_at_size (self.icon_path, 32, 32)
+                image.set_from_pixbuf(icon)
+            elif self.icon_path != '':
+                theme = gtk.icon_theme_get_default()
+                try:
+                    icon = theme.load_icon(self.icon_path, 32, 0)
+                    image.set_from_pixbuf(icon)
+                except gobject.GError:
+                    self.icon_path = None
         else:
             self.icon_path = None
         self.command_chooser = None
@@ -142,7 +142,7 @@ class awnLauncherEditor:
             self.command_chooser = gtk.FileChooserDialog(_('Select an Executable File'), self.main_dialog, buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
         self.command_chooser.show_all()
         if self.command_chooser.run() == gtk.RESPONSE_OK:
-            self.glade.get_widget('entry_command').set_text(fcd.get_filename())
+            self.glade.get_widget('entry_command').set_text(self.command_chooser.get_filename())
         self.command_chooser.hide_all()
 
     def on_dialog_desktop_item_response(self, dialog, response):
@@ -170,7 +170,10 @@ class awnLauncherEditor:
                 self.icon_path = "application-x-executable"
             self.desktop_entry.set('Icon', self.icon_path)
             self.desktop_entry.write()
-            uris = self.client.get_list(defs.WINMAN, defs.LAUNCHERS, awn.CONFIG_LIST_STRING)
+            try:
+                uris = self.client.get_list(defs.WINMAN, defs.LAUNCHERS, awn.CONFIG_LIST_STRING)
+            except gobject.GError:
+                uris = []
             if os.path.exists(self.filename):
                 uris.append(self.filename)
             self.client.set_list(defs.WINMAN, defs.LAUNCHERS, awn.CONFIG_LIST_STRING, uris)

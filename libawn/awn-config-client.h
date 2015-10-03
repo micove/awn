@@ -91,7 +91,7 @@ typedef struct {
  *
  * The callback template for configuration change notification functions.
  */
-typedef void (*AwnConfigClientNotifyFunc) (AwnConfigClientNotifyEntry *entry, gpointer data);
+typedef void (*AwnConfigClientNotifyFunc) (AwnConfigClientNotifyEntry *entry, gpointer user_data);
 
 /**
  * AWN_CONFIG_CLIENT_DEFAULT_GROUP:
@@ -157,10 +157,25 @@ typedef enum {
 	AWN_CONFIG_CLIENT_LIST_TYPE_STRING
 } AwnConfigListType;
 
+/**
+ * AwnConfigBackend:
+ * @AWN_CONFIG_CLIENT_GCONF: Indicates the configuration backend in use is 
+ * gconf.
+ * @AWN_CONFIG_CLIENT_GKEYFILE: Indicates the configuration backend in use is 
+ * gkeyfile.
+ *
+ * Indicates the configuration backend in use.
+ */
+typedef enum {
+  AWN_CONFIG_CLIENT_GCONF,
+  AWN_CONFIG_CLIENT_GKEYFILE
+} AwnConfigBackend;
+
 GType              awn_config_client_get_type                  (void);
 
 AwnConfigClient   *awn_config_client_new                       ();
 AwnConfigClient   *awn_config_client_new_for_applet            (gchar *name, gchar *uid);
+AwnConfigBackend  awn_config_client_query_backend              (void);
 
 void               awn_config_client_clear                     (AwnConfigClient *client, GError **err);
 
@@ -168,7 +183,7 @@ void               awn_config_client_ensure_group              (AwnConfigClient 
 
 void               awn_config_client_notify_add                (AwnConfigClient *client, const gchar *group,
                                                                 const gchar *key, AwnConfigClientNotifyFunc callback,
-                                                                gpointer data);
+                                                                gpointer user_data);
 gboolean           awn_config_client_entry_exists              (AwnConfigClient *client, const gchar *group,
                                                                 const gchar *key);
 void               awn_config_client_load_defaults_from_schema (AwnConfigClient *client, GError **err);

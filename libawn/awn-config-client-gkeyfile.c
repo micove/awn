@@ -134,7 +134,7 @@ AwnConfigClient *awn_config_client_new_for_applet (gchar *name, gchar *uid)
 {
 	AwnConfigClient *client;
 	gchar *config_dir = g_build_filename (g_get_user_config_dir (), "awn", "applets", NULL);
-	if (!g_file_test (client->path, G_FILE_TEST_EXISTS)) {
+	if (!g_file_test (config_dir, G_FILE_TEST_EXISTS)) {
 		g_mkdir (config_dir, 0755);
 	}
 	gchar *config_file;
@@ -149,6 +149,16 @@ AwnConfigClient *awn_config_client_new_for_applet (gchar *name, gchar *uid)
 	g_free (config_file);
 	g_free (config_dir);
 	return client;
+}
+
+/**
+ * awn_config_client_query_backend :
+ *
+ * Returns: An enum value indicating the backend in use.
+ */
+AwnConfigBackend  awn_config_client_query_backend (void)
+{
+  return AWN_CONFIG_CLIENT_GKEYFILE;  
 }
 
 /* returns a newly allocated string */
@@ -471,18 +481,18 @@ void awn_config_client_ensure_group (AwnConfigClient *client, const gchar *group
  * @group: The name of the group.
  * @key: The name of the key.
  * @callback: The function that is called when the key value has been modified.
- * @data: Extra data that is passed to the callback.
+ * @user_data: Extra data that is passed to the callback.
  *
  * Associates a callback function with a group and a key, which is called
  * when that key's value has been modified in some way.
  */
 void awn_config_client_notify_add (AwnConfigClient *client, const gchar *group, 
 				   const gchar *key, AwnConfigClientNotifyFunc callback,
-				   gpointer data)
+				   gpointer user_data)
 {
 	AwnConfigClientNotifyData *notify = g_new0 (AwnConfigClientNotifyData, 1);
 	notify->callback = callback;
-	notify->data = data;
+	notify->data = user_data;
 	gchar *full_key = awn_config_client_generate_key (client, group, key);
 	GQuark quark = g_quark_from_string (full_key);
 	GSList *funcs = g_datalist_id_get_data (&(client->notify_funcs), quark);
