@@ -69,7 +69,7 @@ typedef struct
   gint current_height;
   gint current_width;
   gint x1;
-  gint y1; // sit on bottom by default
+  gint y1; /* sit on bottom by default */
 }DrawIconState;
 
 typedef const gchar *(*AwnTitleCallback)(GtkWidget *);
@@ -165,6 +165,7 @@ GType awn_effects_get_type(void);
  * Creates and initializes new #AwnEffects structure. After using this
  * constructor it is necessary to set 'self' member to be able to use effects
  * properly.
+ * Returns: Newly created #AwnEffects instance.
  */
 AwnEffects* awn_effects_new();
 
@@ -174,6 +175,7 @@ AwnEffects* awn_effects_new();
  * is also passed to gtk_widget_queue_draw() during the animation.
  *
  * Creates and initializes new #AwnEffects structure.
+ * Returns: Newly created #AwnEffects instance.
  */
 AwnEffects* awn_effects_new_for_widget(GtkWidget * widget);
 
@@ -272,7 +274,7 @@ void awn_effects_set_offset_cut(AwnEffects * fx, gboolean cut);
 
 G_END_DECLS
 
-//Move this somewhere else eventually
+/* Move this somewhere else eventually */
 void awn_effects_main_effect_loop(AwnEffects * fx);
 
 #endif

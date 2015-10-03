@@ -175,6 +175,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+EXTRA_VERSION = @EXTRA_VERSION@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 GCONFTOOL = @GCONFTOOL@
@@ -268,6 +269,7 @@ PYTHON_PLATFORM_PKG = @PYTHON_PLATFORM_PKG@
 PYTHON_SITE_PKG = @PYTHON_SITE_PKG@
 PYTHON_VERSION = @PYTHON_VERSION@
 PY_PLAT_PKG = @PY_PLAT_PKG@
+PY_SITE_PKG = @PY_SITE_PKG@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -405,6 +407,7 @@ EXTRA_DIST = \
 	awn-enum-types.h.in		\
 	$(NULL)
 
+DISTCLEANFILES = awn-enum-types.h awn-enum-types.c
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -750,6 +753,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -853,6 +857,7 @@ awn-enum-types.c: awn-enum-types.h
 	  $(source_h) ) >> xgen-cetc && \
 	cp xgen-cetc awn-enum-types.c && \
 	rm -f xgen-cetc
+
 # vim: set ts=8 sts=8 sw=8 :
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -36,8 +36,12 @@ default = False
 description = Always keep AWN below all other windows.
 [DEFAULT/applets_list]
 type = list-string
-default = /usr/share/avant-window-navigator/applets/taskman.desktop::1
+default = /usr/local/share/avant-window-navigator/applets/taskman.desktop::1
 description = The list of paths to the enabled applets, in order from left to right.
+[DEFAULT/show_dialog_if_non_composited]
+type = bool
+default = True
+description = Show a warning dialog if the screen isn't composited. 
 [bar/rounded_corners]
 type = bool
 default = True
@@ -118,13 +122,17 @@ description = The number of pixels the reflections are moved up.
 type = float
 default = 0.5
 description = The relative horizontal position of the bar.  0 is the left edge of the screen, 1 is the right edge.
+[window_manager/activate_behavior]
+type = int
+default = 0
+description = Behavior when window on a different workspace is activated. (0 for default, 1 - change active workspace, 2 - move to current workspace)
 [window_manager/show_all_windows]
 type = bool
 default = True
 description = Show the tasks from every workspace in the bar.
 [window_manager/launchers]
 type = list-string
-default = /usr/share/applications/awn-manager.desktop
+default = /usr/local/share/applications/awn-manager.desktop
 description = A list of the paths to the launchers shown on the dock, in order from left to right.
 [app/active_png]
 type  = string

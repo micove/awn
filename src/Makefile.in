@@ -127,6 +127,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+EXTRA_VERSION = @EXTRA_VERSION@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 GCONFTOOL = @GCONFTOOL@
@@ -220,6 +221,7 @@ PYTHON_PLATFORM_PKG = @PYTHON_PLATFORM_PKG@
 PYTHON_SITE_PKG = @PYTHON_SITE_PKG@
 PYTHON_VERSION = @PYTHON_VERSION@
 PY_PLAT_PKG = @PY_PLAT_PKG@
+PY_SITE_PKG = @PY_SITE_PKG@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -288,7 +290,7 @@ NULL =
 INCLUDES = \
 	$(AWN_CFLAGS)			\
 	$(DOCK_CFLAGS)			\
-	-DLIBDIR=\""$(libdir)"\"	\
+	-DDATADIR=\""$(datadir)"\"	\
 	-DLOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(top_srcdir)/libawn		\
 	$(NULL)
@@ -352,6 +354,7 @@ EXTRA_DIST = \
         awn-marshallers.list						\
 				awn-app-dbus.xml
 
+DISTCLEANFILES = awn-applet-manager-glue.h awn-dbus-glue.h awn-app-glue.h
 awn_SOURCES = \
 	awn-main.c \
 	awn-app.c \
@@ -600,6 +603,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

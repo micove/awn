@@ -2,7 +2,7 @@ NULL =
 INCLUDES =				\
 	$(AWN_CFLAGS)			\
 	$(DOCK_CFLAGS)			\
-	-DLIBDIR=\""$(libdir)"\"	\
+	-DDATADIR=\""$(datadir)"\"	\
 	-DLOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(top_srcdir)/libawn		\
 	$(NULL)
@@ -83,6 +83,8 @@ EXTRA_DIST =                            \
         awn-marshallers.list						\
 				awn-app-dbus.xml
 	$(NULL)
+
+DISTCLEANFILES = awn-applet-manager-glue.h awn-dbus-glue.h awn-app-glue.h
 
 noinst_PROGRAMS =	\
 	icon-test	\

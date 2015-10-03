@@ -22,15 +22,16 @@
 import sys, os
 from awn import CONFIG_DEFAULT_GROUP as DEFAULT_GROUP
 
-PREFIX = "/usr"
+PREFIX = "/usr/local"
 
 LOCALEDIR = os.path.join (PREFIX, "share", "locale")
-PKGDATADIR = '/usr/share/avant-window-navigator'
+PKGDATADIR = '/usr/local/share/avant-window-navigator'
 
 HOME_CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "awn")
 HOME_APPLET_DIR = os.path.join(HOME_CONFIG_DIR, "applets")
 HOME_LAUNCHERS_DIR = os.path.join(HOME_CONFIG_DIR, "launchers")
 HOME_THEME_DIR = os.path.join(HOME_CONFIG_DIR, "themes")
+SYS_THEME_DIR = os.path.join (PREFIX, "share", "avant-window-navigator","themes")
 HOME_CUSTOM_ICONS_DIR = os.path.join(HOME_CONFIG_DIR, "custom-icons")
 
 
@@ -42,6 +43,7 @@ KEEP_BELOW          = "keep_below"         #bool
 
 BAR                 = "bar"                #group
 ROUNDED_CORNERS     = "rounded_corners"    #bool
+EXPAND_BAR	    = "expand_bar"         #bool
 CORNER_RADIUS       = "corner_radius"      #float
 RENDER_PATTERN      = "render_pattern"     #bool
 PATTERN_URI         = "pattern_uri"        #string

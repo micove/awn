@@ -82,17 +82,19 @@ class awnPreferences:
         self.client.ensure_group(defs.APP)
         self.client.ensure_group(defs.TITLE)
 
+        self.setup_autostart (self.wTree.get_widget("autostart"))
+
         self.setup_bool (defs.AWN, defs.AUTO_HIDE, self.wTree.get_widget("autohide"))
         self.setup_bool (defs.AWN, defs.KEEP_BELOW, self.wTree.get_widget("keepbelow"))
         self.setup_bool (defs.AWN, defs.PANEL_MODE, self.wTree.get_widget("panelmode"))
         self.setup_bool (defs.APP, defs.NAME_CHANGE_NOTIFY, self.wTree.get_widget("namechangenotify"))
         self.setup_bool (defs.BAR, defs.RENDER_PATTERN, self.wTree.get_widget("patterncheck"))
         self.setup_bool (defs.BAR, defs.ROUNDED_CORNERS, self.wTree.get_widget("roundedcornerscheck"))
+	self.setup_bool (defs.BAR, defs.EXPAND_BAR, self.wTree.get_widget("expandbarcheck"))
         self.setup_bool (defs.WINMAN, defs.SHOW_ALL_WINS, self.wTree.get_widget("allwindowscheck"))
 
         self.setup_bool (defs.BAR, defs.SHOW_SEPARATOR, self.wTree.get_widget("separatorcheck"))
         self.setup_bool (defs.APP, defs.TASKS_H_ARROWS, self.wTree.get_widget("arrowcheck"))
-        self.setup_autostart (defs.APP, defs.TASKS_H_ARROWS, self.wTree.get_widget("autostart"))
         self.setup_effect (defs.APP, defs.ICON_EFFECT, self.wTree.get_widget("iconeffects"))
 
         self.setup_chooser(defs.APP, defs.ACTIVE_PNG, self.wTree.get_widget("activefilechooser"))
@@ -125,6 +127,8 @@ class awnPreferences:
         self.setup_color(defs.APP, defs.ARROW_COLOR, self.wTree.get_widget("arrowcolor"))
 
     def reload(self):
+        self.load_autostart (self.wTree.get_widget("autostart"))
+
         self.load_bool (defs.AWN, defs.AUTO_HIDE, self.wTree.get_widget("autohide"))
         self.load_bool (defs.AWN, defs.KEEP_BELOW, self.wTree.get_widget("keepbelow"))
         self.load_bool (defs.AWN, defs.PANEL_MODE, self.wTree.get_widget("panelmode"))
@@ -135,7 +139,6 @@ class awnPreferences:
 
         self.load_bool (defs.BAR, defs.SHOW_SEPARATOR, self.wTree.get_widget("separatorcheck"))
         self.load_bool (defs.APP, defs.TASKS_H_ARROWS, self.wTree.get_widget("arrowcheck"))
-        self.load_autostart (defs.APP, defs.TASKS_H_ARROWS, self.wTree.get_widget("autostart"))
         self.load_effect (defs.APP, defs.ICON_EFFECT, self.wTree.get_widget("iconeffects"))
 
         self.load_chooser(defs.APP, defs.ACTIVE_PNG, self.wTree.get_widget("activefilechooser"))
@@ -502,21 +505,19 @@ class awnPreferences:
         else:
             self.wTree.get_widget('customeffectsframe').show()
 
-    def setup_autostart(self, group, key, check):
+    def setup_autostart(self, check):
         """sets up checkboxes"""
-        self.load_autostart(group, key, check)
-        check.connect("toggled", self.autostart_changed, (group, key))
-        self.client.notify_add(group, key, self.reload_autostart, check)
+        self.load_autostart(check)
+        check.connect("toggled", self.autostart_changed)
 
-    def load_autostart(self, group, key, check):
-        check.set_active(self.client.get_bool(group, key))
+    def load_autostart(self, check):
+        autostart_file = self.get_autostart_file_path()
+        check.set_active(os.path.isfile(autostart_file))
 
     def reload_autostart(self, entry, check):
         self.load_autostart(entry['group'], entry['key'], check)
 
-    def autostart_changed(self, check, groupkey):
-        group, key = groupkey
-        self.client.set_bool(group, key, check.get_active())
+    def autostart_changed(self, check):
         if check.get_active():
             self.create_autostarter()
         else:
@@ -524,7 +525,7 @@ class awnPreferences:
 
     # The following code is adapted from screenlets-manager.py
     def get_autostart_file_path(self):
-        if os.environ['DESKTOP_SESSION'].startswith('kde'):
+        if os.environ.has_key('DESKTOP_SESSION') and os.environ['DESKTOP_SESSION'].startswith('kde'):
             autostart_dir = os.path.join(os.environ['HOME'], '.kde', 'Autostart')
         else:
             autostart_dir = os.path.join(os.environ['HOME'], '.config', 'autostart')
@@ -561,7 +562,7 @@ class awnPreferences:
             # create the autostart entry
             starter_item = DesktopEntry(autostart_file)
             starter_item.set('Name', 'Avant Window Navigator')
-            starter_item.set('Exec', 'avant-window-navigator')
+            starter_item.set('Exec', 'awn-autostart')
             starter_item.set('X-GNOME-Autostart-enabled', 'true')
             starter_item.write()
 
