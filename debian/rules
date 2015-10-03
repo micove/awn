@@ -33,3 +33,8 @@ override_dh_makeshlibs:
 
 override_dh_python2:
 	dh_python2 --no-guessing-versions
+
+get-orig-source:
+	sh debian/get-git-source.sh
+
+.PHONY: get-orig-source
