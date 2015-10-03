@@ -1,0 +1,353 @@
+# Bulgarian translation for awn
+# Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
+# This file is distributed under the same license as the awn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: awn\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-07-25 23:46+0100\n"
+"PO-Revision-Date: 2007-09-11 03:54+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bulgarian <bg@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2007-10-07 12:19+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../applets/switcher/applet.c:116
+msgid "Rows:"
+msgstr "Редове:"
+
+#: ../applets/switcher/applet.c:128
+msgid "Width:"
+msgstr "Ширина:"
+
+#: ../applets/switcher/applet.c:140
+msgid "Height:"
+msgstr "Височина:"
+
+#: ../applets/trash/trashapplet.glade.h:1
+msgid "<b>From:</b>"
+msgstr "<b>От:</b>"
+
+#: ../applets/trash/trashapplet.glade.h:2
+msgid "<big><b>Emptying the Trash</b></big>"
+msgstr "<big><b>Изчистване на кошчето</b></big>"
+
+#: ../applets/trash/trashapplet.glade.h:3
+msgid "Emptying the Trash"
+msgstr "Изчистване на кошчето"
+
+#: ../avant-preferences/window.glade.h:1
+msgid "<b>Active Icon</b>"
+msgstr "<b>Активна икона</b>"
+
+#: ../avant-preferences/window.glade.h:2
+msgid "<b>Arrows</b>"
+msgstr "<b>Стрелки</b>"
+
+#: ../avant-preferences/window.glade.h:3
+msgid "<b>Bar behaviour</b>"
+msgstr "<b>Поведение на лентата</b>"
+
+#: ../avant-preferences/window.glade.h:4
+msgid "<b>Borders</b>"
+msgstr "<b>Рамки</b>"
+
+#: ../avant-preferences/window.glade.h:5
+msgid "<b>Corners</b>"
+msgstr "<b>Ъгли</b>"
+
+#: ../avant-preferences/window.glade.h:6
+msgid "<b>Gradient</b>"
+msgstr "<b>Преливане</b>"
+
+#: ../avant-preferences/window.glade.h:7
+msgid "<b>Highlight</b>"
+msgstr "<b>Маркиране</b>"
+
+#: ../avant-preferences/window.glade.h:8
+msgid "<b>Pattern</b>"
+msgstr "<b>Плочка</b>"
+
+#: ../avant-preferences/window.glade.h:9
+#, fuzzy
+msgid "<b>Separator</b>"
+msgstr "<b>Ограничител</b>"
+
+#: ../avant-preferences/window.glade.h:10
+msgid "<b>Text</b>"
+msgstr "<b>Текст</b>"
+
+#: ../avant-preferences/window.glade.h:11
+msgid "<b>Windows</b>"
+msgstr "<b>Прозорци</b>"
+
+#: ../avant-preferences/window.glade.h:12
+msgid "Auto hide bar when not in use"
+msgstr "Автоматично скривай полето, когато не се ползва"
+
+#: ../avant-preferences/window.glade.h:13
+msgid "Avant Preferences"
+msgstr "Avant настройки"
+
+#: ../avant-preferences/window.glade.h:14
+msgid "Background color:"
+msgstr "Цвят за фон:"
+
+#: ../avant-preferences/window.glade.h:15
+msgid "Bar Appearance"
+msgstr "Появяване на полето"
+
+#: ../avant-preferences/window.glade.h:16
+msgid "Bold"
+msgstr "Получер:"
+
+#: ../avant-preferences/window.glade.h:17
+msgid "Color:"
+msgstr "Цвят:"
+
+#: ../avant-preferences/window.glade.h:18
+#, fuzzy
+msgid "Enable pattern"
+msgstr "Разреши плочки"
+
+#: ../avant-preferences/window.glade.h:19
+msgid "Enable rounded corners"
+msgstr "Разреши заоблени ъгли"
+
+#: ../avant-preferences/window.glade.h:20
+msgid "Fade effect (experimental)"
+msgstr "Ефект скриване (експирементален)"
+
+#: ../avant-preferences/window.glade.h:21
+#, fuzzy
+msgid "First step color:"
+msgstr "Цвят на първа стъпка"
+
+#: ../avant-preferences/window.glade.h:22
+msgid "Font size:"
+msgstr "Размер на шрифта:"
+
+#: ../avant-preferences/window.glade.h:23
+msgid "General"
+msgstr "Общи"
+
+#: ../avant-preferences/window.glade.h:24
+#, fuzzy
+msgid "Glass Engine"
+msgstr "Стъклен енджин"
+
+#: ../avant-preferences/window.glade.h:25
+msgid "Internal border:"
+msgstr "Вътрешна рамка"
+
+#: ../avant-preferences/window.glade.h:26
+msgid "Italic"
+msgstr "Курсив"
+
+#: ../avant-preferences/window.glade.h:27
+msgid "Main border:"
+msgstr "Основна рамка"
+
+#: ../avant-preferences/window.glade.h:28
+msgid "Maximized windows don't cover the bar (requires restart)"
+msgstr "Максимизираните прозорци не закриват полето (изисква рестарт)"
+
+#: ../avant-preferences/window.glade.h:29
+#, fuzzy
+msgid "Pattern Engine"
+msgstr "Енджин плочки"
+
+#: ../avant-preferences/window.glade.h:30
+#, fuzzy
+msgid "Second step color:"
+msgstr "Цвят втора стъпка:"
+
+#: ../avant-preferences/window.glade.h:31
+msgid "Select A File"
+msgstr "Избиране на файл"
+
+#: ../avant-preferences/window.glade.h:32
+msgid "Separator color:"
+msgstr "Цвят на ограничител"
+
+#: ../avant-preferences/window.glade.h:33
+msgid "Shadow color:"
+msgstr "Цвят на сянката:"
+
+#: ../avant-preferences/window.glade.h:34
+#, fuzzy
+msgid "Show separator between launchers and tasks"
+msgstr "Показвай ограничител мебду стартери и задачи"
+
+#: ../avant-preferences/window.glade.h:35
+msgid "Show windows from all viewports"
+msgstr "Показвай прозорците от всички гледни точки"
+
+#: ../avant-preferences/window.glade.h:36
+msgid "Task Appearance"
+msgstr "Появяване на задачите"
+
+#: ../avant-preferences/window.glade.h:37
+msgid "Tasks have arrows"
+msgstr "Задачите имат стрелки"
+
+#: ../avant-preferences/window.glade.h:38
+msgid "The bar automatically hides when not used"
+msgstr "Полето се скрива атоматично, когато не се ползва"
+
+#: ../avant-preferences/window.glade.h:39
+msgid "Transparency:"
+msgstr "Прозрачност"
+
+#: ../avant-preferences/window.glade.h:40
+#, fuzzy
+msgid "Unused icons fade when mouse-over"
+msgstr "Неизползваните икони се показват при посочване с мишката"
+
+#: ../avant-preferences/window.glade.h:41
+msgid "Windows don't overlap the bar if this is set"
+msgstr ""
+
+#: ../avant-applets/avant-applets.glade.h:1
+msgid "Add Applet"
+msgstr "Добавяне на аплет"
+
+#: ../avant-applets/avant-applets.glade.h:2
+msgid "Avant Applet Preferences"
+msgstr "Настройки на Avant Аплет"
+
+#: ../avant-applets/avant-applets.glade.h:3
+#: ../avant-launchers/avant-launchers.glade.h:2
+msgid "Positions"
+msgstr "Позиции"
+
+#: ../avant-launchers/avant-launchers.glade.h:1
+msgid "Avant Launcher Preferences"
+msgstr "Avant Стартер настройки"
+
+#: ../applets/notification-area/eggtraymanager.c:146
+msgid "Orientation"
+msgstr "Организация"
+
+#: ../applets/notification-area/eggtraymanager.c:147
+msgid "The orientation of the tray."
+msgstr "Ориентация на лентата."
+
+#: ../applets/switcher/switcher.schemas.in.h:1
+msgid "How many rows the switcher should have"
+msgstr ""
+
+#: ../applets/switcher/switcher.schemas.in.h:2
+msgid "The height of the switcher"
+msgstr ""
+
+#: ../applets/switcher/switcher.schemas.in.h:3
+msgid "The width of the switcher"
+msgstr ""
+
+#: ../applets/trash/trash.schemas.in.h:1
+msgid "Whether the trash applet should show a count on its icon"
+msgstr ""
+
+#: ../applets/trash/trashapplet.c:153
+#, c-format
+msgid "Unable to find the Trash directory: %s"
+msgstr "Невъзможно е да се открие директорията на кошчето: %s"
+
+#: ../applets/trash/trashapplet.c:526
+msgid "No Items in Trash"
+msgstr "Кошчето е празно"
+
+#: ../applets/trash/trashapplet.c:530
+#, c-format
+msgid "%d Item in Trash"
+msgid_plural "%d Items in Trash"
+msgstr[0] "%d нещо в кошчето"
+msgstr[1] "%d неща в кошчето"
+
+#: ../applets/trash/trashapplet.c:657
+#, c-format
+msgid "Removing item %lu of %lu"
+msgstr "Премахване на %lu от %lu"
+
+#: ../applets/trash/trashapplet.c:683
+msgid "Removing:"
+msgstr "Премахване"
+
+#: ../applets/trash/trashapplet.c:723
+msgid "Empty all of the items from the trash?"
+msgstr "Изтриване на всичко от кошчето?"
+
+#: ../applets/trash/trashapplet.c:726
+msgid ""
+"If you choose to empty the trash, all items in it will be permanently lost. "
+"Please note that you can also delete them separately."
+msgstr ""
+"Ако изчистите кошчето, всичко, което е било в него, ще бъде необратимо "
+"изгубено. Забележете, че можете да триете обектите по отделно."
+
+#: ../applets/trash/trashapplet.c:746
+msgid "_Empty Trash"
+msgstr "_Изпразване на Кошчето"
+
+#: ../applets/trash/trashapplet.c:825
+#, c-format
+msgid ""
+"Error while spawning nautilus:\n"
+"%s"
+msgstr ""
+"Грешка при стартирането на Nautilus:\n"
+"%s"
+
+#: ../applets/trash/trashapplet.c:845
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Грешка при показването на помощта: %s"
+
+#: ../applets/trash/trashapplet.c:868
+msgid "Trash Applet"
+msgstr "Аплет за кошчето"
+
+#: ../applets/trash/trashapplet.c:871
+msgid ""
+"A GNOME trash bin that lives in your panel. You can use it to view the trash "
+"or drag and drop items into the trash."
+msgstr ""
+"Кошче за GNOME, което стои на панела. Можете да го ползвате, за да "
+"разглеждате съдържанието на кошчето или да премествате обекти с изтегляне."
+
+#: ../applets/trash/trashapplet.c:876
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Vladimir Kolev https://launchpad.net/~admin-vladimirkolev"
+
+#: ../applets/trash/trashapplet.c:896
+msgid "Delete Immediately?"
+msgstr ""
+
+#: ../applets/trash/trashapplet.c:925
+msgid "Cannot move items to trash, do you want to delete them immediately?"
+msgstr ""
+
+#: ../applets/trash/trashapplet.c:928
+msgid ""
+"Cannot move some items to trash, do you want to delete these immediately?"
+msgstr ""
+
+#: ../applets/trash/trashapplet.c:1028 ../applets/trash/trashapplet.c:1045
+#, c-format
+msgid ""
+"Unable to move to trash:\n"
+"%s"
+msgstr ""
+
+#: ../src/awn-task.c:2279
+msgid "Change Icon"
+msgstr ""

@@ -1,0 +1,356 @@
+# Swedish translation for awn
+# Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
+# This file is distributed under the same license as the awn package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: awn\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-07-25 23:46+0100\n"
+"PO-Revision-Date: 2007-09-20 13:34+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2007-10-07 12:18+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../applets/switcher/applet.c:116
+msgid "Rows:"
+msgstr "Rader:"
+
+#: ../applets/switcher/applet.c:128
+msgid "Width:"
+msgstr "Bredd:"
+
+#: ../applets/switcher/applet.c:140
+msgid "Height:"
+msgstr "Höjd:"
+
+#: ../applets/trash/trashapplet.glade.h:1
+msgid "<b>From:</b>"
+msgstr "<b>Från:</b>"
+
+#: ../applets/trash/trashapplet.glade.h:2
+msgid "<big><b>Emptying the Trash</b></big>"
+msgstr "<big><b>Tömmer papperskorgen</b></big>"
+
+#: ../applets/trash/trashapplet.glade.h:3
+msgid "Emptying the Trash"
+msgstr "Tömmer papperskorgen"
+
+#: ../avant-preferences/window.glade.h:1
+msgid "<b>Active Icon</b>"
+msgstr "<b>Aktiv Ikon</b>"
+
+#: ../avant-preferences/window.glade.h:2
+msgid "<b>Arrows</b>"
+msgstr "<b>Pilar</b>"
+
+#: ../avant-preferences/window.glade.h:3
+msgid "<b>Bar behaviour</b>"
+msgstr "<b>Raduppförande</b>"
+
+#: ../avant-preferences/window.glade.h:4
+msgid "<b>Borders</b>"
+msgstr "<b>Kanter</b>"
+
+#: ../avant-preferences/window.glade.h:5
+msgid "<b>Corners</b>"
+msgstr "<b>Hörn</b>"
+
+#: ../avant-preferences/window.glade.h:6
+msgid "<b>Gradient</b>"
+msgstr "<b>Gradient</b>"
+
+#: ../avant-preferences/window.glade.h:7
+msgid "<b>Highlight</b>"
+msgstr "<b>Färgmarkera</b>"
+
+#: ../avant-preferences/window.glade.h:8
+msgid "<b>Pattern</b>"
+msgstr "<b>Mönster</b>"
+
+#: ../avant-preferences/window.glade.h:9
+msgid "<b>Separator</b>"
+msgstr "<b>Avgränsare</b>"
+
+#: ../avant-preferences/window.glade.h:10
+msgid "<b>Text</b>"
+msgstr "<b>Text</b>"
+
+#: ../avant-preferences/window.glade.h:11
+msgid "<b>Windows</b>"
+msgstr "<b>Fönster</b>"
+
+#: ../avant-preferences/window.glade.h:12
+msgid "Auto hide bar when not in use"
+msgstr "Autodölj rad när den inte används"
+
+#: ../avant-preferences/window.glade.h:13
+msgid "Avant Preferences"
+msgstr "Inställningar för Avant"
+
+#: ../avant-preferences/window.glade.h:14
+msgid "Background color:"
+msgstr "Bakgrundsfärg:"
+
+#: ../avant-preferences/window.glade.h:15
+msgid "Bar Appearance"
+msgstr "Radutseende"
+
+#: ../avant-preferences/window.glade.h:16
+msgid "Bold"
+msgstr "Fet"
+
+#: ../avant-preferences/window.glade.h:17
+msgid "Color:"
+msgstr "Färg:"
+
+#: ../avant-preferences/window.glade.h:18
+msgid "Enable pattern"
+msgstr "Aktivera mönster"
+
+#: ../avant-preferences/window.glade.h:19
+msgid "Enable rounded corners"
+msgstr "Aktivera rundade hörn"
+
+#: ../avant-preferences/window.glade.h:20
+msgid "Fade effect (experimental)"
+msgstr "Toningseffekt (experimentell)"
+
+#: ../avant-preferences/window.glade.h:21
+msgid "First step color:"
+msgstr "Förstastegsfärg"
+
+#: ../avant-preferences/window.glade.h:22
+msgid "Font size:"
+msgstr "Typsnittsstorlek:"
+
+#: ../avant-preferences/window.glade.h:23
+msgid "General"
+msgstr "Allmänt"
+
+#: ../avant-preferences/window.glade.h:24
+msgid "Glass Engine"
+msgstr "Glasmotor"
+
+#: ../avant-preferences/window.glade.h:25
+msgid "Internal border:"
+msgstr "Intern ram:"
+
+#: ../avant-preferences/window.glade.h:26
+msgid "Italic"
+msgstr "Kursiv"
+
+#: ../avant-preferences/window.glade.h:27
+msgid "Main border:"
+msgstr "Huvudram:"
+
+#: ../avant-preferences/window.glade.h:28
+msgid "Maximized windows don't cover the bar (requires restart)"
+msgstr "Maximerade fönster täcker inte raden (kräver omstart)"
+
+#: ../avant-preferences/window.glade.h:29
+msgid "Pattern Engine"
+msgstr "Mönstermotor"
+
+#: ../avant-preferences/window.glade.h:30
+msgid "Second step color:"
+msgstr "Andrastegsfärg"
+
+#: ../avant-preferences/window.glade.h:31
+msgid "Select A File"
+msgstr "Välj en fil"
+
+#: ../avant-preferences/window.glade.h:32
+msgid "Separator color:"
+msgstr "Färg på avgränsare:"
+
+#: ../avant-preferences/window.glade.h:33
+msgid "Shadow color:"
+msgstr "Skuggfärg:"
+
+#: ../avant-preferences/window.glade.h:34
+msgid "Show separator between launchers and tasks"
+msgstr "Visa avgränsare mellan programstartare och uppgifter"
+
+#: ../avant-preferences/window.glade.h:35
+msgid "Show windows from all viewports"
+msgstr "Visa fönster från alla skrivbordsytor"
+
+#: ../avant-preferences/window.glade.h:36
+msgid "Task Appearance"
+msgstr "Uppgiftsutseende"
+
+#: ../avant-preferences/window.glade.h:37
+msgid "Tasks have arrows"
+msgstr "Uppgifter innehåller pilar"
+
+#: ../avant-preferences/window.glade.h:38
+msgid "The bar automatically hides when not used"
+msgstr "Raden döljs automatiskt när den inte används"
+
+#: ../avant-preferences/window.glade.h:39
+msgid "Transparency:"
+msgstr "Transparens:"
+
+#: ../avant-preferences/window.glade.h:40
+msgid "Unused icons fade when mouse-over"
+msgstr "Oanvända ikoner tonas när musen är över"
+
+#: ../avant-preferences/window.glade.h:41
+msgid "Windows don't overlap the bar if this is set"
+msgstr "Fönster överlappar inte raden om denna är inställd"
+
+#: ../avant-applets/avant-applets.glade.h:1
+msgid "Add Applet"
+msgstr "Lägg till panelprogram"
+
+#: ../avant-applets/avant-applets.glade.h:2
+msgid "Avant Applet Preferences"
+msgstr "Inställningar för Avant Applet"
+
+#: ../avant-applets/avant-applets.glade.h:3
+#: ../avant-launchers/avant-launchers.glade.h:2
+msgid "Positions"
+msgstr "Positioner"
+
+#: ../avant-launchers/avant-launchers.glade.h:1
+msgid "Avant Launcher Preferences"
+msgstr "Inställningar för Avant Launcher"
+
+#: ../applets/notification-area/eggtraymanager.c:146
+msgid "Orientation"
+msgstr "Orientering"
+
+#: ../applets/notification-area/eggtraymanager.c:147
+msgid "The orientation of the tray."
+msgstr "Brickans orientering."
+
+#: ../applets/switcher/switcher.schemas.in.h:1
+msgid "How many rows the switcher should have"
+msgstr "Hur många rader som växlaren ska ha"
+
+#: ../applets/switcher/switcher.schemas.in.h:2
+msgid "The height of the switcher"
+msgstr "Höjden för växlaren"
+
+#: ../applets/switcher/switcher.schemas.in.h:3
+msgid "The width of the switcher"
+msgstr "Bredden för växlaren"
+
+#: ../applets/trash/trash.schemas.in.h:1
+msgid "Whether the trash applet should show a count on its icon"
+msgstr "Huruvida papperskorgen ska visa antalet objekt i sin ikon"
+
+#: ../applets/trash/trashapplet.c:153
+#, c-format
+msgid "Unable to find the Trash directory: %s"
+msgstr "Kunde inte hitta papperskorgskatalogen: %s"
+
+#: ../applets/trash/trashapplet.c:526
+msgid "No Items in Trash"
+msgstr "Inga objekt i papperskorgen"
+
+#: ../applets/trash/trashapplet.c:530
+#, c-format
+msgid "%d Item in Trash"
+msgid_plural "%d Items in Trash"
+msgstr[0] "%d objekt i papperskorgen"
+msgstr[1] "%d objekt i papperskorgen"
+
+#: ../applets/trash/trashapplet.c:657
+#, c-format
+msgid "Removing item %lu of %lu"
+msgstr "Tar bort objekt %lu av %lu"
+
+#: ../applets/trash/trashapplet.c:683
+msgid "Removing:"
+msgstr "Tar bort:"
+
+#: ../applets/trash/trashapplet.c:723
+msgid "Empty all of the items from the trash?"
+msgstr "Töm alla objekt i papperskorgen?"
+
+#: ../applets/trash/trashapplet.c:726
+msgid ""
+"If you choose to empty the trash, all items in it will be permanently lost. "
+"Please note that you can also delete them separately."
+msgstr ""
+"Om du väljer att tömma papperskorgen kommer alla objekt i den att tas bort "
+"permanent. Observera att du även kan ta bort dem separat."
+
+#: ../applets/trash/trashapplet.c:746
+msgid "_Empty Trash"
+msgstr "_Töm papperskorg"
+
+#: ../applets/trash/trashapplet.c:825
+#, c-format
+msgid ""
+"Error while spawning nautilus:\n"
+"%s"
+msgstr ""
+"Fel vid start av nautilus:\n"
+"%s"
+
+#: ../applets/trash/trashapplet.c:845
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Det inträffade ett fel vid visning av hjälp: %s"
+
+#: ../applets/trash/trashapplet.c:868
+msgid "Trash Applet"
+msgstr "Panelprogram för papperskorg"
+
+#: ../applets/trash/trashapplet.c:871
+msgid ""
+"A GNOME trash bin that lives in your panel. You can use it to view the trash "
+"or drag and drop items into the trash."
+msgstr ""
+"En GNOME-papperskorg som bor i din panel. Du kan använda den för att visa "
+"papperskorgen eller för att dra och släppa objekt till papperskorgen."
+
+#: ../applets/trash/trashapplet.c:876
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Anders Hörnfeldt https://launchpad.net/~hornfeldt\n"
+"  Daniel Nylander https://launchpad.net/~yeager\n"
+"  Hilding Magnéli https://launchpad.net/~hilding-magneli\n"
+"  Jukka Kauppinen https://launchpad.net/~jpkauppinen\n"
+"  Nils-Martin Andersson https://launchpad.net/~nalinde\n"
+"  Pelle Wessman https://launchpad.net/~gk-vox\n"
+"  Åskar https://launchpad.net/~olskar"
+
+#: ../applets/trash/trashapplet.c:896
+msgid "Delete Immediately?"
+msgstr "Ta bort omedelbart?"
+
+#: ../applets/trash/trashapplet.c:925
+msgid "Cannot move items to trash, do you want to delete them immediately?"
+msgstr ""
+"Kan inte flytta objekt till papperskorgen. Vill du ta bort dem omedelbart?"
+
+#: ../applets/trash/trashapplet.c:928
+msgid ""
+"Cannot move some items to trash, do you want to delete these immediately?"
+msgstr ""
+"Kan inte flytta en del objekt till papperskorgen. Vill du ta bort dessa "
+"omedelbart?"
+
+#: ../applets/trash/trashapplet.c:1028 ../applets/trash/trashapplet.c:1045
+#, c-format
+msgid ""
+"Unable to move to trash:\n"
+"%s"
+msgstr ""
+"Kan inte flytta till papperskorgen:\n"
+"%s"
+
+#: ../src/awn-task.c:2279
+msgid "Change Icon"
+msgstr "Byt ikon"

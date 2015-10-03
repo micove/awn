@@ -1,0 +1,2250 @@
+2007-11-03  Neil J. Patel  <njpatel@gmail.com>
+
+	* awn-manager/awnManager.in.py:
+	* configure.in:
+	Bump to 0.2.1
+
+2007-11-01  Michal Hruby <michal.mhr@gmail.com>
+
+	* ChangeLog:
+	* awn-manager/Makefile.am:
+	* awn-manager/awnApplet.py:
+	* awn-manager/awnLauncher.py:
+	* awn-manager/awnManager.in.py:
+	* awn-manager/awnPreferences.py:
+	* awn.pc.in:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	Merged multiple stability patches from branch "0.2-stable-testing".
+
+2007-10-31  Michal Hruby <michal.mhr@gmail.com>
+
+	patch by: Mark Lee
+
+	* pyawn/awn.defs:
+	awn_register_effects is now method of AppletSimple.
+
+2007-10-31  Michal Hruby <michal.mhr@gmail.com>
+
+	* pyawn/awn.defs:
+	Added python binding for awn_(un)register_effects.
+
+2007-10-29  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* src/awn-bar.c:
+	Merge with libawn-draw-effects:
+	- added rounded corners for 3D look
+
+2007-10-28  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* config.h.in:
+	* configure.in:
+	* src/awn-task-manager.c:
+	Add a real check for libwnck's version so that bug #147591 is really,
+	really fixed.
+
+2007-10-27  Michal Hruby <michal.mhr@gmail.com>
+
+	* src/awn-task-manager.c:
+	Now it really fixes #147591
+
+2007-10-27  Michal Hruby <michal.mhr@gmail.com>
+
+	patch by: moonbeam
+
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	Fixes bug #157625, #157296, #147591
+
+2007-10-25  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixes bug #156898.
+
+2007-10-20  Mark Lee  <avant-wn@lazymalevolence.com>
+
+	* awn-manager/Makefile.am:
+	Uninstall awn-manager when a user does "make uninstall".
+
+2007-10-20  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* libawn/awn-effects.c:
+	Merged with changes in libawn-draw-effects.
+	Custom effects frame now hidden if all effects are same.
+
+2007-10-09  Michal Hruby <michal.mhr@gmail.com>
+
+	* libawn/awn-effects.c:
+	Fixed "none" animation causing problems.
+
+2007-10-07  Neil J. Patel  <njpatel@gmail.com>
+
+	* Makefile.am:
+	Don't include autogen.sh as part of make dist.
+
+	* TODO:
+	Clean up old TODO, refer to launchpad.net.
+
+2007-10-07  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet.c:
+	Fix warning.
+
+2007-10-07  Neil J. Patel  <njpatel@gmail.com>
+
+	* intltool-extract.in:
+	* intltool-merge.in:
+	* intltool-update.in:
+	These shouldn't be here.
+
+2007-10-07  Neil J. Patel  <njpatel@gmail.com>
+
+	* AUTHORS:
+	Updated to add in new authors.
+
+	* README:
+	Brand new readme file with some useful information.
+
+	* awn-manager/awnManager.in.py:
+	Added more authors to the About Dialog.
+
+	* configure.in:
+	Bumped version to 0.2
+
+	* po/ar.po:
+	* po/bg.po:
+	* po/ca.po:
+	* po/cs.po:
+	* po/da.po:
+	* po/de.po:
+	* po/el.po:
+	* po/en_AU.po:
+	* po/en_GB.po:
+	* po/es.po:
+	* po/eu.po:
+	* po/fa.po:
+	* po/fi.po:
+	* po/fr.po:
+	* po/gl.po:
+	* po/he.po:
+	* po/hr.po:
+	* po/hu.po:
+	* po/it.po:
+	* po/ja.po:
+	* po/ka.po:
+	* po/ko.po:
+	* po/nb.po:
+	* po/nl.po:
+	* po/nn.po:
+	* po/pl.po:
+	* po/pt.po:
+	* po/pt_BR.po:
+	* po/ro.po:
+	* po/ru.po:
+	* po/sk.po:
+	* po/sr.po:
+	* po/sv.po:
+	* po/tr.po:
+	* po/zh_CN.po:
+	* po/zh_HK.po:
+	* po/zh_TW.po:
+	Updated translations from Launchpad.net. Thanks to all translators.
+
+2007-10-06  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	* pyawn/awn.defs:
+	* pyawn/awn.override:
+	* pyawn/awnmodule.c:
+	* src/awn-task.c:
+	Merged with changes in libawn-draw-effects branch.
+	Added customization of all effects.
+	New effects: 3D turn and Glow.
+	Simple python bindings for effects framework.
+
+2007-10-05  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* TODO:
+	* pyawn/NOTES:
+	* data/active/Makefile.am:
+	Move pyawn/NOTES to TODO and include all files in the Makefile. 
+	So "make dist" take all the files.
+
+	* debian-ubuntu/changelog:
+	* debian/avant-window-navigator.install:
+	* debian/changelog:
+	* debian/control:
+	* debian/copyright:
+	* debian/rules:
+	Refresh debian & debian-ubuntu dir for testing.
+	
+
+2007-10-02  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Update the bar every time awn_applet_simple_set_icon or
+	awn_applet_simple_set_temp_icon is called.
+
+2007-10-02  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	awn_applet_simple_set_icon and awn_applet_simple_set_temp_icon
+	will now gracefully return if the new icon is the same as the
+	old one.
+
+2007-09-29  Neil J. Patel  <njpatel@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	Should fix bug 144923, by making sure a string is valid before setting it on
+	the font button.
+
+2007-09-29  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task.c:
+	Attempt to fix bug #144028 by doing more checks before freeing items.
+
+2007-09-29  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-x.c:
+	Comment out unneeded g_prints.
+
+2007-09-29  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: Fabien Chaillou <fabs0028@free.fr>
+
+	* awn-manager/awnLauncher.py:
+	Fix bug #140928: exception in awn-manager when a launcher icon is missing.
+
+2007-09-29  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: weirdbro <weirdbro@gmail.com>
+
+	* src/awn-task.c:
+	Fix bug #144118: Repeatedly right-clicking on icon brings up AWN context 
+	menu.
+
+2007-09-27  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task.c:
+	Fix closing of a task so there are no 'jumps'. The widget is gradually 
+	reduced in size.
+
+2007-09-26  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	* intltool-extract.in:
+	* intltool-merge.in:
+	* intltool-update.in:
+	* po/ar.po:
+	* po/bg.po:
+	* po/ca.po:
+	* po/cs.po:
+	* po/da.po:
+	* po/de.po:
+	* po/el.po:
+	* po/en_AU.po:
+	* po/en_GB.po:
+	* po/es.po:
+	* po/eu.po:
+	* po/fa.po:
+	* po/fi.po:
+	* po/fr.po:
+	* po/he.po:
+	* po/hr.po:
+	* po/hu.po:
+	* po/it.po:
+	* po/ja.po:
+	* po/ko.po:
+	* po/nb.po:
+	* po/nl.po:
+	* po/nn.po:
+	* po/pl.po:
+	* po/pt.po:
+	* po/pt_BR.po:
+	* po/ro.po:
+	* po/ru.po:
+	* po/sk.po:
+	* po/sr.po:
+	* po/sv.po:
+	* po/tr.po:
+	* po/zh_CN.po:
+	* po/zh_HK.po:
+	* po/zh_TW.po:
+	Updated and merged all translations from Launchpad.
+	Thanks to all translators.
+
+2007-09-20  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	Set the position correct where the bar doesn't hide.
+
+2007-09-20  haytjes <hv1989@gmail.com>
+
+	* src/awn-window.c:
+	Fixed bug #140649. Now the area where mouse-over/mouse-clicks/... go is right. 
+	So no more problems with clicking on a icon and clicking on the underlying window.
+
+2007-09-19  Neil J. Patel  <njp@o-hand.com>
+
+	* libawn/awn-applet-dialog.c:
+	Make the window title into it's own widget, and spruce it up a little.
+	We now only set the text of the label, and draw its background
+	separatly. There should be no difference to exiting applets.
+
+	* libawn/awn-applet-simple.c:
+	Fix a few warnings.
+
+2007-09-19  Michal Hruby <michal.mhr@gmail.com>
+
+	* awn-manager/awnPreferences.py:
+	* libawn/awn-effects.c:
+	* libawn/awn-effects.h:
+	Merged with latest changes in libawn-draw-effects.
+
+2007-09-19  Michal Hruby <michal.mhr@gmail.com>
+
+	* data/active/spotlight_png_inline.c:
+	* libawn/awn-effects.c:
+	Spotlight effect png compiled directly into AWN to prevent problems
+	with loading from hardcoded path.
+
+2007-09-18  Julien Lavergne <julien.lavergne@gmail.com>
+
+	* awn-manager/awn-manager.desktop.in.in:
+	Delete X-Fedora category to be distribution neutral
+
+	* debian-ubuntu/avant-window-navigator.install:
+	* debian-ubuntu/changelog:
+	* debian-ubuntu/copyright:
+	* debian-ubuntu/python-libawn0.install:
+	* debian-ubuntu/rules:
+	Update/Clean debian-ubuntu dir
+
+	* libawn/Makefile.am:
+	Take all the files in the build process
+
+2007-09-18  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	Set the position correct where the bar doesn't hide.
+
+2007-09-18  haytjes <hv1989@gmail.com>
+
+	* src/awn-x.c:
+	Set xutils_set_strut good.
+
+2007-09-18  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	set_temp_icon updated also
+
+2007-09-18  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Improved awn-applet-simple dynamical resizing. Now on a bar_height change it will change the icon_height on how much the bar_height changed.
+	Some applets in awn-extras are now wrong, but will commit a rev. to awn-extras soon.
+	For applet devs: You need to give a right sized icon to awn-applet-simple. So awn-applet-simple doesn't resize it anymore, 
+	except when a bar_height change has occurred. Normally you should provide a new icon then, but in the mean time awn-applet-simple resizes the icon
+	to have a semiliar look after the bar_height change.
+
+2007-09-17  Michal Hruby  <michal.mhr@gmail.com>
+
+	* libawn/awn-effects.c:
+	Fixed bug in awn_unregister_effects.
+
+2007-09-17  Michal Hruby  <michal.mhr@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-effects.c:
+	Updated AwnAppletSimple to use hover effect by default (applets can
+	disable).
+	Disabled OPENING effect for applets, because tasks don't work
+	correctly because of it.
+
+2007-09-12  Neil J. Patel  <njpatel@gmail.com>
+	
+	Merged Julien Lavergne's awn-restructure branch.
+
+007-09-12  Neil J. Patel  <njpatel@gmail.com>
+	
+	Merged Michal Hruby's libawn-effects branch.
+
+007-09-16  haytjes <hv1989@gmail.com>
+
+	* src/awn-bar.c:
+	Updated look of rounded corners, when it is standing left or right against the wall (end of the screen)
+
+2007-09-16  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-title.c:
+	Let the title never go offscreen on the left.
+
+2007-09-16  haytjes <hv1989@gmail.com>
+
+	* src/awn-bar.c:
+	* src/awn-gconf.c:
+	* src/awn-gconf.h:
+	* src/awn-window.c:
+	* src/main.c:
+	Added a gconf entry: /bar/bar_pos
+	
+	Now you can move AWN on the X rule. So horizontal. It's a float between 0 and 1 that says where it needs to stand. 
+	0.5 is in the middle and the current behaviour. But now it is possible to set it left (0.0) or right (1.0) or something between...
+	Not added to awnManager, because it isn't tested enough.
+
+2007-09-15  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* awn-manager/awnApplet.py:
+	* awn-manager/awnLauncher.py:
+	Fixes bug #134913: Stock icon in applet.desktop does not show in
+	awn-manager.
+
+2007-09-14  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Some fixes in awn-applet-simple
+
+2007-09-14  haytjes <hv1989@gmail.com>
+
+	* src/awn-bar.c:
+	Fixes bug #139342: Drawing bug on top border
+	(thank you Andrea Cimitan)
+
+2007-09-14  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	* src/main.c:
+	Finally totally dynamical resizing. There was again a bug in it. Now that's solved again and now awn-applet-simple also resizes dynamical
+
+2007-09-13  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Fixes bug #138148: python applet dialogs spam errors
+
+2007-09-13  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	Let AWN come up again when you go over the place where the bar was (not only the middle anymore)
+	(for devs: let the hotspot function again, it didn't had the right dimensions)
+
+2007-09-13  haytjes <hv1989@gmail.com>
+
+	patch by: Gerd Kohlberger
+
+	* libawn/awn-applet-dialog.c:
+	* libawn/awn-applet.c:
+	* libawn/awn-applet.h:
+	* libawn/awn-cairo-utils.c:
+	* libawn/awn-plug.c:
+	* src/awn-gconf.c:
+	* src/awn-task.c:
+	* src/main.c:
+	
+	Fixes bug #138050: [Patch] Fix compiler warnings
+
+2007-09-13  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	bug #138341: let gtk under 2.10 work again.
+
+2007-09-12  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Use Gtk theme colours so everythign looks nice.
+		
+	* src/awn-applet-manager.c:
+	* src/awn-bar.c:
+	* src/awn-hotspot.c:
+	* src/awn-task-manager.c:
+	Fix compiler warnings.
+
+2007-09-11  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixed icon offset during bar resize.
+
+2007-09-09  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/python-test/python-test.py:
+	Added a small test which keeps changing the icons, on hover in and
+	hover out. You can use this to measure memory usage.
+
+	* intltool-extract.in:
+	* intltool-merge.in:
+	* intltool-update.in:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Added an awn_applet_simple_set_temp_icon, for applets which chaange the icon
+	multiple times. AwnAppletSimple takes control of these pixbufs, and makes
+	sure that they are free'd when the applet set's a new icon.
+	If you want your icons to stay around, keep using
+	awn_applet_simple_set_icon.
+
+	* pyawn/NOTES:
+	* pyawn/awn.defs:
+	Updated bindings for new AwnAppletSimple function.
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	typo
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	Make sure xcompmgr get detected. It gets only detected on startup. So Avant-window-navigator needs to be started AFTER xcompmgr.
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	* libawn/awn-title.c:
+	part 2 of bug #137714. Titles are now back on the right place.
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	* src/awn-utils.c:
+	part 1 of bug #137714. This will make the auto-hide feature again good.
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	patch by: Ryan
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	* src/awn-gconf.c:
+	* src/awn-gconf.h:
+	* src/awn-utils.c:
+	* src/awn-window.c:
+	Keep dock below maximized windows when not in use
+
+2007-09-06  Neil J. Patel  <njpatel@gmail.com>
+
+	* awn-applet-activation/main.c:
+	Allow desktop files for python applets to point to relative folders, so
+	Exec=myapplet/applet.py instead of
+	Exec=/usr/local/lib/awn/applets/myapplet/applet/py
+
+2007-09-06  haytjes <hv1989@gmail.com>
+
+	* src/main.c:
+	Fixes bug #129750: Bar background is above icons on startup
+
+2007-09-05  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/python-test/python-test.py:
+	Add a simple memory test for AwnAppletSimple
+
+	* libawn/awn-applet-simple.c:
+	Make sure the pixbuf's are unref'd correctly, so they don't leak memory.
+
+2007-09-05  haytjes <hv1989@gmail.com>
+
+	* src/awn-gconf.c:
+	* src/main.c:
+	Fixes bug #133702: Wrong awn location when using xrandr 1.2
+
+2007-09-05  haytjes <hv1989@gmail.com>
+
+	* src/awn-gconf.h:
+	* src/main.c:
+	fixes bug #128383: Fail gracefully in a non-composited environment
+	Now Awn looks if a compositing manager is running. If none is running it will give a message to start one. 
+	It will not fail just print the message and wait till an compositing manager is started.
+	That way there is no problem if Awn is started automatically, but before compiz is initialized.
+
+2007-09-05  haytjes <hv1989@gmail.com>
+
+	* src/awn-task.c:
+	* src/awn-x.c:
+	* src/awn-x.h:
+	fixes bug #129806: Different custom icons for OpenOffice applications 
+	and hopefull some other problems with customised icons
+	Remark: It could be that you need to set some customised icons again.
+
+2007-09-04  haytjes <hv1989@gmail.com>
+
+	* awn-manager/window.glade:
+	* src/awn-bar.c:
+	* src/main.c:
+	(fixes bug #136858 : resizing without restart)
+
+2007-09-04  haytjes <hv1989@gmail.com>
+
+	* applets/trash/trashapplet.c:
+	Let the trashapplet resize dynamically (without restart)
+	(Is necessary for the upcoming change: resizing without restart)
+
+2007-09-02  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/notification-area/Makefile.am:
+	* applets/notification-area/notification-area.desktop.in.in:
+	Revert the Makefile.am to the correct way of dealing with desktop files.
+
+2007-09-02  Neil J. Patel  <njpatel@gmail.com>
+
+	* acinclude.m4:
+	It would help if I included this.
+
+2007-09-01  Neil J. Patel  <njpatel@gmail.com>
+
+	* Makefile.am:
+	* applets/Makefile.am:
+	* applets/python-test/Makefile.am:
+	* applets/python-test/python-test.desktop.in.in:
+	* applets/python-test/python-test.py:
+	* awn-applet-activation/Makefile.am:
+	* awn-applet-activation/awn-plug.c:
+	* awn-applet-activation/awn-plug.h:
+	* awn-applet-activation/main.c:
+	* config.h.in:
+	* configure.in:
+	* intltool-extract.in:
+	* intltool-merge.in:
+	* intltool-update.in:
+	* libawn/Makefile.am:
+	* libawn/awn-applet-gconf.h:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-enum-types.c.in:
+	* libawn/awn-enum-types.h.in:
+	* libawn/awn-plug.c:
+	* libawn/awn-plug.h:
+	* pyawn/Makefile.am:
+	* pyawn/NOTES:
+	* pyawn/__init__.py:
+	* pyawn/awn.defs:
+	* pyawn/awn.override:
+	* pyawn/awnmodule.c:
+	Python bindings. Woo!
+
+2007-08-28  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* libawn/awn-applet-simple.c:
+	Fixes a memory leak in awn_applet_simple_set_icon.
+
+2007-08-25  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/Makefile.am:
+	* libawn/awn-applet-simple.c:
+	* libawn/awn-applet-simple.h:
+	Added an AwnAppletSimple, which should suffice for 90% if the use cases for
+	applets, and should make applet developers lifes much easier. See the
+	updated main-menu applet to see how to use this *very* simple applet.
+
+2007-08-25  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: Julien Lavergne <bot4gilir@yahoo.fr> 
+
+	* libawn/awn-applet-gconf.h:
+	Fix include.
+
+2007-08-25  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task-manager.c:
+	Check string exists before calling strcmp.
+
+2007-08-25  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	* po/el_GR.po:
+	Remove el_GR.po in place for el.po.
+
+2007-08-23  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task-manager.c:
+	* src/awn-task-manager.h:
+	* src/awn-task.c:
+	Fix the alignment of Beryl/Compiz window previews.
+
+2007-08-23  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixed: Awn crashes when adding a broken launcher.
+
+2007-08-23  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixed an issue with icon width.
+	Removed icon_loader_get_spec.
+
+2007-08-23  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixes the width of a new task.
+
+2007-08-23  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixed a crash when closing applications.
+
+2007-08-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-title.c:
+	Few more timing fixes.
+
+2007-08-22  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-title.c:
+	* src/main.c:
+	Some window-title fixes, should hide better now.
+
+2007-08-22  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixes bug #133842: Custom icons reset upon resize.
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Nicolas de BONFILS
+
+	* applets/trash/trashapplet.c:
+	* applets/trash/trashapplet.h:
+	Trash applet uses libawn title instead of gtk tooltips (bug #133497).
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-bar.c:
+	Fixes the width of the bar when using 3d-look.
+	Fixes bug #131819: Bar becomes too narrow when no Icons are present on
+	it in 3D View.
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: isaacj87
+
+	* awn-manager/awnPreferences.py:
+	* awn-manager/window.glade:
+	Adds an option to set arrow offset in Awn-manager (bug #133366).
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Michal Hruby
+
+	* src/awn-task.c:
+	Fixes bug #133506: Simpler bounce implementation.
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Michal Hruby
+
+	* src/awn-bar.c:
+	Fixes bug #133009: Separator flickering when opening/closing task.
+
+2007-08-21  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: haytjes
+
+	* awn-manager/awnPreferences.py:
+	Fixes bug #133526: Awn-manager crashes with gconf 2.14.
+
+2007-08-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-title.c:
+	Fix a bunch of problems, including the init, which was slowing down the
+	effects.
+
+	* src/awn-utils.c:
+	Don't call gtk_widget* on title, as it leaves an artifact on screen.
+	
+2007-08-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-title.c:
+	Fix title height issue.
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Fixed positioning bug #132137.
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/Makefile.am:
+	* libawn/awn-cairo-utils.c:
+	* libawn/awn-cairo-utils.h:
+	* libawn/awn-title.c:
+	* libawn/awn-title.h:
+	* src/Makefile.am:
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	* src/awn-task.h:
+	* src/awn-title.c:
+	* src/awn-title.h:
+	Moved the entire window title object into libawn.
+	At the same time, rewrote it to be much simpler, and hopefully close
+	bug#128818 (window titles don't disappear).
+	Also, now that it is in libawn, applets can also use it.
+	Also moved AwnColor into awn-cairo-utils, and added a method to convert 
+	from RRGGBBAA to AwnColor in the same file.
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* data/avant-window-navigator.svg:
+	Update the icons using the new svg provided by Nicolas.Rougier (thanks).
+	The main svg is also included, if anyone can make better sized png's for it!  
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* Makefile.am:
+	* avant-applets/Makefile.am:
+	* avant-applets/avant-applets.glade:
+	* avant-applets/avant-applets.in.py:
+	* avant-launchers/Makefile.am:
+	* avant-launchers/avant-launchers.glade:
+	* avant-launchers/avant-launchers.in.py:
+	* avant-preferences/Makefile.am:
+	* avant-preferences/avant-preferences.desktop.in.in:
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/test:
+	* avant-preferences/window.glade:
+	* avant-preferences/window.glade.h:
+	* awn-manager/Makefile.am:
+	* awn-manager/awn-manager.desktop.in.in:
+	* awn-manager/awnApplet.py:
+	* awn-manager/awnDefs.in.py:
+	* awn-manager/awnLauncher.py:
+	* awn-manager/awnManager.in.py:
+	* awn-manager/awnPreferences.py:
+	* awn-manager/awnTheme.py:
+	* awn-manager/window.glade:
+	* configure.in:
+	* libawn/awn-applet-dialog.c:
+	* po/POTFILES.in:
+	* src/main.c:
+	Merged awn-manager into core.
+	Removed old configuration tools.
+	Updated Awn to call awn-manher instead.
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Don't add extra padding to the top if there is no title.
+
+2007-08-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Better drawing and positioning.
+	Entire popup now has a white border.
+	Bottom arrow successfully places itseflf over the corressponding applet, 
+	exactly in the middle.
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Fixes bug #132452 (dialog doesn't make space fore the title).
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Fixes bug #132137 (dialog position doesn't update).
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: Julien Lavergne <bot4gilir@yahoo.fr>
+	* plugins/Rhythmbox/artdisplay-awn/AmazonCoverArtSearch.py:
+	* plugins/Rhythmbox/artdisplay-awn/CoverArtDatabase.py:
+	* plugins/Rhythmbox/artdisplay-awn/Loader.py:
+	* plugins/Rhythmbox/artdisplay-awn/LocalCoverArtSearch.py:
+	* plugins/Rhythmbox/artdisplay-awn/PodcastCoverArtSearch.py:
+	* plugins/Rhythmbox/artdisplay-awn/__init__.py:
+	* plugins/Rhythmbox/artdisplay-awn/__init__.py~:
+	* plugins/Rhythmbox/artdisplay-awn/rhythmbox-missing-artwork.svg:
+	Sync art display plugin with upstream.
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/Makefile.am:
+	* src/awn-app.c:
+	* src/awn-app.h:
+	* src/awn-task.c:
+	* src/awn-win-manager.c:
+	* src/awn-win-manager.h:
+	* src/main.c:
+	Removed awn-app and awn-win-manager as they are no longer used, and are very
+	out-of-date.
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	* po/ca.po:
+	* po/cs.po:
+	* po/he.po:
+	* po/hr.po:
+	* po/hu.po:
+	* po/nb.po:
+	* po/nl.po:
+	* po/pt_BR.po:
+	* po/ro.po:
+	* po/ru.po:
+	* po/sk.po:
+	* po/sr.po:
+	* po/sv.po:
+	* po/zh_CN.po:
+	Merged & updated lot's and lot's of translations! Yay launchpad.
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	* po/tr.po:
+	Merged updated turkish translation.
+
+2007-08-17  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: Michael Hynonen <mhynonen@gmail.com>
+
+	* awn-applet-activation/awn-plug.c:
+	* awn-applet-activation/main.c:
+	* src/awn-app.c:
+	* src/awn-applet-manager.c:
+	* src/awn-applet-proxy.c:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	* src/awn-x.c:
+	* src/main.c:
+	Fixes a bunch of memory leaks caused by not freeing GError's.
+
+2007-08-15  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Michal Hruby
+
+	* src/awn-task.c:
+	Fixes bug #130363: Double speed bounce with autohide.
+
+2007-08-15  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixes bug #131938: Autohide Drag & No Drop.
+
+2007-08-15  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Michal Hruby
+
+	* src/awn-gconf.h:
+	* src/awn-task.c:
+	* src/awn-utils.c:
+	Fixes bug #132516: Autohide can't be interrupted + fix.
+
+2007-08-13  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	* po/es.po:
+	* po/ru_RU.po:
+	* po/sv.po:
+	Update translations.
+
+2007-08-13  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	Move more init calls to g_object_new.
+	Add in some better positioning.
+	Fix some (but no all) redrawing.
+
+2007-08-13  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/Makefile.am:
+	* libawn/awn-applet-dialog.c:
+	* libawn/awn-applet-dialog.h:
+	Lots of fixes, size, colour, GObject stuff, padding.
+
+2007-08-11  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Timon_and_Pumba
+
+	* libawn/awn-applet-dialog.c:
+	Fixes bug #131547: Libawn event propagation.
+
+2007-08-11  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* applets/trash/trashapplet.c:
+	Fixes bug #131827: Trash applet drop effect, reflection
+	moves in wrong direction.
+
+2007-08-11  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: ziegs
+
+	* src/awn-gconf.c:
+	* src/awn-gconf.h:
+	* src/awn-task.c:
+	Fixes bug #131738: Lower arrows position to add visibility.
+
+2007-08-09  haytjes <hv1989@gmail.com>
+
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	improvements on bug #128973: First icon on launcher larger.
+
+2007-08-09  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: Garoth
+
+	* src/awn-task.c:
+	Fixes bug #130232: Offscreen bouncing.
+
+2007-08-07  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-gconf.c:
+	* src/awn-gconf.h:
+	* src/awn-utils.c:
+	Adds an option to set a delay to auto hide. Use gconf-editor to
+	change key "auto_hide_delay" (time in milliseconds).
+
+2007-08-07  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-gconf.c:
+	* src/awn-task-manager.c:
+	* src/awn-task.c:
+	* src/main.c:
+	Fixes the bar resizing.
+
+2007-08-05  haytjes  <hv1989@gmail.com>
+
+	* avant-preferences/avant-preferences.in.py:
+	* src/awn-bar.c:
+	Fix: avant-preferences adapted to let it work with gconf 2.14 (my new code only worked on 2.18): 
+		not tested yet on 2.14: feel free to submit bugs.
+	Fix: separators now properly change height
+
+2007-08-04  Neil J. Patel  <njpatel@gmail.com>
+
+	patch by: Eskil Bylund
+
+	* applets/Makefile.am:
+	* data/Makefile.am:
+	* src/Makefile.am:
+	Fixes make dist.
+
+2007-08-04  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	* libawn/awn-applet-dialog.h:
+	Propagate the expose event properly to children.
+	Fix warning on return type.
+
+2007-08-04  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/awn-applet-dialog.c:
+	* libawn/awn-applet-dialog.h:
+	Updated to reflect correct codeing style.
+	Return a GtkWidget* not GtkWindow*.
+	Correctly declare #defines and methods (for easy wrapping).
+
+2007-08-04  haytjes  <hv1989@gmail.com>
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/window.glade:
+	Added a way to edit the icon_offset/bar_angle/bar_height in avant-preferenes
+
+2007-08-04  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task-manager.c:
+	Fixes bug #128973: First icon on launcher larger.
+
+2007-08-04  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-gconf.c:
+	Changed default font size to 11.
+
+2007-08-04  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: ryancr
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/window.glade:
+	* avant-preferences/window.glade.h:
+	* src/awn-gconf.c:
+	* src/awn-gconf.h:
+	* src/awn-title.c:
+	Allow Font Face selection. See bug #129977.
+
+2007-08-03  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: ryancr
+
+	* src/awn-gconf.c:
+	* src/awn-task.c:
+	* src/awn-x.c:
+	Update the custom-icons folder to new XDG spec.
+	NOTE: After this update your custom icons won't show up. You have to
+	give the following command to get them working again:
+	"cp -R ~/.awn ~/.config/awn"
+
+2007-08-03  haytjes  <hv1989@gmail.com>
+
+	* applets/trash/trashapplet.c:
+	* avant-applets/avant-applets.in.py:
+	Fixes bug #129827 Don't load twice the applets directory for 64 bits
+	Fixes bug #129787 "Emptying the Trash" dialog problems
+
+2007-08-02  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c:
+	Fixes bug #129678: Beryl/Compiz window previews don't work.
+
+2007-08-02  haytjes  <hv1989@gmail.com>
+
+	patch by: ryancr
+
+	* src/awn-window.c:
+	Add a name to the window (used for AWN Manager) see bug #129883
+
+2007-08-02  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	patch by: kevinbeard
+
+	* src/awn-task-manager.c:
+	Fixes bug #129703: Switching viewports via AWN does not update tasks.
+
+2007-08-01  haytjes  <hv1989@gmail.com>
+
+	* avant-preferences/avant-preferences.in.py:
+	Added some errors, when not all gconf entries are set. See bug #129639
+
+2007-08-01  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* applets/taskman.desktop.in.in:
+	Fixes a typo in Launcher/TaskManager applet.
+
+2007-08-01  haytjes  <hv1989@gmail.com>
+
+	* src/awn-task.c:
+	awn_task_set_width, awn_task_unset_custom_icon: fixed some issues that the reflect icon didn't equaled the normal icon
+
+2007-07-31  Anthony Arobone  <aarobone@gmail.com>
+	
+	* libawn/awn-cairo-utils.h:
+	* libawn/awn-cairo-utils.c:
+	Added license/author comment to the top of files
+
+2007-07-31  Neil J. Patel  <njpatel@gmail.com>
+
+	* README:
+	Updated.
+
+	* prepare-ChangeLog.pl:
+	Removed as no longer necessary :-).
+
+2007-07-31  Neil J. Patel  <njpatel@gmail.com>
+
+	* test:
+	Remove test files.	
+
+2007-07-30  Anthony Arobone  <aarobone@gmail.com>
+
+	* applets/notification-area/applet.c: (awn_applet_factory_initp):
+	* applets/separator/applet.c: (awn_applet_factory_init):
+	* applets/switcher/applet.c: (awn_applet_factory_initp):
+	* applets/trash/applet.c: (awn_applet_factory_initp):
+	* awn-applet-activation/awn-plug.c: (awn_plug_new):
+	* libawn/awn-applet.h:
+	Made applet hook func backwards comp
+
+2007-07-30  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/taskman.desktop:
+	* applets/trash/trash.desktop:
+	* awm.pc:
+	These should not be in here.
+
+2007-07-30  haytjes  <hv1989@gmail.com>
+
+	* src/awn-task.c: (draw):
+	Fixes the color of the active task
+
+2007-07-28  Neil J. Patel  <njpatel@gmail.com>
+
+	Merged patch by Anthony Arobone.
+
+	* applets/notification-area/applet.c: (awn_applet_factory_init):
+	* applets/separator/applet.c: (awn_applet_factory_init):
+	* applets/switcher/applet.c: (awn_applet_factory_init):
+	* applets/taskman.desktop:
+	* applets/trash/applet.c: (awn_applet_factory_init):
+	* applets/trash/trash.desktop:
+	* awn-applet-activation/awn-plug.c: (on_plug_embedded),
+	(on_size_changed), (awn_plug_init), (awn_plug_new):
+	* awn-applet-activation/awn-plug.h:
+	* awn.pc:
+	* configure.in:
+	* intltool-merge.in:
+	* libawn/Makefile.am:
+	* libawn/awn-applet-dialog.c: (awn_applet_dialog_class_init),
+	(awn_applet_dialog_init), (awn_applet_dialog_new),
+	(_on_alpha_screen_changed), (awn_applet_dialog_postion_reset),
+	(_on_realize), (_on_expose_event), (_on_key_press_event):
+	* libawn/awn-applet-dialog.h:
+	* libawn/awn-applet.c: (awn_applet_virtual_on_plug_embedded),
+	(awn_applet_virtual_on_size_changed), (awn_applet_class_init),
+	(awn_applet_new):
+	* libawn/awn-applet.h:
+	* libawn/awn-cairo-utils.c: (awn_cairo_rounded_rect):
+	* libawn/awn-cairo-utils.h:
+	* src/awn-applet-manager-dbus.xml:
+	* src/awn-applet-manager.c: (awn_applet_manager_class_init),
+	(on_awn_applet_manager_size_allocate), (awn_applet_manager_new):
+	* src/awn-applet-manager.h:
+	* src/awn-window.c: (_position_func):
+	Changes the way applets are init()'ed, so you can inhert from the AwnApplet
+	object. 
+	Adds a awn-applet-dialog which allows you to have a nice popup which stays
+	above your applet.
+	Adds some cairo utility functions into libawn.
+
+2007-07-26  haytjes  <hv1989@gmail.com>
+
+	* src/awn-utils.c: (_move_bar):
+	typo
+
+2007-07-26  haytjes  <hv1989@gmail.com>
+
+	* applets/notification-area/Makefile.am:
+	Sets the location right for making notification-area
+	-- the applet notification-area isn't changed => still buggy --
+
+2007-07-26  haytjes  <hv1989@gmail.com>
+
+	* src/awn-utils.c:
+	* src/xutils.c: (_wnck_read_icons_):
+	Fixes memory leak in _wnck_read_icons_
+	Fixes the CPU going up when AWN was hided
+
+2007-07-26  haytjes  <hv1989@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Fixes the positions of the separators
+
+2007-07-26  haytjes  <hv1989@gmail.com>
+
+	* src/awn-bar.c: (render_rect), (glass_engine), (pattern_engine),
+	(render):
+	* src/awn-task.c: (draw):
+	Fixes the look of the bar (icon_offset + bar_angle = 0)
+	Fixes the internal hi-lightborder
+	Calculates the extra width of the bar (instead of taking 40px)
+	Fixes the color of the horizontal bar
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c: (launch_hover_effect), (_task_fade_out_effect),
+	(launch_fade_out_effect), (_task_fade_in_effect),
+	(launch_fade_in_effect), (awn_task_proximity_in),
+	(awn_task_proximity_out), (awn_task_win_enter_out):
+	Fixes the fade effect.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* applets/notification-area/eggtraymanager.c:
+	(egg_tray_manager_get_child_title):
+	Fixes string signedness issue in notification-are applet.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-title.c: (render):
+	Fixes a memory leak when hovering over icons.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* applets/switcher/applet.c:
+	Fixes a translation issue in Switcher applet.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c: (_task_wnck_icon_changed),
+	(awn_task_update_icon), (awn_task_set_width),
+	(awn_task_set_custom_icon), (awn_task_unset_custom_icon),
+	(_task_choose_custom_icon):
+	Fixes reflection related memory leaks in awn-task.c.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* applets/trash/trashapplet.c: (trash_applet_destroy),
+	(update_icons), (draw):
+	* applets/trash/trashapplet.h:
+	Trashapplet loads the reflection only when the icon updates.
+
+2007-07-26  Miika-Petteri Matikainen  <miikapetteri@gmail.com>
+
+	* src/awn-task.c: (_task_destroy):
+	Fixes a memory leak in _task_destroy.
+
+2007-07-15  Neil J. Patel  <njpatel@gmail.com>
+
+	Patch by haytjes <hv1989@gmail.com>
+
+	* src/awn-bar.c: (render_rect), (render):
+	Fix rendering of the edge.
+
+	* src/awn-utils.c: (_move_bar), (awn_hide):
+	Fix auto hide support for icon_offset.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task.c: (_rounded_rect), (draw):
+	Make the highlight have rounded corners, and be the same colour as
+	the main border.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-x.c: (awn_x_set_strut):
+	Correct so it actually works!
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-x.c: (awn_x_set_strut):
+	Add the icon_offset to the strut property (so maximised windows don't
+	go behind the bar).
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Make the 'edge' colour that of the border colour.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Changed the color of the 'edge' to be the same as the second gradient,
+	just slightly lighter.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Doh, forgot separator applets.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Fix separator positioning issue.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task.c: (draw):
+	Stop task icons from drawing over the solid line at the bottom, need to
+	fix applets as well.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (render):
+	Added some width when angle > 0.
+	Made the front of the bar (when in 3d mode) solid, so it looks more 3d.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	Patch by Miika-Petteri Matikainen <miikapetteri@gmail.com>
+
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task.c: (launch_hover_effect):
+	Adds an option in gconf to disable bouncing effect.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	Patch by Miika-Petteri Matikainen <miikapetteri@gmail.com>
+
+	* applets/trash/trashapplet.c: (update_transfer_callback):
+	* awn-applet-activation/awn-plug.c:
+	* src/awn-window.c:
+	Fixes some compiler warnings.
+
+2007-07-14  Neil J. Patel  <njpatel@gmail.com>
+
+	Patch by haytjes <hv1989@gmail.com>
+
+	* applets/Makefile.am:
+	* applets/notification-area/applet.c: (tray_applet_refresh),
+	(tray_icon_added), (awn_applet_factory_init):
+	* applets/taskman.desktop:
+	* applets/trash/trash.desktop:
+	* applets/trash/trashapplet.c: (draw):
+	* avant-preferences/window.glade:
+	* awn.pc:
+	* libawn/awn-defines.h:
+	* src/awn-applet-manager.c: (awn_applet_manager_load_applets):
+	* src/awn-bar.c: (render_rect), (apply_perspective_x),
+	(apply_perspective_y), (render):
+	* src/awn-bar.h:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_task_manager_check_width):
+	* src/awn-task.c: (awn_task_init), (draw),
+	(_task_wnck_icon_changed), (awn_task_set_window),
+	(awn_task_set_launcher), (awn_task_refresh_icon_geometry),
+	(awn_task_update_icon), (awn_task_set_width),
+	(awn_task_set_custom_icon), (awn_task_unset_custom_icon),
+	(_task_choose_custom_icon):
+	* src/awn-title.c: (_position_window):
+	* src/awn-utils.c: (awn_hide):
+	* src/awn-win-manager.c: (_refresh), (on_proximity_in_event):
+	* src/awn-window.c: (_position_window):
+	* src/main.c: (resize):
+	Fixes lots of things.
+	Adds reflection support to the bar.
+	Allows the bar to have an angle, so it looks 3D.
+	Lots of other things, ask him :-).
+
+2007-06-24  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (_position_window):
+	* src/awn-task-manager.c: (on_height_changed):
+	* src/awn-task.c: (awn_task_set_width):
+	* src/main.c: (resize):
+
+2007-06-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-applet-manager.c: (awn_applet_manager_height_changed),
+	(awn_applet_manager_load_applets):
+	* src/awn-applet-manager.h:
+	* src/awn-task.c: (draw), (_task_choose_custom_icon):
+	* src/main.c: (main), (resize), (bar_height_changed):
+	Fixed positioning of progress and info labels on task.
+	Added initial support for dynamic resizing (doesn't work :-).
+
+2007-06-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-hotspot.c: (awn_hotspot_new), (render_pixmap):
+	* src/awn-task-manager.c: (on_height_changed),
+	(awn_task_manager_init):
+	* src/main.c: (main):
+	Made the hotspot for autohide 20px smaller on both sides, so as to not stop
+	hot-corners from working.
+
+2007-06-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* avant-applets/avant-applets.in.py:
+	Look in lib64 for applets as well :-).
+
+2007-06-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* avant-applets/avant-applets.glade:
+	Set avant-applets window NOT to skip the taskbar and pager.
+
+2007-06-23  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/trash/applet.c: (awn_applet_factory_init):
+	* applets/trash/trashapplet.c: (draw):
+	* awn-applet-activation/awn-plug.c: (awn_plug_new):
+	* src/awn-app.c: (awn_app_new), (on_icon_changed),
+	(awn_app_create_active_icon):
+	* src/awn-applet-manager.c: (_create_applet),
+	(awn_applet_manager_load_applets):
+	* src/awn-bar.c: (awn_bar_new), (render), (_position_window),
+	(resize):
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (awn_task_manager_set_task_icon_by_name),
+	(awn_task_manager_set_task_icon_by_xid):
+	* src/awn-task.c: (awn_task_init), (_task_opening_effect),
+	(icon_loader_get_icon_spec), (_task_destroy), (draw),
+	(awn_task_win_enter_in), (awn_task_win_enter_out),
+	(_task_wnck_icon_changed), (awn_task_set_window),
+	(awn_task_set_launcher), (awn_task_refresh_icon_geometry),
+	(awn_task_update_icon), (awn_task_set_width),
+	(awn_task_unset_custom_icon), (_task_choose_custom_icon):
+	* src/awn-title.c: (awn_title_new), (render), (_on_expose),
+	(_position_window), (awn_title_resize):
+	* src/awn-utils.c: (_move_bar), (awn_hide), (awn_show):
+	* src/awn-window.c: (awn_window_new), (_position_window):
+	* src/awn-x.c: (awn_x_set_strut), (awn_x_get_icon_for_window):
+	* src/main.c: (drag_leave_hot), (leave_notify_event):
+	Merged patch by Angafirith from the forums to enable Awn to be resized.
+	Cleaned up code in trash applet to reflect this change.
+	Fixed positioning problems which the patch did not deal with.
+
+2007-06-21  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task.c: (_task_show_prefs), (awn_task_create_menu):
+	Swapped the 'preferences' menu item for a 'Change icon' menuitem. Bug #231.
+
+2007-06-20  Neil J. Patel  <njpatel@gmail.com>
+
+	* data/avant-window-navigator.desktop.in.in:
+	Removed 'Application' category from desktop file, as it is not a valid
+	desktop category.
+
+2007-06-20  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/Makefile.am:
+	Added -shared flag to gcc
+
+2007-06-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/main.c: (main):
+	Check g_thread_supported () before calling g_thread_init ().
+
+2007-06-18  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/separator/applet.c: (expose), (awn_applet_factory_init):
+	Made separator draw a clear rectangle.
+
+	* configure.in:
+	* src/awn-applet-manager.c: (awn_applet_manager_load_applets):
+	* src/awn-applet-manager.h:
+	* src/awn-applet-proxy.h:
+	* src/main.c:
+	Some cleanup work.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-applet-manager.c: (awn_applet_manager_load_applets):
+	If there are no applets, add the task manager.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* libawn/Makefile.am:
+	Added $(AWN_LIBS) to LDADD.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+		* src/awn-task-manager.c: (_refresh_box):
+		Check that the task manager is valid.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-applet-manager.c: (_load_taskmanager), (_create_applet),
+	(awn_applet_manager_load_applets):
+	* src/main.c: (main):
+	Task manager is now an (internal) applet. So you can order it like
+	any other applet.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* applets/Makefile.am:
+	* applets/taskman.desktop:
+	An internal test applet.
+
+ * src/main.c: (main):
+ Swapped the threads_init function to be the first called.
+
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/main.c: (main):
+	Added a DBus thread init () function.
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* COPYING:
+	* applets/separator/Makefile.am:
+	* applets/separator/applet.c: (awn_applet_factory_init):
+	* applets/separator/separator.desktop.in.in:
+	* configure.in:
+	* libawn/awn-applet.c: (awn_applet_create_default_menu),
+	(awn_applet_expose_event):
+	* src/awn-applet-manager.c: (awn_applet_manager_load_applets),
+	(awn_applet_manager_new):
+	* src/awn-bar.c: (awn_bar_class_init), (awn_bar_init),
+	(awn_bar_new), (render), (_on_expose), (awn_bar_add_separator):
+	* src/awn-bar.h:
+	Added a separator applet, which works quite nicely :-).
+
+	* src/main.c: (main):
+	Made sure g_thread_init () is called;
+
+2007-06-16  Neil J. Patel  <njpatel@gmail.com>
+
+	* COPYING:
+	* INSTALL:
+	* Makefile.am:
+	* applets/Makefile.am:
+	* applets/notification-area/Makefile.am:
+	* applets/notification-area/applet.c: (tray_applet_refresh),
+	(tray_icon_added), (tray_icon_removed), (tray_icon_message_sent),
+	(tray_icon_message_cancelled), (awn_applet_factory_init):
+	* applets/notification-area/eggmarshalers.c:
+	(_egg_marshal_VOID__OBJECT_STRING_LONG_LONG),
+	(_egg_marshal_VOID__OBJECT_LONG):
+	* applets/notification-area/eggmarshalers.h:
+	* applets/notification-area/eggtraymanager.c:
+	(egg_tray_manager_get_type), (egg_tray_manager_init),
+	(egg_tray_manager_class_init), (egg_tray_manager_finalize),
+	(egg_tray_manager_set_property), (egg_tray_manager_get_property),
+	(egg_tray_manager_new), (egg_tray_manager_plug_removed),
+	(egg_tray_manager_handle_dock_request), (pending_message_free),
+	(egg_tray_manager_handle_message_data),
+	(egg_tray_manager_handle_begin_message),
+	(egg_tray_manager_handle_cancel_message),
+	(egg_tray_manager_handle_event), (egg_tray_manager_window_filter),
+	(egg_tray_manager_unmanage),
+	(egg_tray_manager_set_orientation_property),
+	(egg_tray_manager_manage_xscreen),
+	(egg_tray_manager_manage_screen),
+	(egg_tray_manager_check_running_xscreen),
+	(egg_tray_manager_check_running),
+	(egg_tray_manager_get_child_title),
+	(egg_tray_manager_set_orientation),
+	(egg_tray_manager_get_orientation):
+	* applets/notification-area/eggtraymanager.h:
+	* applets/notification-area/notification-area.desktop.in.in:
+	* applets/switcher/Makefile.am:
+	* applets/switcher/applet.c: (on_rows_changed), (on_width_changed),
+	(on_height_changed), (on_close_clicked), (show_prefs),
+	(on_button_press_event), (awn_applet_factory_init):
+	* applets/switcher/switcher.desktop.in.in:
+	* applets/switcher/switcher.schemas.in:
+	* applets/trash/Makefile.am:
+	* applets/trash/applet.c: (open_trash), (empty_trash), (show_help),
+	(show_about), (applet_button_release), (awn_applet_factory_init):
+	* applets/trash/trash-monitor.c: (trash_monitor_get_type),
+	(trash_monitor_class_init), (trash_monitor_init),
+	(trash_monitor_get), (volume_mounted_callback),
+	(volume_unmount_started_callback), (trash_dir_changed),
+	(find_directory_callback), (get_trash_volume), (add_volume),
+	(remove_volume), (readd_volumes),
+	(trash_monitor_recheck_trash_dirs), (trash_monitor_empty_trash),
+	(count_items), (trash_changed_notify),
+	(trash_changed_queue_notify), (trash_monitor_get_item_count),
+	(main):
+	* applets/trash/trash-monitor.h:
+	* applets/trash/trash.desktop:
+	* applets/trash/trash.schemas.in:
+	* applets/trash/trashapplet.c: (trash_applet_class_init),
+	(trash_applet_init), (trash_applet_destroy),
+	(trash_applet_size_allocate), (trash_applet_new), (update_icons),
+	(on_awn_height_changed), (on_awn_orient_changed), (draw),
+	(trash_applet_expose_event), (trash_applet_button_release),
+	(trash_applet_key_press), (_bounce_baby),
+	(trash_applet_drag_leave), (trash_applet_drag_motion),
+	(item_count_changed), (trash_applet_update),
+	(trash_applet_queue_update), (trash_applet_theme_change),
+	(error_dialog), (update_transfer_callback), (confirm_empty_trash),
+	(on_empty_trash_cancel), (trash_applet_do_empty),
+	(trash_applet_open_folder), (trash_applet_show_help),
+	(trash_applet_show_about), (confirm_delete_immediately),
+	(trash_applet_drag_data_received):
+	* applets/trash/trashapplet.glade:
+	* applets/trash/trashapplet.h:
+	* applets/trash/xstuff.c: (panel_atom_get),
+	(get_typed_property_data), (xstuff_is_compliant_wm),
+	(xstuff_net_wm_supports), (xstuff_set_no_group),
+	(xstuff_set_pos_size), (xstuff_set_wmspec_dock_hints),
+	(xstuff_set_wmspec_strut), (xstuff_delete_property),
+	(draw_zoom_animation), (xstuff_zoom_animate),
+	(xstuff_get_current_workspace), (xstuff_grab_key_on_all_screens):
+	* applets/trash/xstuff.h:
+	* avant-applets/Makefile.am:
+	* avant-applets/avant-applets.glade:
+	* avant-applets/avant-applets.in.py:
+	* awn-applet-activation/awn-plug.c: (on_plug_embedded),
+	(on_orient_changed), (on_height_changed), (on_delete_notify),
+	(on_destroy_applet), (on_applet_deleted),
+	(on_alpha_screen_changed), (awn_plug_expose_event),
+	(awn_plug_class_init), (awn_plug_init), (awn_plug_finalize),
+	(awn_plug_new):
+	* awn-applet-activation/awn-plug.h:
+	* awn-applet-activation/main.c: (main):
+	* awn.pc:
+	* configure.in:
+	* intltool-merge.in:
+	* libawn/Makefile.am:
+	* libawn/awn-applet-gconf.c: (awn_applet_gconf_get_client),
+	(awn_applet_gconf_get_full_key), (awn_applet_gconf_set_bool),
+	(awn_applet_gconf_set_int), (awn_applet_gconf_set_string),
+	(awn_applet_gconf_set_float), (awn_applet_gconf_set_list),
+	(awn_applet_gconf_set_value), (awn_applet_gconf_get_bool),
+	(awn_applet_gconf_get_int), (awn_applet_gconf_get_string),
+	(awn_applet_gconf_get_float), (awn_applet_gconf_get_value),
+	(awn_applet_gconf_get_list):
+	* libawn/awn-applet-gconf.h:
+	* libawn/awn-applet.c: (on_delete_selected),
+	(awn_applet_create_default_menu), (awn_applet_get_orientation),
+	(awn_applet_get_height), (awn_applet_get_preferences_key),
+	(awn_applet_associate_schemas_in_dir),
+	(awn_applet_add_preferences), (awn_applet_expose_event),
+	(awn_applet_set_property), (awn_applet_get_property),
+	(awn_applet_class_init), (awn_applet_init), (awn_applet_finalize),
+	(awn_applet_new):
+	* libawn/awn-applet.h:
+	* libawn/awn-defines.h:
+	* src/Makefile.am:
+	* src/awn-applet-manager-dbus.xml:
+	* src/awn-applet-manager.c: (awn_applet_manager_quit),
+	(awn_applet_manager_load_applets), (_create_applet),
+	(_zero_applets), (_kill_applets),
+	(awn_applet_manger_refresh_applets),
+	(awn_applet_manager_delete_applet), (awn_applet_manager_dispose),
+	(awn_applet_manager_class_init), (awn_applet_manager_init),
+	(awn_applet_manager_new):
+	* src/awn-applet-manager.h:
+	* src/awn-applet-proxy.c: (awn_applet_proxy_exec),
+	(on_awn_applet_proxy_plug_added),
+	(on_awn_applet_proxy_plug_removed), (awn_applet_proxy_set_orient),
+	(awn_applet_proxy_set_height), (awn_applet_proxy_set_property),
+	(awn_applet_proxy_get_property), (awn_applet_proxy_class_init),
+	(awn_applet_proxy_init), (awn_applet_proxy_finalize),
+	(awn_applet_proxy_new):
+	* src/awn-applet-proxy.h:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-hotspot.c:
+	* src/awn-window.c: (awn_window_new):
+	* src/awn-window.h:
+	* src/main.c: (main), (applets_function), (close_function),
+	(create_menu):
+	* src/xutils.c: (_wnck_get_client_type):
+	Initial move to applets infrastructure. 
+
+2007-05-25  Neil J. Patel  <njp@gmail.com>
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/window.glade:
+	Added panel mode, auto-hide and fade effect options thanks to patch by
+	Michaël Pietje.
+
+2007-05-22  Neil J Patel  <njpatel@gmail.com>
+
+	* avant-launchers/avant-launchers.in.py:
+	Fixed error when it can't find desktop files.
+
+2007-05-20  Neil J Patel  <njpatel@gmail.com>
+
+	* Makefile.am:
+	* avant-launchers/Makefile.am:
+	* avant-launchers/avant-launchers.glade:
+	* avant-launchers/avant-launchers.in.py:
+	* configure.in:
+	* src/awn-task-manager.c: (awn_task_manger_refresh_launchers):
+	* src/main.c: (launcher_function), (create_menu):
+	Added a basic GUI for configuring launcher positions. Accessable
+	through the right-click menu on any free part of the bar.
+
+2007-05-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task-manager.c: (_task_manager_drag_data_recieved),
+	(awn_task_manger_refresh_launchers), (awn_task_manager_init):
+	* src/awn-task.c: (awn_task_get_item):
+	* src/awn-task.h:
+	Changing the position or launchers in the gconf menu will
+	automatically update the positions of the launchers in Awn.
+
+2007-05-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-bar.c: (glass_engine), (render):
+	* src/awn-title.c: (render):
+	Merged patch by Andrea Cimitan which fixes some cairo drawing.
+
+2007-05-19  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-window.c: (awn_window_new):
+	Merged patch by Ado Papas whihc should fix the issues when the window
+	manager ignores Awn's requests to activate windows etc.
+
+2007-05-13  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-task.c: (_task_choose_custom_icon),
+	(on_change_icon_clicked), (_task_show_prefs):
+	* src/awn-x.c: (awn_x_get_icon_for_window):
+	Brand new custom icon interface which actually works :).
+
+2007-05-12  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task-manager.c: (awn_task_manager_set_task_icon_by_xid),
+	(awn_task_manager_unset_task_icon_by_xid),
+	(awn_task_manager_set_progress_by_xid),
+	(awn_task_manager_set_info_by_xid),
+	(awn_task_manager_unset_info_by_xid):
+	* src/awn-x.c: (awn_x_get_icon):
+	* src/inlinepixbufs.h:
+	Use own own default icons for windows without icon.
+
+2007-05-12  Neil J. Patel  <njpatel@gmail.com>
+
+	* src/awn-task-manager.c:
+	(awn_task_manager_add_task_menu_item_by_name),
+	(awn_task_manager_add_task_check_item_by_name):
+	* src/awn-task.c: (awn_task_button_press), (activate_window),
+	(awn_task_add_menu_item), (awn_task_add_check_item),
+	(awn_task_set_check_item):
+	Merged patch by Ado Paps which tells wnck to raise the transient
+	window rather than the main window when activating.
+
+	* src/awn-task.h:
+	* src/awn-utils.c: (_move_bar):
+	(All)Merged a warnings patch by Gerd Kohlberger
+
+2007-05-12  Neil J. Patel  <njpatel@gmail.com>
+
+	* configure.in:
+	Added Finish translation.
+
+2007-05-12  Neil J. Patel  <njpatel@gmail.com>
+
+	* intltool-extract.in:
+	* intltool-merge.in:
+	* intltool-update.in:
+	* src/awn-bar.c: (awn_bar_init), (render),
+	(awn_bar_set_draw_separator):
+	* src/awn-bar.h:
+	* src/awn-gconf.c: (awn_load_color):
+	Merged a pacth by Diego Rivera which cleans up the GConf keys.
+
+	* src/awn-task-manager.c:
+	Merged a patch by Diego Rivera <diego@rivera.net> which takes a saner
+	approach to separator drawing.
+	* src/awn-window.c: (_on_expose):
+	* src/main.c:
+
+2007-03-22  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Added translations
+	* Fixed some resizing issues
+
+2007-03-21  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Better info handling on the bar, swapped circle for rectangle.
+
+2007-03-21  Neil J. Patel  <njpatel@gmail.com>
+
+	* Bar now automatically resizes when it is too big for screen
+
+
+2007-03-21  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Better auto-hide animation.
+
+2007-03-21  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Additional launcher->window matching code, should now work for most
+	  apps.
+
+2007-03-21  Varun Ratnakar  
+
+	* Support for international fonts in title 
+
+2007-03-21  Neil J. Patel  <njpatel@gmail.com>
+
+	* Heavily debugged auto-hide. Should be a bit better now.
+
+2007-03-20  Neil J. Patel  <njpatel@gmail.com>
+
+	* Beryl Thumbnailer support
+
+2007-03-09  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Has support for adding menu items through D-Bus. 
+
+2007-03-07  Neil Jagdish Patel   <njpatel@gmail.com>
+
+	* Listens to theme change signals and updates the bar as required.
+
+2007-03-07  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Auto-hide now supports D&D
+
+2007-03-07  Neil J. Patel  <njpatel@gmail.com>
+
+	* Cleaned up auto-hide somewhat. Needs more testing
+
+2007-03-07  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Merged an excellant patch by James Willcox (snorp_AT_snorp_DOT_net)
+	  that makes the hover-bouncing algorithm much better
+	
+
+2007-03-07  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Cleaned up positioning code in awn-window.c
+	* Fixed memory leak in awn-x.c
+	* Fixed starup errors (GDK_IS_DRAWABLE)
+	* Fixed separator positon errorsi
+
+
+2007-03-07  Christian Kirbach  <christian.kirbach@googlemail.com>
+
+	reviewed by: Neil J. Patel
+
+	* Patch fixed 80+ compiler warnings.
+	* njpatel fixed the rest, now about 2-3 warnings when compiling.
+	
+2007-03-07  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	* Updated TODO
+ 
+2007-02-25  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Added autohide support
+
+	* src/Makefile.am:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-hotspot.c: (awn_hotspot_class_init), (awn_hotspot_init),
+	(awn_hotspot_new), (awn_hotspot_destroy),
+	(_on_alpha_screen_changed), (render), (render_pixmap),
+	(do_shape_combine_mask), (_update_input_shape), (_on_expose),
+	(_on_configure), (_position_window):
+	* src/awn-hotspot.h:
+	* src/awn-task-manager.c: (_find_launcher), (awn_task_manager_new):
+	* src/awn-task.c: (_shell_done), (awn_task_create_menu):
+	* src/awn-utils.c: (hide_window), (show_window), (awn_hide),
+	(awn_show):
+	* src/awn-utils.h:
+	* src/main.c: (main), (enter_notify_event), (leave_notify_event):
+
+2007-02-25  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* src/Makefile.am:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-hotspot.c: (awn_hotspot_class_init), (awn_hotspot_init),
+	(awn_hotspot_new), (awn_hotspot_destroy),
+	(_on_alpha_screen_changed), (render), (render_pixmap),
+	(do_shape_combine_mask), (_update_input_shape), (_on_expose),
+	(_on_configure), (_position_window):
+	* src/awn-hotspot.h:
+	* src/awn-task-manager.c: (_find_launcher), (awn_task_manager_new):
+	* src/awn-task.c: (_shell_done), (awn_task_create_menu):
+	* src/awn-utils.c: (hide_window), (show_window):
+	* src/awn-utils.h:
+	* src/main.c: (main), (enter_notify_event), (leave_notify_event):
+
+2007-02-24  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Added Dbus support
+
+	* avant-preferences/Makefile.in:
+	* configure.in:
+	* data/active/Makefile.in:
+	* plugins/Rhythmbox/README:
+	* plugins/Rhythmbox/artdisplay-awn.rb-plugin:
+	* plugins/Rhythmbox/artdisplay-awn/AmazonCoverArtSearch.py:
+	* plugins/Rhythmbox/artdisplay-awn/CoverArtDatabase.py:
+	* plugins/Rhythmbox/artdisplay-awn/Loader.py:
+	* plugins/Rhythmbox/artdisplay-awn/__init__.py:
+	* src/Makefile.am:
+	* src/awn-dbus.xml:
+	* src/awn-task-manager.c:
+	(awn_task_manager_update_separator_position), (_dbus_find_task),
+	(__find_by_name), (__find_by_xid),
+	(awn_task_manager_set_task_icon_by_name),
+	(awn_task_manager_set_task_icon_by_xid),
+	(awn_task_manager_unset_task_icon_by_name),
+	(awn_task_manager_unset_task_icon_by_xid),
+	(awn_task_manager_set_progress_by_name),
+	(awn_task_manager_set_progress_by_xid),
+	(awn_task_manager_set_info_by_name),
+	(awn_task_manager_set_info_by_xid),
+	(awn_task_manager_unset_info_by_name),
+	(awn_task_manager_unset_info_by_xid),
+	(awn_task_manager_class_init), (awn_task_manager_init):
+	* src/awn-task.c: (awn_task_init), (_rounded_rectangle),
+	(_rounded_corners), (draw), (_task_wnck_name_changed),
+	(awn_task_set_custom_icon), (awn_task_unset_custom_icon),
+	(awn_task_set_progress), (awn_task_set_info),
+	(awn_task_unset_info):
+	* src/awn-task.h:
+	* src/main.c: (main):
+
+2007-02-21  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Added a fade_effect to the hover effects
+
+	* README:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_task_refresh), (_refresh_box),
+	(awn_task_manager_update_separator_position):
+	* src/awn-task.c: (_task_hover_effect2), (launch_hover_effect),
+	(draw):
+
+2007-02-20  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Cleaned up a few things, separator should vanish whent there are no tasks.
+
+	* src/awn-task-manager.c: (_task_refresh), (_refresh_box),
+	(awn_task_manager_update_separator_position):
+	* src/awn-task.c: (_task_hover_effect2), (launch_hover_effect),
+	(draw):
+
+2007-02-20  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Applied patch from trevi55 for better click-control. Changed middle-click of a launcher to launch a new instance of that application.
+
+	* src/awn-task.c: (awn_task_launch_unique),
+	(awn_task_button_press):
+	* src/main.c: (button_press_event):
+
+2007-02-20  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Applyed patch by trevi55 to fix separator size
+
+	* src/awn-bar.c: (render):
+
+2007-02-20  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Added patche by trevi55 to have notifcation on window title change.
+
+	* src/awn-app.c: (on_button_press_event):
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task.c: (awn_task_init), (launch_launched_effect),
+	(icon_loader_get_icon_spec), (_load_pixbufs),
+	(launch_hover_effect), (_task_change_name_effect),
+	(_launch_name_change_effect), (_task_wnck_name_hide),
+	(_task_wnck_name_changed), (awn_task_set_window):
+
+2007-02-16  Neil Jagdish Patel  <njp@Fedora>
+
+	Optionally can behave like a panel (windows cannot maximise over/under the bar).
+
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-window.c: (_position_window):
+
+2007-02-16  Neil Jagdish Patel  <njp@Fedora>
+
+	Merged "keep_above" patch by Vickor Gal. Title should stay above other windows now.
+
+	* README:
+	* src/awn-title.c: (awn_title_new), (awn_title_show):
+
+2007-02-14  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Sets _NET_WM_STRUT & _NEW_WM_STRUT_PARTIAL so maximised windows dont go underneath it!
+
+	* README:
+	* src/awn-bar.c: (render):
+	* src/awn-task.c: (awn_task_init), (icon_loader_get_icon_spec),
+	(_load_pixbufs), (_task_hover_effect3), (awn_task_set_launcher):
+	* src/awn-window.c: (awn_window_init), (_position_window):
+	* src/awn-x.c: (awn_x_set_strut):
+	* src/awn-x.h:
+	* src/main.c: (main), (drag_motion), (enter_notify_event),
+	(leave_notify_event):
+	* src/xutils.c: (xutils_set_strut):
+	* src/xutils.h:
+
+2007-02-14  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Added choice for arrow type (Awn or the "dock"), and colour of arrow.
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/window.glade:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_find_launcher):
+	* src/awn-task.c: (_task_hover_effect), (draw):
+
+2007-02-14  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Ability to choose color of text background.
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/avant-preferences.py:
+	* avant-preferences/window.glade:
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_task_manager_window_has_launcher),
+	(awn_task_manager_get_windows):
+	* src/awn-task-manager.h:
+	* src/awn-task.c: (awn_task_win_enter_in),
+	(awn_task_win_enter_out), (awn_task_new), (awn_task_close):
+	* src/awn-title.c: (_rounded_rectangle), (_rounded_corners),
+	(render_bg), (render), (_position_window), (awn_title_show):
+	* src/main.c: (main):
+
+2007-02-14  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Re-enabled title background code. Quietened down AWN_IS_TASK messages. 
+
+	* src/awn-task-manager.c: (_task_manager_window_has_launcher),
+	(awn_task_manager_get_windows):
+	* src/awn-task-manager.h:
+	* src/awn-task.c: (awn_task_win_enter_in),
+	(awn_task_win_enter_out), (awn_task_new), (awn_task_close):
+	* src/awn-title.c: (_rounded_rectangle), (_rounded_corners),
+	(render_bg), (render), (_position_window), (awn_title_show):
+	* src/main.c: (main):
+
+2007-02-10  Neil Jagdish Patel  <njp@Fedora>
+
+	Some dual screen support. swapped auto detection with user specified dectection.
+
+	* src/awn-bar.c: (_position_window):
+	* src/awn-gconf.c: (awn_gconf_new), (load_monitor):
+	* src/awn-gconf.h:
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	Added new hover effect for review.
+
+	* src/awn-gconf.c: (awn_gconf_new):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_task_manager_drag_data_recieved):
+	* src/awn-task.c: (awn_task_proximity_in),
+	(awn_task_proximity_out), (awn_task_win_enter_in),
+	(awn_task_win_enter_out), (awn_task_new):
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	Launchers and tasks separated, separator added
+
+	* avant-preferences/avant-preferences.in.py:
+	* avant-preferences/avant-preferences.py:
+	* avant-preferences/window.glade:
+	* src/awn-bar.c: (render), (awn_bar_set_separator_position):
+	* src/awn-bar.h:
+	* src/awn-gconf.c: (awn_gconf_new), (awn_notify_bool):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (_load_launchers_func),
+	(_task_manager_window_opened), (_task_manager_drag_data_recieved),
+	(_task_refresh), (_refresh_box),
+	(awn_task_manager_remove_launcher), (awn_task_manager_remove_task),
+	(awn_task_manager_update_separator_position),
+	(awn_task_manager_new):
+	* src/awn-task.c: (activate_window), (awn_task_drag_motion):
+	* src/main.c: (main):
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	Changed the code for getting the icon theme.
+
+	* src/awn-task.c: (awn_task_set_window), (icon_loader_get_icon):
+	* src/awn-window.c:
+	* src/awn-window.h:
+	* src/main.c: (expose):
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/main.c: popup now includes a link to avant-preferences
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	Added 1 sec delay before window activates on drag.
+
+	* src/awn-task.c: (awn_task_class_init), (awn_task_button_press),
+	(activate_window), (awn_task_drag_motion), (awn_task_drag_leave),
+	(awn_task_new):
+	* src/awn-title.c: (render):
+
+2007-02-09  Neil Jagdish Patel  <njp@Fedora>
+
+	D&D works for entire bar. Bar has popup to close.
+
+	* src/awn-bar.c: (render), (awn_bar_resize):
+	* src/awn-task-manager.c: (awn_task_manager_new):
+	* src/awn-task.c: (_task_drag_data_recieved):
+	* src/awn-window.c: (awn_window_init), (render):
+	* src/main.c: (main), (expose), (start_drag_animation),
+	(drag_motion), (leave_notify_event), (close_function),
+	(create_menu), (button_press_event):
+
+2007-02-06  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Better launcher to window matching code.
+
+	* src/awn-task-manager.c:
+
+2007-02-06  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Cleanup of D&D code
+	* src/awn-task.c: (_task_launched_effect), (awn_task_launch),
+	(_task_drag_data_recieved):
+
+2007-02-06  Neil Jagdish Patel  <njpatel@gmail.com>
+
+	Launchers now support dragging of uris to them (to launch the program 
+	with arguments.
+
+	* src/awn-task-manager.c: Teaked drop code
+	* src/awn-task.c: Added code for launching applications with uris.
+
+2007-02-02  Neil Jagdish Patel  <njp@Fedora>
+
+	Smart launcher support added
+
+	* configure.in: now needs gnome-desktop and gnome-vfs to compile.
+	* data/avant-window-navigator.schemas:
+	* src/awn-gconf.c: (awn_gconf_new), (awn_load_bool),
+	(awn_load_string), (awn_load_float), (awn_load_color),
+	(_print_launchers), (awn_load_string_list):
+	* src/awn-gconf.h:
+	* src/awn-task-manager.c: (awn_task_manager_init),
+	(_load_launchers_func), (_task_manager_load_launchers),
+	(_find_launcher), (_task_manager_window_has_launcher),
+	(_task_manager_window_opened), (_task_refresh), (_refresh_box),
+	(awn_task_manager_new):
+	* src/awn-task.c: (awn_task_init), (_task_attention_effect),
+	(draw), (awn_task_button_press), (icon_loader_get_icon),
+	(awn_task_set_launcher), (awn_task_is_launcher),
+	(awn_task_get_pid), (awn_task_get_name), (awn_task_create_menu):
+	* src/awn-task.h:
+	* src/awn-window.c: (_position_timeout), (awn_window_new),
+	(_position_window):
+	* src/main.c: (main):
+
+2007-02-02  Neil Jagdish Patel  <njp@Fedora>
+
+	reviewed by: <delete if not using a buddy>
+
+	* src/awn-window.c: Smooth out repositioning.
+
+2007-02-01  Neil Jagdish Patel  <njp@Fedora>
+
+	* README:
+	* src/awn-task.c: Added needs-attention effects
+	* src/main.c: Prints message detailing how to use new code.
+
+2007-02-01  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/awn-task.c: Added mouse-hover effects
+	* src/awn-title.c: (_position_window): Raise window by 5px.
+
+2007-02-01  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/awn-task-manager.c:
+	* src/awn-task.c: Added effect support.
+
+2007-01-31  Neil Jagdish Patel  <njp@Fedora>
+
+	Experimental support for GObject-based task icons, and initial support forsmart launchers and startup notification.
+
+	* src/Makefile.am:
+	* src/awn-task-manager.c: 
+	* src/awn-task-manager.h:
+	* src/awn-task.c:
+	* src/awn-task.h:
+	* src/awn-utils.h:
+	* src/awn-win-manager.c:
+	* src/main.c: added support for new window manager
+
+2007-01-30  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/Makefile.am:
+	* src/Makefile.in:
+	* src/awn-app.c: Added support for getting icon directly from X
+	* src/awn-x.c: wrapper for X calls (getting icon)
+	* src/awn-x.h: 
+
+2007-01-29  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/awn-app.c: (awn_app_new): removed gtk_drag_dest_set_track_motion() for gtk+ < 2.10
+
+2007-01-29  Neil Jagdish Patel  <njp@Fedora>
+
+	* src/awn-bar.c: (do_shape_combine_mask):made static
+	* src/awn-title.c: (do_shape_combine_mask), (_update_input_shape):made static, added support for gtk+ < 2.10
+	* src/awn-window.c: (do_shape_combine_mask):made static
+
+2007-01-28 Neil J. Patel <njpatel@gmail.com>
+
+	* avant-preferences/Makefile.am: Adjust EXTRA_DIST to include glade file
+	* awn-bar.c: Support for gtk+ < 2.10
+	* awn-window.c: Support got gtk+ < 2.10
+
+2007-01-28 Neil J. Patel <njpatel@gmail.com>
+
+	* avant-window-navigator: Initial Release - 0.0.1
+
+2007-01-20 Neil J. Patel <njpatel@gmail.com>
+
+	* avant-window-navigator: Initial Import
