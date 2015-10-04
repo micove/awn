@@ -29,7 +29,9 @@
 #include "awn-effects.h"
 #include "awn-overlay.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAYABLE awn_overlayable_get_type()
 
@@ -46,26 +48,28 @@ G_BEGIN_DECLS
 typedef struct _AwnOverlayable AwnOverlayable;
 typedef struct _AwnOverlayableIface AwnOverlayableIface;
 
-struct _AwnOverlayableIface
-{
-  GTypeInterface parent;
+struct _AwnOverlayableIface {
+    GTypeInterface parent;
 
-  AwnEffects*   (*get_effects)          (AwnOverlayable* self);
+    AwnEffects*   (*get_effects)(AwnOverlayable* self);
 };
 
-GType awn_overlayable_get_type (void);
+GType awn_overlayable_get_type(void);
 
-AwnEffects* awn_overlayable_get_effects   (AwnOverlayable* self);
+AwnEffects* awn_overlayable_get_effects(AwnOverlayable* self);
 
-void   awn_overlayable_add_overlay        (AwnOverlayable* self,
-                                           AwnOverlay *overlay);
+void   awn_overlayable_add_overlay(AwnOverlayable* self,
+                                   AwnOverlay* overlay);
 
-void   awn_overlayable_remove_overlay     (AwnOverlayable *self,
-                                           AwnOverlay *overlay);
+void   awn_overlayable_remove_overlay(AwnOverlayable* self,
+                                      AwnOverlay* overlay);
 
-GList* awn_overlayable_get_overlays       (AwnOverlayable *self);
+GList* awn_overlayable_get_overlays(AwnOverlayable* self);
 
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAYABLE */

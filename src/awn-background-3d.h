@@ -18,8 +18,8 @@
  *  Author : Neil Jagdish Patel <njpatel@gmail.com>
 */
 
-#ifndef	_AWN_BACKGROUND_3D_H
-#define	_AWN_BACKGROUND_3D_H
+#ifndef _AWN_BACKGROUND_3D_H
+#define _AWN_BACKGROUND_3D_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -27,14 +27,16 @@
 
 #include "awn-background.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_BACKGROUND_3D (awn_background_3d_get_type())
 
 #define AWN_BACKGROUND_3D(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), AWN_TYPE_BACKGROUND_3D, \
   AwnBackground3d))
 
-#define AWN_BACKGROUND_3D_CLASS(obj)	(G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_3D, \
+#define AWN_BACKGROUND_3D_CLASS(obj)    (G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_3D, \
   AwnBackground3dClass))
 
 #define AWN_IS_BACKGROUND_3D(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AWN_TYPE_BACKGROUND_3D))
@@ -42,28 +44,29 @@ G_BEGIN_DECLS
 #define AWN_IS_BACKGROUND_3D_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((obj), \
   AWN_TYPE_BACKGROUND_3D))
 
-#define AWN_BACKGROUND_3D_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), \
+#define AWN_BACKGROUND_3D_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), \
   AWN_TYPE_BACKGROUND_3D, AwnBackground3dClass))
 
 typedef struct _AwnBackground3d AwnBackground3d;
 typedef struct _AwnBackground3dClass AwnBackground3dClass;
 
-struct _AwnBackground3d
-{
-  AwnBackground  parent;
+struct _AwnBackground3d {
+    AwnBackground  parent;
 };
 
-struct _AwnBackground3dClass 
-{
-  AwnBackgroundClass parent_class;
+struct _AwnBackground3dClass {
+    AwnBackgroundClass parent_class;
 };
 
-GType           awn_background_3d_get_type (void) G_GNUC_CONST;
+GType           awn_background_3d_get_type(void) G_GNUC_CONST;
 
-AwnBackground * awn_background_3d_new      (DesktopAgnosticConfigClient *client,
-                                              AwnPanel        *panel);
+AwnBackground* awn_background_3d_new(DesktopAgnosticConfigClient* client,
+                                     AwnPanel*        panel);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_BACKGROUND_3D_H */
 

@@ -16,8 +16,8 @@
  *
  *
  */
- 
- 
+
+
 /* awn-overlay-progress.h */
 
 #ifndef _AWN_OVERLAY_PROGRESS
@@ -26,7 +26,9 @@
 #include <glib-object.h>
 #include "awn-overlay.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_PROGRESS awn_overlay_progress_get_type()
 
@@ -46,17 +48,20 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_PROGRESS, AwnOverlayProgressClass))
 
 typedef struct {
-  AwnOverlay parent;
+    AwnOverlay parent;
 } AwnOverlayProgress;
 
 typedef struct {
-  AwnOverlayClass parent_class;
+    AwnOverlayClass parent_class;
 } AwnOverlayProgressClass;
 
-GType awn_overlay_progress_get_type (void);
+GType awn_overlay_progress_get_type(void);
 
-AwnOverlayProgress* awn_overlay_progress_new (void);
+AwnOverlayProgress* awn_overlay_progress_new(void);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_PROGRESS */

@@ -22,7 +22,9 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_DBUS_WATCHER (awn_dbus_watcher_get_type ())
 
@@ -46,33 +48,34 @@ typedef struct _AwnDBusWatcherClass AwnDBusWatcherClass;
 typedef struct _AwnDBusWatcherPrivate AwnDBusWatcherPrivate;
 
 
-struct _AwnDBusWatcher
-{
-  GObject         parent;
+struct _AwnDBusWatcher {
+    GObject         parent;
 
-  /*< private >*/
-  AwnDBusWatcherPrivate   *priv;
+    /*< private >*/
+    AwnDBusWatcherPrivate*   priv;
 };
 
-struct _AwnDBusWatcherClass 
-{
-  GObjectClass    parent_class;
+struct _AwnDBusWatcherClass {
+    GObjectClass    parent_class;
 
-  /*< signals >*/
-  void (*name_appeared) (AwnDBusWatcher* watcher,
+    /*< signals >*/
+    void (*name_appeared)(AwnDBusWatcher* watcher,
+                          gchar* name);
+    void (*name_disappeared)(AwnDBusWatcher* watcher,
                              gchar* name);
-  void (*name_disappeared) (AwnDBusWatcher* watcher,
-                             gchar* name);
-  void (*_awn_dbus_watcher_1) (void);
-  void (*_awn_dbus_watcher_2) (void);
+    void (*_awn_dbus_watcher_1)(void);
+    void (*_awn_dbus_watcher_2)(void);
 };
 
-GType    awn_dbus_watcher_get_type    (void) G_GNUC_CONST;
+GType    awn_dbus_watcher_get_type(void) G_GNUC_CONST;
 
-AwnDBusWatcher * awn_dbus_watcher_get_default (void);
-gboolean awn_dbus_watcher_has_name (AwnDBusWatcher* self, const gchar* name);
+AwnDBusWatcher* awn_dbus_watcher_get_default(void);
+gboolean awn_dbus_watcher_has_name(AwnDBusWatcher* self, const gchar* name);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_DBUS_WATCHER_H */
 

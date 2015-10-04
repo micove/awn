@@ -25,7 +25,9 @@
 #include <glib-object.h>
 #include "awn-overlay-pixbuf.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_PIXBUF_FILE awn_overlay_pixbuf_file_get_type()
 
@@ -45,17 +47,20 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_PIXBUF_FILE, AwnOverlayPixbufFileClass))
 
 typedef struct {
-  AwnOverlayPixbuf parent;
+    AwnOverlayPixbuf parent;
 } AwnOverlayPixbufFile;
 
 typedef struct {
-  AwnOverlayPixbufClass parent_class;
+    AwnOverlayPixbufClass parent_class;
 } AwnOverlayPixbufFileClass;
 
-GType awn_overlay_pixbuf_file_get_type (void);
+GType awn_overlay_pixbuf_file_get_type(void);
 
-AwnOverlayPixbufFile* awn_overlay_pixbuf_file_new (gchar * file_name);
+AwnOverlayPixbufFile* awn_overlay_pixbuf_file_new(gchar* file_name);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_PIXBUF_FILE */

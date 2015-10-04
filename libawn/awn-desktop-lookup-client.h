@@ -24,7 +24,9 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_DESKTOP_LOOKUP_CLIENT awn_desktop_lookup_client_get_type()
 
@@ -44,18 +46,21 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_DESKTOP_LOOKUP_CLIENT, AwnDesktopLookupClientClass))
 
 typedef struct {
-  GObject parent;
+    GObject parent;
 } AwnDesktopLookupClient;
 
 typedef struct {
-  GObjectClass parent_class;
+    GObjectClass parent_class;
 } AwnDesktopLookupClientClass;
 
-GType awn_desktop_lookup_client_get_type (void);
+GType awn_desktop_lookup_client_get_type(void);
 
-AwnDesktopLookupClient* awn_desktop_lookup_client_new (void);
+AwnDesktopLookupClient* awn_desktop_lookup_client_new(void);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_DESKTOP_LOOKUP_CLIENT */
 

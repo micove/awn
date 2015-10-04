@@ -24,7 +24,9 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_LABEL awn_label_get_type()
 
@@ -44,18 +46,21 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_LABEL, AwnLabelClass))
 
 typedef struct {
-  GtkLabel parent;
+    GtkLabel parent;
 } AwnLabel;
 
 typedef struct {
-  GtkLabelClass parent_class;
+    GtkLabelClass parent_class;
 } AwnLabelClass;
 
-GType awn_label_get_type (void);
+GType awn_label_get_type(void);
 
-AwnLabel* awn_label_new (void);
+AwnLabel* awn_label_new(void);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_LABEL */
 

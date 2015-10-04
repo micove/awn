@@ -18,22 +18,24 @@
  *  Author : Neil Jagdish Patel <njpatel@gmail.com>
 */
 
-#ifndef	_AWN_MONITOR_H
-#define	_AWN_MONITOR_H
+#ifndef _AWN_MONITOR_H
+#define _AWN_MONITOR_H
 
 #include <glib.h>
 #include <gtk/gtk.h>
 
 #include <libdesktop-agnostic/config.h>
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_MONITOR (awn_monitor_get_type())
 
 #define AWN_MONITOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), AWN_TYPE_MONITOR, \
   AwnMonitor))
 
-#define AWN_MONITOR_CLASS(obj)	(G_TYPE_CHECK_CLASS_CAST ((obj), AWN_MONITOR, \
+#define AWN_MONITOR_CLASS(obj)  (G_TYPE_CHECK_CLASS_CAST ((obj), AWN_MONITOR, \
   AwnMonitorClass))
 
 #define AWN_IS_MONITOR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AWN_TYPE_MONITOR))
@@ -41,7 +43,7 @@ G_BEGIN_DECLS
 #define AWN_IS_MONITOR_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((obj), \
   AWN_TYPE_MONITOR))
 
-#define AWN_MONITOR_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), \
+#define AWN_MONITOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), \
   AWN_TYPE_MONITOR, AwnMonitorClass))
 
 typedef struct _AwnMonitor AwnMonitor;
@@ -49,32 +51,35 @@ typedef struct _AwnMonitorClass AwnMonitorClass;
 typedef struct _AwnMonitorPrivate AwnMonitorPrivate;
 
 struct _AwnMonitor {
-  GObject parent;
+    GObject parent;
 
-  gint   width;
-  gint   height;
-  gint   x_offset;
-  gint   y_offset;
-  gfloat align;
+    gint   width;
+    gint   height;
+    gint   x_offset;
+    gint   y_offset;
+    gfloat align;
 
-  /*< private >*/
-  AwnMonitorPrivate *priv;
+    /*< private >*/
+    AwnMonitorPrivate* priv;
 };
 
 struct _AwnMonitorClass {
-  GObjectClass parent_class;
+    GObjectClass parent_class;
 
-  /*< signals >*/
-  void (*geometry_changed) (AwnMonitor *monitor);
+    /*< signals >*/
+    void (*geometry_changed)(AwnMonitor* monitor);
 };
 
 GType awn_monitor_get_type(void) G_GNUC_CONST;
 
 
-AwnMonitor * awn_monitor_new_for_screen (GdkScreen *screen,
-                                         DesktopAgnosticConfigClient *client);
+AwnMonitor* awn_monitor_new_for_screen(GdkScreen* screen,
+                                       DesktopAgnosticConfigClient* client);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 
 #endif /* _AWN_MONITOR_H */

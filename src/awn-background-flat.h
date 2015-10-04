@@ -18,8 +18,8 @@
  *  Author : Neil Jagdish Patel <njpatel@gmail.com>
 */
 
-#ifndef	_AWN_BACKGROUND_FLAT_H
-#define	_AWN_BACKGROUND_FLAT_H
+#ifndef _AWN_BACKGROUND_FLAT_H
+#define _AWN_BACKGROUND_FLAT_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -27,14 +27,16 @@
 
 #include "awn-background.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_BACKGROUND_FLAT (awn_background_flat_get_type())
 
 #define AWN_BACKGROUND_FLAT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), AWN_TYPE_BACKGROUND_FLAT, \
   AwnBackgroundFlat))
 
-#define AWN_BACKGROUND_FLAT_CLASS(obj)	(G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_FLAT, \
+#define AWN_BACKGROUND_FLAT_CLASS(obj)  (G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_FLAT, \
   AwnBackgroundFlatClass))
 
 #define AWN_IS_BACKGROUND_FLAT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AWN_TYPE_BACKGROUND_FLAT))
@@ -42,28 +44,29 @@ G_BEGIN_DECLS
 #define AWN_IS_BACKGROUND_FLAT_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((obj), \
   AWN_TYPE_BACKGROUND_FLAT))
 
-#define AWN_BACKGROUND_FLAT_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), \
+#define AWN_BACKGROUND_FLAT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), \
   AWN_TYPE_BACKGROUND_FLAT, AwnBackgroundFlatClass))
 
 typedef struct _AwnBackgroundFlat AwnBackgroundFlat;
 typedef struct _AwnBackgroundFlatClass AwnBackgroundFlatClass;
 
-struct _AwnBackgroundFlat 
-{
-  AwnBackground  parent;
+struct _AwnBackgroundFlat {
+    AwnBackground  parent;
 };
 
-struct _AwnBackgroundFlatClass 
-{
-  AwnBackgroundClass parent_class;
+struct _AwnBackgroundFlatClass {
+    AwnBackgroundClass parent_class;
 };
 
-GType           awn_background_flat_get_type (void) G_GNUC_CONST;
+GType           awn_background_flat_get_type(void) G_GNUC_CONST;
 
-AwnBackground * awn_background_flat_new      (DesktopAgnosticConfigClient *client,
-                                              AwnPanel        *panel);
+AwnBackground* awn_background_flat_new(DesktopAgnosticConfigClient* client,
+                                       AwnPanel*        panel);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_BACKGROUND_FLAT_H */
 
