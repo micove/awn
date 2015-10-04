@@ -6,10 +6,6 @@ configure_flags +=  --prefix=/usr \
 					--enable-gtk-doc \
 					--with-gconf-schema-file-dir=/etc/gconf/schemas
 
-
-%:
-	dh --with python2 $@
-
 override_dh_auto_configure:
 	dh_auto_configure -- 	$(configure_flags)
 
@@ -33,6 +29,9 @@ override_dh_makeshlibs:
 
 override_dh_python2:
 	dh_python2 --no-guessing-versions
+
+%:
+	dh $@ --with python2
 
 get-orig-source:
 	sh debian/get-git-source.sh
