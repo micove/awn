@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
 Build-Depends:
  debhelper (>= 9~),
+ dh-autoreconf,
  doc-base,
  gconf2,
  gtk-doc-tools,

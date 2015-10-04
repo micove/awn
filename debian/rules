@@ -9,6 +9,9 @@ configure_flags +=  --prefix=/usr \
 override_dh_auto_configure:
 	dh_auto_configure -- 	$(configure_flags)
 
+override_dh_autoreconf:
+	dh_autoreconf --as-needed debian/autogen.sh
+
 override_dh_strip:
 	dh_strip --dbg-package=libawn1-dbg
 
@@ -31,7 +34,7 @@ override_dh_python2:
 	dh_python2 --no-guessing-versions
 
 %:
-	dh $@ --with python2
+	dh $@ --with python2,autoreconf
 
 get-orig-source:
 	sh debian/get-git-source.sh
