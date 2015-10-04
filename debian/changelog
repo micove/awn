@@ -1,3 +1,13 @@
+awn (0.4.2-5-g278628f-0~github1) UNRELEASED; urgency=medium
+
+  * QA upload.
+  * New upstream snapshot.
+  * Rename source package to 'awn'.
+  * debian/rules:
+    - Add a get-orig-source target.
+
+ -- Miguel A. Colón Vélez <debian.micove@gmail.com>  Sat, 03 Oct 2015 20:19:55 -0400
+
 avant-window-navigator (0.4.1~bzr830-2) unstable; urgency=low
 
   * debian/control:
