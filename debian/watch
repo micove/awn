@@ -1,2 +1,3 @@
 version=3
-https://launchpad.net/awn/+download http://launchpad.net/awn/.*/avant-window-navigator-(.+)\.tar.gz
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/awn-$1\.tar\.gz/ \
+  https://github.com/p12tic/awn/tags .*/v?(\d\S*)\.tar\.gz
