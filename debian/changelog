@@ -3,6 +3,10 @@ awn (0.4.2-5-g278628f-0~github1) UNRELEASED; urgency=medium
   * QA upload.
   * New upstream snapshot.
   * Rename source package to 'awn'.
+  * debian/patches:
+    - Drop patches applied upstream.
+    - Add a patch to fix a FTBFS when using a recent valac.
+    - Add a patch to fix the clean routines.
   * debian/rules:
     - Add a get-orig-source target.
 
