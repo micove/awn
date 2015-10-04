@@ -34,7 +34,7 @@ override_dh_python2:
 	dh_python2 --no-guessing-versions
 
 %:
-	dh $@ --with python2,autoreconf
+	dh $@ --parallel --with python2,autoreconf
 
 get-orig-source:
 	sh debian/get-git-source.sh
