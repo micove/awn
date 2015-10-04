@@ -35,9 +35,6 @@ override_dh_auto_test:
 override_dh_makeshlibs:
 	dh_makeshlibs -plibawn1 -V 'libawn1 (>= 0.4.2)'
 
-override_dh_python2:
-	dh_python2 --no-guessing-versions
-
 %:
 	dh $@ --parallel --with python2,autoreconf
 
