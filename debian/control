@@ -93,8 +93,7 @@ Depends:
  libdbus-glib-1-dev,
  libdesktop-agnostic-dev,
  libgtk2.0-dev,
- ${misc:Depends},
- ${shlibs:Depends}
+ ${misc:Depends}
 Breaks:
  vala-awn
 Replaces:
