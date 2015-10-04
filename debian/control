@@ -59,6 +59,11 @@ Architecture: all
 Depends:
  ${misc:Depends}
 Description: Common files for avant-window-navigator
+ Avant-window-navigator (Awn) is a MacOS X like panel for the GNOME Desktop
+ written in C.  In addition to launchers that can be dragged onto the bar,
+ it features a taskbar that behaves similarly to the Mac OSX dock. The window
+ navigator uses the composite extension for transparency and other effects.
+ .
  This package contains all images and locales for avant-windows-navigator.
 
 Package: libawn1
@@ -73,8 +78,10 @@ Depends:
 Suggests:
  metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2) | kde-window-manager (>= 4:4.0.0) | mutter
 Description: library for avant-window-navigator
- This library is used by avant-window-navigator and its applets. It provides
- functions to create the bar and the applets.
+ The avant-window-navigator library is used by avant-window-navigator and its
+ applets. It provides functions to create the bar and the applets.
+ .
+ This package contains the avant-window-navigator library.
 
 Package: libawn-doc
 Section: doc
@@ -83,8 +90,11 @@ Depends:
  libawn1 (>= ${source:Version}),
  ${misc:Depends}
 Description: library for avant-window-navigator - documentation files
+ The avant-window-navigator library is used by avant-window-navigator and its
+ applets. It provides functions to create the bar and the applets.
+ .
  This package contains documentation for avant-window-navigator and its library
- libawn to develop applets or the bar.
+ to develop applets or the bar.
 
 Package: libawn-dev
 Section: libdevel
@@ -101,8 +111,11 @@ Breaks:
 Replaces:
  vala-awn
 Description: library for avant-window-navigator - development files
- This package provides the include files and static library for the
- avant-window-navigator library functions.
+ The avant-window-navigator library is used by avant-window-navigator and its
+ applets. It provides functions to create the bar and the applets.
+ .
+ This package contains the development files used to build programs that use
+ the avant-window-navigator library.
 
 Package: awn-settings
 Architecture: all
@@ -120,6 +133,8 @@ Depends:
 Description: Preferences manager for avant-window-navigator
  awn-settings provides a simple way to configure avant-window-navigator.
  You can manage preferences, themes, applets and launchers.
+ .
+ This package provides the preferences manager for avant-window-navigator.
 
 Package: python-awn
 Section: python
@@ -135,6 +150,9 @@ Depends:
 Description: Python bindings for avant-window-navigator library
  This library is used by avant-window-navigator. It provides Python bindings
  to create and use Python applets for avant-window-navigator.
+ .
+ This package provides the Python bindings for the avant-window-navigator
+ library.
 
 Package: libawn1-dbg
 Section: debug
