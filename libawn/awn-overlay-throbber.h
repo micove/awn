@@ -26,7 +26,9 @@
 #include <glib-object.h>
 #include "awn-overlay.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_THROBBER awn_overlay_throbber_get_type()
 
@@ -46,17 +48,20 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_THROBBER, AwnOverlayThrobberClass))
 
 typedef struct {
-  AwnOverlay parent;
+    AwnOverlay parent;
 } AwnOverlayThrobber;
 
 typedef struct {
-  AwnOverlayClass parent_class;
+    AwnOverlayClass parent_class;
 } AwnOverlayThrobberClass;
 
-GType awn_overlay_throbber_get_type (void);
+GType awn_overlay_throbber_get_type(void);
 
-GtkWidget* awn_overlay_throbber_new (void);
+GtkWidget* awn_overlay_throbber_new(void);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_THROBBER */

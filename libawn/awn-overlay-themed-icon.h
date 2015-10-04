@@ -27,7 +27,9 @@
 #include "awn-overlay.h"
 #include "awn-themed-icon.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_THEMED_ICON awn_overlay_themed_icon_get_type()
 
@@ -47,17 +49,20 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_THEMED_ICON, AwnOverlayThemedIconClass))
 
 typedef struct {
-  AwnOverlay parent;
+    AwnOverlay parent;
 } AwnOverlayThemedIcon;
 
 typedef struct {
-  AwnOverlayClass parent_class;
+    AwnOverlayClass parent_class;
 } AwnOverlayThemedIconClass;
 
-GType awn_overlay_themed_icon_get_type (void);
+GType awn_overlay_themed_icon_get_type(void);
 
-AwnOverlayThemedIcon* awn_overlay_themed_icon_new (const gchar * icon_name);
+AwnOverlayThemedIcon* awn_overlay_themed_icon_new(const gchar* icon_name);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_THEMED_ICON */

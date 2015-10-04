@@ -9,7 +9,6 @@ include $(top_srcdir)/Makefile.marshal
 include $(top_srcdir)/Makefile.schemas
 
 VALA_FILES = \
-	dock-manager-api.vala \
 	labelled-separator.vala \
 	$(NULL)
 
@@ -33,7 +32,7 @@ VALA_FLAGS = \
 
 task-manager.vala.stamp: $(VALA_FILES)
 	$(foreach vala_file,$(VALA_FILES),\
-	$(VALAC) -C -H $(vala_file:.vala=.h) $(vala_file) $(VALA_FLAGS) || exit 1;)
+	$(VALAC) -C -H $(vala_file:.vala=.h) $(srcdir)/$(vala_file) $(VALA_FLAGS) || exit 1;)
 	touch "$@"
 
 VALA_GENERATED_FILES = \
@@ -43,43 +42,45 @@ VALA_GENERATED_FILES = \
 
 applet_LTLIBRARIES = taskmanager.la
 taskmanager_la_SOURCES = \
-	applet.c \
+	applet.cc \
 	awn-desktop-lookup.h \
 	awn-desktop-lookup-cached.h \
 	awn-desktop-lookup-gnome3.h \
-	awn-desktop-lookup.c \
-	awn-desktop-lookup-cached.c \
-	awn-desktop-lookup-gnome3.c \
+	awn-desktop-lookup.cc \
+	awn-desktop-lookup-cached.cc \
+	awn-desktop-lookup-gnome3.cc \
+	dock-manager-api.cc	\
+	dock-manager-api.h	\
 	task-defines.h \
-	task-drag-indicator.c \
+	task-drag-indicator.cc \
 	task-drag-indicator.h \
-	task-icon.c \
+	task-icon.cc \
 	task-icon.h \
-	task-icon-build-context-menus.c \
+	task-icon-build-context-menus.cc \
 	task-icon-build-context-menus.h \
 	task-icon-private.h \
-	task-item.c \
+	task-item.cc \
 	task-item.h \
-	task-launcher.c \
+	task-launcher.cc \
 	task-launcher.h \
-	task-manager.c \
+	task-manager.cc \
 	task-manager.h \
-	task-manager-api-wrapper.c \
+	task-manager-api-wrapper.cc \
 	task-manager-api-wrapper.h \
 	task-manager-api-wrapper-glue.h \
-	task-manager-dialog.c \
+	task-manager-dialog.cc \
 	task-manager-dialog.h \
-	task-manager-panel-connector.c \
+	task-manager-panel-connector.cc \
 	task-manager-panel-connector.h \
-	task-settings.c \
+	task-settings.cc \
 	task-settings.h \
-	task-window.c \
+	task-window.cc \
 	task-window.h \
 	util.h \
-	util.c  \
-	$(builddir)/taskmanager-marshal.c \
+	util.cc  \
+        $(builddir)/taskmanager-marshal.c \
 	$(builddir)/taskmanager-marshal.h \
-	xutils.c \
+	xutils.cc \
 	xutils.h \
 	$(VALA_GENERATED_FILES) \
 	$(NULL)
@@ -105,7 +106,7 @@ install-data-local: install-gconf-schemas
 
 taskmanager_menusdir = $(applet_datadir)/menus
 dist_taskmanager_menus_DATA = \
-	$(wildcard menus/*.xml) \
+	$(wildcard $(srcdir)/menus/*.xml) \
 	$(NULL)
 
 # miscellaneous
@@ -123,7 +124,6 @@ EXTRA_DIST += \
 	$(VALA_GENERATED_FILES) \
 	taskmanager-marshal.list \
 	task-manager.vapi \
-	dock-manager-api.vala \
 	labelled-separator.vala \
 	$(NULL)
 

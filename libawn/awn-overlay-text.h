@@ -25,7 +25,9 @@
 #include <glib-object.h>
 #include "awn-overlay.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_TEXT awn_overlay_text_get_type()
 
@@ -45,24 +47,27 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_TEXT, AwnOverlayTextClass))
 
 typedef struct {
-  AwnOverlay parent;
+    AwnOverlay parent;
 } AwnOverlayText;
 
 typedef struct {
-  AwnOverlayClass parent_class;
+    AwnOverlayClass parent_class;
 } AwnOverlayTextClass;
 
-GType awn_overlay_text_get_type (void);
+GType awn_overlay_text_get_type(void);
 
-AwnOverlayText* awn_overlay_text_new (void);
+AwnOverlayText* awn_overlay_text_new(void);
 
-void awn_overlay_text_get_size (AwnOverlayText* overlay,
-                                GtkWidget * widget,
-                                gchar *text,
-                                gint size,
-                                gint *width, gint *height);
+void awn_overlay_text_get_size(AwnOverlayText* overlay,
+                               GtkWidget* widget,
+                               gchar* text,
+                               gint size,
+                               gint* width, gint* height);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_TEXT */
 

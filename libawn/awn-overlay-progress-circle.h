@@ -25,7 +25,9 @@
 #include <glib-object.h>
 #include "awn-overlay-progress.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_OVERLAY_PROGRESS_CIRCLE awn_overlay_progress_circle_get_type()
 
@@ -45,17 +47,20 @@ G_BEGIN_DECLS
   (G_TYPE_INSTANCE_GET_CLASS ((obj), AWN_TYPE_OVERLAY_PROGRESS_CIRCLE, AwnOverlayProgressCircleClass))
 
 typedef struct {
-  AwnOverlayProgress parent;
+    AwnOverlayProgress parent;
 } AwnOverlayProgressCircle;
 
 typedef struct {
-  AwnOverlayProgressClass parent_class;
+    AwnOverlayProgressClass parent_class;
 } AwnOverlayProgressCircleClass;
 
-GType awn_overlay_progress_circle_get_type (void);
+GType awn_overlay_progress_circle_get_type(void);
 
-AwnOverlayProgressCircle* awn_overlay_progress_circle_new (void);
+AwnOverlayProgressCircle* awn_overlay_progress_circle_new(void);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_OVERLAY_PROGRESS_CIRCLE */

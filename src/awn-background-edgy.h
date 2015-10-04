@@ -18,8 +18,8 @@
  *  Author : Michal Hruby <michal.mhr@gmail.com>
 */
 
-#ifndef	_AWN_BACKGROUND_EDGY_H
-#define	_AWN_BACKGROUND_EDGY_H
+#ifndef _AWN_BACKGROUND_EDGY_H
+#define _AWN_BACKGROUND_EDGY_H
 
 #include <glib.h>
 #include <glib-object.h>
@@ -27,14 +27,16 @@
 
 #include "awn-background-flat.h"
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define AWN_TYPE_BACKGROUND_EDGY (awn_background_edgy_get_type())
 
 #define AWN_BACKGROUND_EDGY(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), AWN_TYPE_BACKGROUND_EDGY, \
   AwnBackgroundEdgy))
 
-#define AWN_BACKGROUND_EDGY_CLASS(obj)	(G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_EDGY, \
+#define AWN_BACKGROUND_EDGY_CLASS(obj)  (G_TYPE_CHECK_CLASS_CAST ((obj), AWN_BACKGROUND_EDGY, \
   AwnBackgroundEdgyClass))
 
 #define AWN_IS_BACKGROUND_EDGY(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AWN_TYPE_BACKGROUND_EDGY))
@@ -42,33 +44,34 @@ G_BEGIN_DECLS
 #define AWN_IS_BACKGROUND_EDGY_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((obj), \
   AWN_TYPE_BACKGROUND_EDGY))
 
-#define AWN_BACKGROUND_EDGY_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), \
+#define AWN_BACKGROUND_EDGY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), \
   AWN_TYPE_BACKGROUND_EDGY, AwnBackgroundEdgyClass))
 
 typedef struct _AwnBackgroundEdgy AwnBackgroundEdgy;
 typedef struct _AwnBackgroundEdgyClass AwnBackgroundEdgyClass;
 typedef struct _AwnBackgroundEdgyPrivate AwnBackgroundEdgyPrivate;
 
-struct _AwnBackgroundEdgy
-{
-  AwnBackgroundFlat parent;
+struct _AwnBackgroundEdgy {
+    AwnBackgroundFlat parent;
 
-  gint size_offset;
+    gint size_offset;
 
-  AwnBackgroundEdgyPrivate *priv;
+    AwnBackgroundEdgyPrivate* priv;
 };
 
-struct _AwnBackgroundEdgyClass 
-{
-  AwnBackgroundFlatClass parent_class;
+struct _AwnBackgroundEdgyClass {
+    AwnBackgroundFlatClass parent_class;
 };
 
-GType           awn_background_edgy_get_type (void) G_GNUC_CONST;
+GType           awn_background_edgy_get_type(void) G_GNUC_CONST;
 
-AwnBackground * awn_background_edgy_new      (DesktopAgnosticConfigClient *client,
-                                              AwnPanel        *panel);
+AwnBackground* awn_background_edgy_new(DesktopAgnosticConfigClient* client,
+                                       AwnPanel*        panel);
 
-G_END_DECLS
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* _AWN_BACKGROUND_EDGY_H */
 

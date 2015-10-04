@@ -1,4 +1,4 @@
-NULL = 
+NULL =
 
 VALA_BINDINGS = bindings/vala
 
@@ -42,8 +42,6 @@ EXTRA_DIST = \
 	$(NULL)
 
 DISTCLEANFILES = \
-	doltcompile \
-	doltlibtool \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
