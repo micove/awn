@@ -37,17 +37,14 @@ Architecture: any
 Depends:
  avant-window-navigator-data (>= ${source:Version}),
  dbus-x11,
- libdesktop-agnostic-cfg,
- libdesktop-agnostic-fdo,
- libdesktop-agnostic-vfs,
+ libdesktop-agnostic-bin,
  ${misc:Depends},
  ${shlibs:Depends}
 Recommends:
  awn-applets-c-core,
  awn-applets-python-core,
  awn-settings (>= ${source:Version}),
- dockmanager,
- metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2) | kde-window-manager (>= 4:4.0.0) | mutter
+ metacity | xcompmgr | xfwm4 | kwin-x11 | mutter | x-window-manager
 Description: MacOS X like panel for GNOME
  Avant-window-navigator (Awn) is a MacOS X like panel for the GNOME Desktop
  written in C.  In addition to launchers that can be dragged onto the bar,
@@ -75,8 +72,6 @@ Pre-Depends:
 Depends:
  ${misc:Depends},
  ${shlibs:Depends}
-Suggests:
- metacity (>= 2.21.5) | xcompmgr | compiz | xfwm4 (>= 4.2) | kde-window-manager (>= 4:4.0.0) | mutter
 Description: library for avant-window-navigator
  The avant-window-navigator library is used by avant-window-navigator and its
  applets. It provides functions to create the bar and the applets.
