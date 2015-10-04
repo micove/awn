@@ -114,7 +114,6 @@ Package: awn-settings
 Architecture: all
 Depends:
  avant-window-navigator,
- bzr,
  gnome-menus,
  librsvg2-common,
  python-awn,
