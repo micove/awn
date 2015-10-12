@@ -2,15 +2,44 @@ awn (0.4.2-5-g278628f-0~github1) UNRELEASED; urgency=medium
 
   * QA upload.
   * New upstream snapshot.
+  * Orphan the package.
+  * Update upstream's information.
   * Rename source package to 'awn'.
+  * Bump the debhelper version and compatibility level to 9.
+  * Bump Standards-Version to 3.9.6.
+  * debian/control:
+    - Remove deprecated DM-Upload-Allowed field.
+    - Drop useless versioning in the build-dependencies.
+    - Bump the required valac version.
+    - Drop useless ${shlibs:Depends}.
+    - Relax Conflicts to Breaks.
+    - Drop obsolete Breaks/Conflicts/Replaces.
+    - Build-depend on libglibmm-2.4-dev and libgtkmm-2.4-dev.
+    - Update the description of the packages.
+    - Update Depends/Recommends/Suggests.
+    - Drop unneeded build dependencies.
   * debian/patches:
     - Drop patches applied upstream.
-    - Add a patch to fix a FTBFS when using a recent valac.
-    - Add a patch to fix the clean routines.
+    - Add a patch to fix several issues.
+      > Fix a FTBFS when using a recent valac.
+      > Fix the clean routines.
+      > Fix showing an add icon when using the keyfile configuration.
+      > Fix segmentation fault of the quick_prefs applet.
   * debian/rules:
     - Add a get-orig-source target.
+    - Use dh $@ --foo as required since compat 8.
+    - Allow parallel builds.
+    - Use the FLAGS from dpkg-buildflags.
+    - Add dh-autoreconf support.
+    - Bump shlibs version.
+  * Add multi-arch support.
+  * Update the package according to the latest Python policy.
+  * Update the watch file.
+  * Disable bzr support in awn-settings.
+  * Remove the symbols file due to ABI breakage and unstable C++ ABI. Use the
+    shlibs file.
 
- -- Miguel A. Colón Vélez <debian.micove@gmail.com>  Sat, 03 Oct 2015 20:19:55 -0400
+ -- Miguel A. Colón Vélez <debian.micove@gmail.com>  Mon, 12 Oct 2015 19:51:17 -0400
 
 avant-window-navigator (0.4.1~bzr830-2) unstable; urgency=low
 
