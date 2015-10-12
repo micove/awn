@@ -7,8 +7,7 @@ DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk
 LDFLAGS += -Wl,--as-needed
 
-configure_flags +=  --prefix=/usr \
-					--disable-static \
+configure_flags +=  --disable-static \
 					--disable-pymod-checks \
 					--enable-gtk-doc \
 					--with-gconf-schema-file-dir=/etc/gconf/schemas
@@ -28,9 +27,6 @@ override_dh_install:
 	find debian/tmp/usr/lib -name *.pyc |xargs rm
 	find debian/tmp/usr/lib -name *.pyo |xargs rm
 	dh_install --fail-missing
-
-override_dh_auto_test:
-	#Pass, tests don't pass for now.
 
 override_dh_makeshlibs:
 	dh_makeshlibs -plibawn1 -V 'libawn1 (>= 0.4.2)'
