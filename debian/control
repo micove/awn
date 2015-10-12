@@ -26,9 +26,7 @@ Build-Depends:
  valac
 Standards-Version: 3.9.6
 X-Python-Version: >= 2.6
-Homepage: https://launchpad.net/avant-window-navigator/
-Vcs-Git: git://github.com/gilir/awn-debian.git
-Vcs-Browser: http://github.com/gilir/awn-debian/tree
+Homepage: https://launchpad.net/awn
 
 Package: avant-window-navigator
 Architecture: any
