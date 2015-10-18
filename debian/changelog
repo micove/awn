@@ -1,4 +1,4 @@
-awn (0.4.2-5-g278628f-0~github1) UNRELEASED; urgency=medium
+awn (0.4.2-16-gb8c2248-0~github1) UNRELEASED; urgency=medium
 
   * QA upload.
   * New upstream snapshot.
@@ -20,11 +20,6 @@ awn (0.4.2-5-g278628f-0~github1) UNRELEASED; urgency=medium
     - Drop unneeded build dependencies.
   * debian/patches:
     - Drop patches applied upstream.
-    - Add a patch to fix several issues.
-      > Fix a FTBFS when using a recent valac.
-      > Fix the clean routines.
-      > Fix showing an add icon when using the keyfile configuration.
-      > Fix segmentation fault of the quick_prefs applet.
   * debian/rules:
     - Add a get-orig-source target.
     - Use dh $@ --foo as required since compat 8.
